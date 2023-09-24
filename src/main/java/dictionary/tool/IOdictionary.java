@@ -17,7 +17,7 @@ public class IOdictionary {
             }
             bufferedWriter.close();
             fileWriter.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e)  {
             System.out.println("Khong tim thay file yeu cau");
         } catch (IOException e) {
             e.printStackTrace();
