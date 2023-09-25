@@ -6,7 +6,7 @@ This is small project about my OOP course, Using Java and module Javafx
 ## Step1: Install and setup Javafx module
 Firs, you will need **Javafx** module and Scence Builder to support about build interface of project.
 
-You can need install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and follow the [instruction](https://openjfx.io/openjfx-docs/) to running the firs programming.If you have set up these in your decvices, please skip this step.
+You can install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and follow the [instruction](https://openjfx.io/openjfx-docs/) to running the firs programming.If you have set up these in your decvices, please skip this step.
 
 ## Step2: Start your application
 Now, you can create and run a Dictionary project using Java programming language
