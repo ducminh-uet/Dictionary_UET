@@ -1,4 +1,3 @@
-package dictionary;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -167,7 +166,11 @@ public class DictionaryCommandLine{
                     break;
                 case "7":
                     // Truy cập phần Game
+                    Game game = new Game();
+                    game.startGame();
+
                     break;
+
                 case "8":
                     // Import từ file
                     //Chỉnh sửa định dạng
