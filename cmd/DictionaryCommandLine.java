@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Scanner;
