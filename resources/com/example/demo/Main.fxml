@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UI">
+    <children>
+        <AnchorPane layoutY="84.0" prefHeight="309.0" prefWidth="600.0">
+            <children>
+                <AnchorPane layoutX="7.0" layoutY="-14.0" prefHeight="315.0" prefWidth="157.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
+                <AnchorPane layoutX="175.0" layoutY="45.0" prefHeight="256.0" prefWidth="411.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
+                <AnchorPane layoutX="175.0" layoutY="-14.0" prefHeight="39.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                    <children>
+                        <Button id="volumeButton" layoutX="360.0" layoutY="1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="56.0">
+                            <graphic>
+                                <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../image/volume.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <ListView id="resultListView" fx:id="resultListView" layoutX="110.0" layoutY="-28.0" prefHeight="200.0" prefWidth="430.0" visible="false">
+                </ListView>
+            </children>
+        </AnchorPane>
+        <Pane layoutX="8.0" layoutY="7.0" prefHeight="59.0" prefWidth="582.0">
+            <children>
+                <TextField id="searchField" layoutX="102.0" layoutY="11.0" prefHeight="39.0" prefWidth="480.0" promptText="Nhập từ cần tìm ở đây" />
+                <Button id="arrowButton" fx:id="showHistory" layoutX="526.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="56.0">
+                    <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../image/arrow.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <MenuBar layoutX="2.0" layoutY="10.0" prefHeight="39.0" prefWidth="95.0">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Menu">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Game" />
+                                <MenuItem mnemonicParsing="false" text="Vocabulary" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
