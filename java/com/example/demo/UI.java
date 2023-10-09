@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,14 +28,21 @@ public class UI extends Application {
         ListView<String> resultListView = (ListView<String>) root.lookup("#resultListView");
         List<String> relatedWords = Arrays.asList("Apple", "Applicant", "Banana", "Borrow", "Carry", "Cock", "Date", "Down", "Fig", "Fan", "Grape", "Good");
 
+        ScrollPane scrollPane = (ScrollPane) root.lookup("#scrollPane");
+        ListView<String> allWords = new ListView<>();
+        allWords.getItems().addAll(relatedWords);
+        scrollPane.setContent(allWords);
+
+
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             String keyword = newValue.trim().toLowerCase(); //trim() : xóa khoảng trắng ở đầu và cuối chuỗi
                                                             //toLowerCase() : chuyển hoa -> thường
 
             if (!keyword.isEmpty()) {
-                List<String> filteredWords = relatedWords.stream()
-                        .filter(word -> word.toLowerCase().startsWith(keyword))
-                        .collect(Collectors.toList());
+                List<String> filteredWords = relatedWords.stream()  //Lọc sử dụng Java Stream
+                        .filter(word -> word.toLowerCase().startsWith(keyword)) //Tạo bộ lọc "filter"
+                        .collect(Collectors.toList()); //Thực thi "filter"
+
 
                 resultListView.getItems().clear();
                 resultListView.getItems().addAll(filteredWords);
