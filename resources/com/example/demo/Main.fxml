@@ -11,7 +11,14 @@
     <children>
         <AnchorPane layoutY="84.0" prefHeight="309.0" prefWidth="600.0">
             <children>
-                <AnchorPane layoutX="7.0" layoutY="-14.0" prefHeight="315.0" prefWidth="157.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
+                <ScrollPane id="scrollPane" layoutX="7.0" layoutY="-14.0" prefHeight="315.0" prefWidth="157.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                    <content>
+                        <AnchorPane id="allWordsListView">
+                     <children>
+                        <ListView id="allWords" prefHeight="309.0" prefWidth="157.0" />
+                     </children></AnchorPane>
+                    </content>
+                </ScrollPane>
                 <AnchorPane layoutX="175.0" layoutY="45.0" prefHeight="256.0" prefWidth="411.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
                 <AnchorPane layoutX="175.0" layoutY="-14.0" prefHeight="39.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
                     <children>
@@ -26,7 +33,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <ListView id="resultListView" fx:id="resultListView" layoutX="110.0" layoutY="-28.0" prefHeight="200.0" prefWidth="430.0" visible="false">
+                <ListView id="resultListView" fx:id="resultListView" layoutX="110.0" layoutY="-28.0" prefHeight="200.0" prefWidth="425.0" visible="false">
                 </ListView>
             </children>
         </AnchorPane>
