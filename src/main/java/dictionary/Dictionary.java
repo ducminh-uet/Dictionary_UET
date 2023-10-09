@@ -61,6 +61,4 @@ public class Dictionary {
         int index = binarySearch(0, length - 1, word.getWord_target());
         if (index <= length && index >= 0) myDictionary.add(index, word);
     }
-
-
 }
