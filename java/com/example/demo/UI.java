@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UI extends Application {
 
@@ -24,14 +25,19 @@ public class UI extends Application {
         Scene scene = new Scene(root, 600, 400);
         TextField searchField = (TextField) root.lookup("#searchField");
         ListView<String> resultListView = (ListView<String>) root.lookup("#resultListView");
-        List<String> relatedWords = Arrays.asList("Apple","Applicant", "Banana","Borrow", "Carry","Cock", "Date","Down", "Fig","Fan", "Grape","Good");
+        List<String> relatedWords = Arrays.asList("Apple", "Applicant", "Banana", "Borrow", "Carry", "Cock", "Date", "Down", "Fig", "Fan", "Grape", "Good");
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            String keyword = newValue.trim();
+            String keyword = newValue.trim().toLowerCase(); //trim() : xóa khoảng trắng ở đầu và cuối chuỗi
+                                                            //toLowerCase() : chuyển hoa -> thường
 
             if (!keyword.isEmpty()) {
+                List<String> filteredWords = relatedWords.stream()
+                        .filter(word -> word.toLowerCase().startsWith(keyword))
+                        .collect(Collectors.toList());
+
                 resultListView.getItems().clear();
-                resultListView.getItems().addAll(relatedWords);
+                resultListView.getItems().addAll(filteredWords);
                 resultListView.setVisible(true);
             } else {
                 resultListView.getItems().clear();
@@ -40,7 +46,7 @@ public class UI extends Application {
         });
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("JavaFX Example");
+        primaryStage.setTitle("English Dictionary");
         primaryStage.show();
     }
 }
