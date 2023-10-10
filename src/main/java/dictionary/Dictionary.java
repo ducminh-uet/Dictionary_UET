@@ -1,10 +1,10 @@
 package dictionary;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Dictionary {
-    private ArrayList<Word> myDictionary = new ArrayList<>();
-
+public class Dictionary extends HashMap{
     /**
      * Constructor 1
      */
@@ -15,50 +15,66 @@ public class Dictionary {
      * Constructor 2
      */
     public Dictionary(ArrayList<Word> newDic) {
-        this.myDictionary = newDic;
+        addAllWords(newDic);
     }
 
     /**
-     * Setter and Getter
+     * Getter
      *
-     * @return Dic
+     * @return Dictionary
      */
     public ArrayList<Word> getDictionary() {
-        return myDictionary;
-    }
-
-    public void setDictionary(ArrayList<Word> newDic) {
-        this.myDictionary = newDic;
+        ArrayList<Word> dic = this.findAllWords("");
+        dic.remove(0);
+        return dic;
     }
 
     /**
-     * Find a word
+     * Find a word by its word_target
      *
-     * @param start
-     * @param n
-     * @param target
-     * @return location of the word
+     * @param word_target
+     * @return the word
      */
-    public int binarySearch(int start, int n, String target) {
-        if (n < start) return start;
-        int length = myDictionary.size();
-        int mid = (start + n) / 2;
-        if (mid == length) return mid;
-        Word word = myDictionary.get(mid);
-        int compare = word.getWord_target().compareTo(target);
-        if (compare == 0) return -1;
-        else if (compare > 0) return binarySearch(start, mid - 1, target);
-        return binarySearch(mid + 1, n, target);
+    public Word findWord(String word_target) {
+        return findWord(Word.hashCode(word_target));
+    }
+
+    /**
+     * Find all words starting with string
+     *
+     * @param
+     * @return all words
+     */
+    public ArrayList<Word> findAllWords(String string) {
+        ArrayList<Word> wordList=new ArrayList<>();
+        Queue<HashMap> hashMapsQueue = new LinkedList<>();
+        hashMapsQueue.offer(findChildrenHashMap(Word.hashCode(string)));
+        while (hashMapsQueue.size()>0) {
+            HashMap currentHashMap=hashMapsQueue.poll();
+            if(currentHashMap.word != null) wordList.add(currentHashMap.word);
+            if(currentHashMap.next != null) for (HashMap nextHashMap : currentHashMap.next){
+                if (nextHashMap.word != null) hashMapsQueue.offer(nextHashMap);
+            }
+        }
+        return wordList;
     }
 
     /**
      * Add a new word
      *
-     * @param word need to be added
+     * @param word
      */
-    public void push(Word word) {
-        int length = myDictionary.size();
-        int index = binarySearch(0, length - 1, word.getWord_target());
-        if (index <= length && index >= 0) myDictionary.add(index, word);
+    public void addWord(Word word){
+        addWord(word,word.hashCode());
+    }
+
+    /**
+     * Add all words from the word list
+     * @param wordList
+     */
+    public void addAllWords(ArrayList<Word> wordList){
+        for(Word word : wordList){
+            addWord(word);
+        }
     }
 }

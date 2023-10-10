@@ -1,70 +1,26 @@
 package screen;
 
-import dictionary.DictionaryCommandLine;
-import java.sql.*;
-import java.util.Scanner;
+import dictionary.tool.Translate;
+import java.io.*;
+import java.net.URISyntaxException;
 
 public class Test {
-    public static void main(String[] args) {
-        Connection connection = null;
-        try {
-            // Kết nối vào cơ sở dữ liệu
-            String url = "jdbc:mysql://localhost:3306/newschema";
-            String username = "root";
-            String password = "a2vodich";
-            connection = DriverManager.getConnection(url, username, password);
-
-            // Kiểm tra kết nối
-            if (connection != null) {
-                System.out.println("Kết nối thành công!");
-
-                // Tạo câu truy vấn SQL
-                StringBuffer bf = new StringBuffer("select * from tbl_edict where word=\"");
-                System.out.println("Nhap tu can tra");
-                Scanner sc = new Scanner(System.in);
-                String tumoi = sc.next();
-                bf.append(tumoi);
-                bf.append("\"");
-            //   String sql = "SELECT * FROM entries";
-                String sql = bf.toString();
-            //    System.out.println(sql);
-
-                // Thực hiện truy vấn
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql);
-
-                // Xử lý kết quả
-                while (resultSet.next()) {
-                    String word  = resultSet.getString("word");
-                    StringBuilder definition = new StringBuilder( resultSet.getString("detail"));
-                    int startIndex = definition.indexOf("-");
-                    int lessThanIndex = definition.indexOf("<", startIndex);
-
-                    if (startIndex != -1 && lessThanIndex != -1) {
-                        String extractedString = definition.substring(startIndex+2, lessThanIndex);
-                        System.out.println(extractedString);
-                    } else {
-                        System.out.println("Không tìm thấy '-' hoặc '<' trong chuỗi.");
-                    }
-                //    System.out.println("Word: " + word + ", Definition: " + definition);
-                }
-
-                // Đóng kết nối
-                connection.close();
-            } else {
-                System.out.println("Kết nối thất bại!");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                // Đảm bảo kết nối được đóng
-                if (connection != null && !connection.isClosed()) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        String wordResult= Translate.translate("en","zh-CN","There is an incredible amount of information on software engineering available on the\n" +
+                "Web and some people have questioned if textbooks like this one are still needed.\n" +
+                "However, the quality of available information is very patchy, information is sometimes\n" +
+                "presented badly and it can be hard to find the information that you need. Consequently,\n" +
+                "I believe that textbooks still have an important role to play in learning. They serve as a\n" +
+                "roadmap to the subject and allow information on method and techniques to be organized\n" +
+                "and presented in a coherent and readable way. They also provide a starting point for\n" +
+                "deeper exploration of the research literature and material available on the Web.\n" +
+                "I strongly believe that textbooks have a future but only if they are integrated with\n" +
+                "and add value to material on the Web. This book has therefore been designed as a\n" +
+                "hybrid print/web text in which core information in the printed edition is linked to\n" +
+                "supplementary material on the Web. Almost all chapters include specially written\n" +
+                "‘web sections’ that add to the information in that chapter. There are also four ‘web\n" +
+                "chapters’ on topics that I have not covered in the print version of the book.\n" +
+                "The website that is associated with the book is:");
+        System.out.println(wordResult);
     }
 }
