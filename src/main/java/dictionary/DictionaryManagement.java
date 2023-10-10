@@ -10,21 +10,21 @@ public class DictionaryManagement {
     protected Dictionary dictionary = new Dictionary();
 
     /** public DictionaryManagement(){
-        this.insertFromFile();
-    } */
+     this.insertFromFile();
+     } */
     public void insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         String target = sc.nextLine();
         String explain = sc.nextLine();
         Word word = new Word(target, explain);
-        dictionary.push(word);
+        dictionary.addWord(word);
     }
 
     public void insertFromFile(File file) {
         IOdictionary io = new IOdictionary();
         ArrayList<Word> words_add = io.read();
         for (Word adds : words_add) {
-            dictionary.push(adds);
+            dictionary.addWord(adds);
         }
     }
     public void saveWordsToFile() {
@@ -32,7 +32,7 @@ public class DictionaryManagement {
         ioDictionaries.write(dictionary.getDictionary());
     }
     public void addWord(Word word) {
-        dictionary.push(word);
+        dictionary.addWord(word);
         this.saveWordsToFile();
     }
     public void dictionaryLookUp(String keyword) {

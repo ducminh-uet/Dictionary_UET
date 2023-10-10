@@ -27,6 +27,21 @@ public class Word {
     public void setWord_explain(String word_explain) {
         this.word_explain = word_explain;
     }
-
+    public static int hashCode(String word_target) {
+        int result =1;
+        for(int i=0; i<word_target.length(); i++) {
+            char c=word_target.charAt(i);
+            int charCode;
+            if(c>='a'&&c<='z') charCode=c-'a'+1;
+            else if(c>='A'&&c<='Z') charCode=c-'A'+1;
+            else charCode=0;
+            result = 26 * result + charCode;
+        }
+        return result;
+    }
+    @Override
+    public int hashCode() {
+        return hashCode(this.word_target);
+    }
 
 }
