@@ -26,6 +26,12 @@ public class UI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //---------------------------
+
+        /*--------------------------
+
+
+        ---------------------------*/
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/Main.fxml"));
 
         Scene scene = new Scene(root, 600, 400);
@@ -66,7 +72,12 @@ public class UI extends Application {
         });
 
         primaryStage.setScene(scene);
+        scene.getStylesheets().add("Style.css");
         primaryStage.setTitle("E-V Dictionary");
         primaryStage.show();
     }
 }
+
+
+
+

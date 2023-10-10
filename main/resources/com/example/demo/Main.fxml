@@ -7,41 +7,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UI">
+<AnchorPane id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UI">
     <children>
-        <AnchorPane layoutY="84.0" prefHeight="309.0" prefWidth="600.0">
-            <children>
-                <ScrollPane id="scrollPane" hbarPolicy="NEVER" layoutX="7.0" layoutY="-14.0" prefHeight="315.0" prefWidth="157.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
-                    <content>
-                        <AnchorPane id="allWordsListView">
-                     <children>
-                        <ListView id="allWords" prefHeight="309.0" prefWidth="157.0" />
-                     </children></AnchorPane>
-                    </content>
-                </ScrollPane>
-                <AnchorPane layoutX="175.0" layoutY="45.0" prefHeight="256.0" prefWidth="411.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
-                <AnchorPane layoutX="175.0" layoutY="-14.0" prefHeight="39.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
-                    <children>
-                        <Button id="volumeButton" layoutX="360.0" layoutY="1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="56.0">
-                            <graphic>
-                                <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../image/volume.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                </AnchorPane>
-                <ListView id="resultListView" fx:id="resultListView" layoutX="110.0" layoutY="-28.0" prefHeight="226.0" prefWidth="425.0" visible="false">
-                </ListView>
-            <ListView id="historySearch" layoutX="110.0" layoutY="-28.0" prefHeight="226.0" prefWidth="425.0" />
-            </children>
+        <AnchorPane layoutY="65.0" prefHeight="328.0" prefWidth="600.0">
+         <children>
+            <HBox layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="575.0" styleClass="HBox" stylesheets="@/Style.css">
+               <children>
+                      <ScrollPane id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="152.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                          <content>
+                              <AnchorPane id="allWordsListView">
+                                  <children>
+                                      <ListView id="allWords" layoutY="-3.0" prefHeight="400.0" prefWidth="152.0" />
+                                  </children>
+                              </AnchorPane>
+                          </content>
+                      </ScrollPane>
+                      <VBox id="detailVBox" prefHeight="79.0" prefWidth="591.0" styleClass="detail" stylesheets="@/Style.css">
+                          <children>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                                  <children>
+                                      <Button id="volumeButton" layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="56.0">
+                                          <graphic>
+                                              <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                                  <image>
+                                                      <Image url="@../../../image/volume.png" />
+                                                  </image>
+                                              </ImageView>
+                                          </graphic>
+                                      </Button>
+                                  </children>
+                              </AnchorPane>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="261.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);" />
+                          </children>
+                      </VBox>
+               </children>
+            </HBox>
+         </children>
         </AnchorPane>
-        <Pane layoutX="8.0" layoutY="7.0" prefHeight="59.0" prefWidth="582.0">
+        <Pane layoutX="8.0" layoutY="7.0" prefHeight="60.0" prefWidth="582.0">
             <children>
-                <TextField id="searchField" layoutX="102.0" layoutY="11.0" prefHeight="39.0" prefWidth="480.0" promptText="Nhập từ cần tìm ở đây" />
-                <Button id="arrowButton" fx:id="showHistory" layoutX="526.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="56.0">
+                <TextField id="searchField" layoutX="74.0" layoutY="11.0" prefHeight="39.0" prefWidth="508.0" promptText="Nhập từ cần tìm ở đây" styleClass="searchField" stylesheets="@/Style.css" />
+                <Button id="arrowButton" fx:id="showHistory" layoutX="530.0" layoutY="11.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="51.0">
                     <graphic>
                         <ImageView fitHeight="27.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -50,17 +56,20 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <MenuBar layoutX="2.0" layoutY="10.0" prefHeight="39.0" prefWidth="95.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="Menu">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Game" />
-                                <MenuItem mnemonicParsing="false" text="Vocabulary" />
-                            </items>
-                        </Menu>
-                    </menus>
+                <MenuBar id="MenuBar" layoutX="6.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="39.0" prefWidth="48.0">
+               <menus>
+                  <Menu mnemonicParsing="false">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Game" />
+                        <MenuItem mnemonicParsing="false" text="Vocabulary" />
+                    </items>
+                  </Menu>
+               </menus>
                 </MenuBar>
             </children>
         </Pane>
+          <ListView id="resultListView" fx:id="resultListView" layoutX="83.0" layoutY="55.0" prefHeight="248.0" prefWidth="452.0" style="listView" stylesheets="@/Style.css" visible="false">
+                </ListView>
+          <ListView id="historySearch" layoutX="83.0" layoutY="55.0" prefHeight="248.0" prefWidth="452.0" style="listView" stylesheets="@/Style.css" visible="false" />
     </children>
 </AnchorPane>
