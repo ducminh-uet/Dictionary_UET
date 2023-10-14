@@ -9,6 +9,7 @@ public class Dictionary extends HashMap{
      * Constructor 1
      */
     public Dictionary() {
+
     }
 
     /**
@@ -24,9 +25,7 @@ public class Dictionary extends HashMap{
      * @return Dictionary
      */
     public ArrayList<Word> getDictionary() {
-        ArrayList<Word> dic = this.findAllWords("");
-        dic.remove(0);
-        return dic;
+        return this.findAllWords("");
     }
 
     /**
@@ -41,8 +40,6 @@ public class Dictionary extends HashMap{
 
     /**
      * Find all words starting with string
-     *
-     * @param
      * @return all words
      */
     public ArrayList<Word> findAllWords(String string) {
@@ -53,7 +50,7 @@ public class Dictionary extends HashMap{
             HashMap currentHashMap=hashMapsQueue.poll();
             if(currentHashMap.word != null) wordList.add(currentHashMap.word);
             if(currentHashMap.next != null) for (HashMap nextHashMap : currentHashMap.next){
-                if (nextHashMap.word != null) hashMapsQueue.offer(nextHashMap);
+                if (nextHashMap != null) hashMapsQueue.offer(nextHashMap);
             }
         }
         return wordList;
@@ -75,6 +72,26 @@ public class Dictionary extends HashMap{
     public void addAllWords(ArrayList<Word> wordList){
         for(Word word : wordList){
             addWord(word);
+        }
+    }
+
+    /**
+     * Remove a word
+     *
+     * @param word
+     */
+    public void removeWord(Word word){
+        removeWord(word.hashCode());
+    }
+
+    /**
+     * Remove all words in the word list
+     *
+     * @param wordList
+     */
+    public void removeAllWords(ArrayList<Word> wordList){
+        for(Word word : wordList){
+            removeWord(word);
         }
     }
 }
