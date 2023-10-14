@@ -36,12 +36,10 @@ public class DictionaryManagement {
         this.saveWordsToFile();
     }
     public void dictionaryLookUp(String keyword) {
-        ArrayList<Word> words = dictionary.getDictionary();
+        ArrayList<Word> words = dictionary.findAllWords(keyword);
         for (Word word : words) {
-            if (word.getWord_target().startsWith(keyword)) {
-                System.out.println("Word: " + word.getWord_target());
-                System.out.println("Explanation: " + word.getWord_explain());
-            }
+            System.out.println("Word: " + word.getWord_target());
+            System.out.println("Explanation: " + word.getWord_explain());
         }
     }
 }

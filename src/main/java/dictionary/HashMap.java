@@ -1,9 +1,5 @@
 package dictionary;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class HashMap{
     protected Word word;
     protected HashMap[] next=null;
@@ -22,7 +18,7 @@ public class HashMap{
     public HashMap findChildrenHashMap(int hashCode) {
         if(hashCode<=52) return this;
         if(next==null || next[hashCode%26]==null) return null;
-        return next[hashCode%26];
+        return next[hashCode%26].findChildrenHashMap(hashCode/26);
     }
 
     /**
@@ -50,5 +46,14 @@ public class HashMap{
             if(next[hashCode%26]==null) next[hashCode%26]=new HashMap();
             next[hashCode%26].addWord(word,hashCode/26);
         }
+    }
+
+    /**
+     * Remove a word by its hash code
+     *
+     * @param hashCode
+     */
+    public void removeWord(int hashCode){
+        findChildrenHashMap(hashCode).word=null;
     }
 }
