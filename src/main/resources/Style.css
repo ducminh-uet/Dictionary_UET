@@ -42,13 +42,40 @@
 }
 
 .menu-button {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* Xóa nền */
     -fx-text-fill : black;
     -fx-border-color: black; /* Màu viền */
     -fx-border-width: 1.6px; /* Độ rộng của viền */
     -fx-font-size: 17px;
     -fx-background-radius: 6;
     -fx-border-radius: 5;
+}
+
+.alert {
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-size: 14px;
+    -fx-border-color: black;
+}
+
+/* Tùy chỉnh kiểu dáng cho tiêu đề */
+.alert .header {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+/* Tùy chỉnh kiểu dáng cho nội dung */
+.alert .content {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+
+}
+
+/* Tùy chỉnh kiểu dáng cho các nút */
+.alert .button-bar .button {
+    -fx-background-color: #00CCCC;
+    -fx-text-fill: black;
+
 }
 
 
