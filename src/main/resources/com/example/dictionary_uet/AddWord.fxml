@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -12,17 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Add">
+<AnchorPane style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="screen.Edit"
+            prefHeight="400.0" prefWidth="600.0">
   <children>
     <VBox layoutX="61.0" layoutY="23.0" prefHeight="355.0" prefWidth="517.0">
       <children>
-        <TextField fx:id="addWord" id="addWord" prefHeight="62.0" prefWidth="554.0" promptText="Nhập từ cần thêm" />
-        <TextArea fx:id="addDetail" id="addDetail" prefHeight="317.0" prefWidth="554.0" promptText="Nội dung" />
+        <TextField fx:id="addWord" prefHeight="62.0" prefWidth="554.0" promptText="Nhập từ cần thêm" />
+        <TextArea fx:id="addDetail" prefHeight="317.0" prefWidth="554.0" promptText="Nội dung" />
       </children>
     </VBox>
-    <Button id="logout" fx:id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;" onAction="#Logout">
+    <Button id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;">
       <graphic>
-        <ImageView id="out" fx:id="" fitHeight="46.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView id="out" fitHeight="46.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../../../image/out.png" />
           </image>
@@ -33,9 +31,10 @@
       <graphic>
         <ImageView id="correct" fx:id="correct" fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@/image/correct.png" />
+            <Image url="@../../../image/correct.png" />
           </image>
         </ImageView>
       </graphic></Button>
+    <Button fx:id="haha" layoutX="4.0" layoutY="144.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="59.0" />
   </children>
 </AnchorPane>
