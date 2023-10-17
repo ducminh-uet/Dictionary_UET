@@ -1,40 +1,38 @@
 package dictionary.tool;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQL {
-    public static void query() {
+    /**
+     * Ý tưởng là query từ riêng, nghĩa riêng rồi trả về 2 cái danh sách từ với nghĩa.
+     * Class này đến thời điểm commit chỉ query từ với nghĩa.
+     * Method đã là static nên anh em cứ đập SQL.getAllWords,...mà không cần tạo đối tượng.
+     */
+    public static List<String> getAllWords() {
+        List<String> words = new ArrayList<>();
         Connection conn = null;
         try {
-            // 3 dòng này là tên bảng với cơ sở dữ liệu thôi.
             String url = "jdbc:mysql://localhost:3306/newschema";
             String username = "root";
             String password = "a2vodich";
 
             conn = DriverManager.getConnection(url, username, password);
 
-            String query = "SELECT word, detail FROM tbl_edict WHERE idx = ?";
+            // Ko lấy index <72, toàn từ linh tinh.
+            String query = "SELECT word FROM tbl_edict where idx > 72";
 
-            // Có 140000 từ ứng với index cơ ae ko lo.
-            for (int idx : new int[]{6000, 120000, 33333, 45432}) {
-                // Tạo 1 truy vấn
-                PreparedStatement statement = conn.prepareStatement(query);
-                statement.setInt(1, idx);
+            PreparedStatement statement = conn.prepareStatement(query);
 
-                //Trả kết quả về
-                ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
-                if (resultSet.next()) {
-                    String word = resultSet.getString("word");
-                    String detail = resultSet.getString("detail");
-
-                    System.out.println("Word: " + word);
-                    System.out.println("Detail: " + detail+"\n");
-                }
-
-                // Xong việc phải close lại.
-                resultSet.close();
-                statement.close();
+            while (resultSet.next()) {
+                String word = resultSet.getString("word");
+                words.add(word);
             }
+
+            resultSet.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -46,5 +44,44 @@ public class SQL {
                 e.printStackTrace();
             }
         }
+        return words;
+    }
+
+    public static List<String> getAllDetails() {
+        List<String> details = new ArrayList<>();
+        Connection conn = null;
+        try {
+            String url = "jdbc:mysql://localhost:3306/newschema";
+            String username = "root";
+            String password = "a2vodich";
+
+            conn = DriverManager.getConnection(url, username, password);
+
+
+            String query = "SELECT detail FROM tbl_edict where idx >72";
+
+            PreparedStatement statement = conn.prepareStatement(query);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String detail = resultSet.getString("detail");
+                details.add(detail);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return details;
     }
 }
