@@ -1,12 +1,14 @@
 package game.Input;
 import game.question.Question;
 import game.question.Category;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class InputData {
+    // Import Questions From File
     public static ArrayList<Category> importQuestionsFromFile(String filePath) {
         ArrayList<Category> categories = new ArrayList<>();
 
