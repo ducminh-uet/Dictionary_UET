@@ -1,5 +1,6 @@
 package screen;
 
+import dictionary.tool.Sound;
 import dictionary.tool.Translate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -42,6 +44,10 @@ public class Main implements Initializable {
                     current.setText(selectedWord);
                     currentDetail.setText(wordResult);
                 }
+            });
+
+            volumeButton.setOnAction(e -> {
+                Sound.Speech(initWord);
             });
 
 
@@ -94,11 +100,11 @@ public class Main implements Initializable {
                 }
             });
 
-            addItem.setOnAction(e -> show("/com/example/dictionary_uet/AddWord.fxml"));
+            addItem.setOnAction(e -> show("/com/example/demo/AddWord.fxml"));
 
-            editItem.setOnAction(e -> show("/com/example/dictionary_uet/EditWord.fxml"));
+            editItem.setOnAction(e -> show("/com/example/demo/EditWord.fxml"));
 
-            deleteItem.setOnAction(e -> show("/com/example/dictionary_uet/DeleteWord.fxml"));
+            deleteItem.setOnAction(e -> show("/com/example/demo/DeleteWord.fxml"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -115,7 +121,7 @@ public class Main implements Initializable {
     @FXML
     private void show(String path) {
         try {
-            AnchorPane component = FXMLLoader.load(getClass().getResource(path));
+            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
             setNode(component);
         } catch (IOException e) {
             e.printStackTrace();
@@ -128,7 +134,7 @@ public class Main implements Initializable {
     private ListView<String> resultListView,historySearch,allWords;
 
     @FXML
-    private TextField searchField, current;
+    private TextField searchField,current;
 
     @FXML
     private ScrollPane scrollPane;
@@ -137,7 +143,7 @@ public class Main implements Initializable {
     private List<String> relatedWords;
 
     @FXML
-    private Button arrowButton,plus,menu;
+    private Button arrowButton,volumeButton,plus,menu;
 
     @FXML
     MenuItem addItem,editItem,deleteItem,gameItem,vocabItem;
