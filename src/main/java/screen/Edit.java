@@ -95,4 +95,3 @@ public class Edit implements Initializable {
     private  AnchorPane screen;
 
 }
-

@@ -1,5 +1,8 @@
 package screen;
 
+import dictionary.tool.Translate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -24,67 +28,83 @@ public class Main implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize your controller
-        relatedWords = Arrays.asList("Apple", "Applicant", "Banana", "Borrow", "Carry", "Cock", "Date", "Down", "Fig", "Fan", "Grape", "Good");
-        allWords = new ListView<>();
-        allWords.getItems().addAll(relatedWords);
-        scrollPane.setContent(allWords);
+        try {
+            String initWord = "Hello";
+            String wordResult = Translate.translate("en", "vi", initWord);
 
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            String keyword = newValue.trim().toLowerCase(); //trim() : xóa khoảng trắng ở đầu và cuối chuỗi
-            //toLowerCase() : chuyển hoa -> thường
 
-            if (!keyword.isEmpty()) {
-                List<String> filteredWords = relatedWords.stream() //Lọc sử dụng JavaStream
-                        .filter(word -> word.toLowerCase().startsWith(keyword)) //Tạo bộ lọc
-                        .collect(Collectors.toList());  //Lọc
+            relatedWords = FXCollections.observableArrayList(initWord);
+            allWords.setItems((ObservableList<String>) relatedWords);
+            allWords.setOnMouseClicked(event -> {
+                String selectedWord = allWords.getSelectionModel().getSelectedItem();
+                if (selectedWord != null) {
+                    // Cập nhật giá trị trong TextField
+                    current.setText(selectedWord);
+                    currentDetail.setText(wordResult);
+                }
+            });
 
-                resultListView.getItems().clear();
-                resultListView.getItems().addAll(filteredWords);
-                resultListView.setVisible(true);
-            } else {
-                resultListView.getItems().clear();
+
+
+            scrollPane.setContent(allWords);
+
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                String keyword = newValue.trim().toLowerCase(); //trim() : xóa khoảng trắng ở đầu và cuối chuỗi
+                //toLowerCase() : chuyển hoa -> thường
+
+                if (!keyword.isEmpty()) {
+                    List<String> filteredWords = relatedWords.stream() //Lọc sử dụng JavaStream
+                            .filter(word -> word.toLowerCase().startsWith(keyword)) //Tạo bộ lọc
+                            .collect(Collectors.toList());  //Lọc
+
+                    resultListView.getItems().clear();
+                    resultListView.getItems().addAll(filteredWords);
+                    resultListView.setVisible(true);
+                } else {
+                    resultListView.getItems().clear();
+                    resultListView.setVisible(false);
+                }
+            });
+
+            historySearch.setVisible(false); //Ẩn mặc định
+
+            arrowButton.setOnAction(e -> {
+                boolean showHistory = !historySearch.isVisible();
                 resultListView.setVisible(false);
-            }
-        });
+                historySearch.setVisible(showHistory);
+            });
 
-        historySearch.setVisible(false); //Ẩn mặc định
+            plus.setOnAction(event -> {
+                if (plusMenu.isShowing()) {
+                    plusMenu.hide();
+                } else {
+                    plusMenu.show(plus, Side.BOTTOM, 0, 0);
+                }
+            });
 
-        arrowButton.setOnAction(e -> {
-            boolean showHistory = !historySearch.isVisible();
-            resultListView.setVisible(false);
-            historySearch.setVisible(showHistory);
-        });
+            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem);
+            mainMenu.getItems().setAll(menuItems);
 
-        plus.setOnAction(event -> {
-            if (plusMenu.isShowing()) {
-                plusMenu.hide();
-            } else {
-                plusMenu.show(plus, Side.BOTTOM, 0, 0);
-            }
-        });
 
-        mainMenu.getItems().addAll(gameItem, vocabItem);
+            menu.setOnAction(event -> {
+                if (mainMenu.isShowing()) {
+                    mainMenu.hide();
+                } else {
+                    mainMenu.show(menu, Side.BOTTOM, 0, 0);
+                }
+            });
 
-        menu.setOnAction(event -> {
-            if (mainMenu.isShowing()) {
-                mainMenu.hide();
-            } else {
-                mainMenu.show(menu, Side.BOTTOM, 0, 0);
-            }
-        });
+            addItem.setOnAction(e -> show("/com/example/dictionary_uet/AddWord.fxml"));
 
-        addItem.setOnAction(e -> {
-            show("/com/example/dictionary_uet/AddWord.fxml");
-        });
+            editItem.setOnAction(e -> show("/com/example/dictionary_uet/EditWord.fxml"));
 
-        editItem.setOnAction(e -> {
-            show("/com/example/dictionary_uet/EditWord.fxml");
-        });
+            deleteItem.setOnAction(e -> show("/com/example/dictionary_uet/DeleteWord.fxml"));
 
-        deleteItem.setOnAction(e -> {
-            show("/com/example/dictionary_uet/DeleteWord.fxml");
-        });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setNode(Node node) {
@@ -101,12 +121,14 @@ public class Main implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    private TextArea currentDetail;
 
     @FXML
     private ListView<String> resultListView,historySearch,allWords;
 
     @FXML
-    private TextField searchField;
+    private TextField searchField, current;
 
     @FXML
     private ScrollPane scrollPane;

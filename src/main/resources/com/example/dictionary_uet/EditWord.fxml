@@ -38,4 +38,3 @@
         <Button fx:id="haha" layoutX="4.0" layoutY="144.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="59.0" />
     </children>
 </AnchorPane>
-
