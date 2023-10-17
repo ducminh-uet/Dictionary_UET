@@ -27,7 +27,7 @@
                           <children>
                               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
                                   <children>
-                                      <Button fx:id="volumeButton" layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                                      <Button id="volumeButton" fx:id="volumeButton" layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="56.0" style="-fx-background-color: transparent;">
                                           <graphic>
                                               <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                   <image>
