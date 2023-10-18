@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Main">
+<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main">
     <children>
         <AnchorPane layoutY="65.0" prefHeight="328.0" prefWidth="600.0">
             <children>
@@ -41,7 +41,7 @@
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
                                     <children>
-                                        <TextArea id="currentDetail" fx:id="currentDetail" stylesheets="@/Style.css" layoutX="1.0" layoutY="1.0" prefHeight="266.0" prefWidth="415.0" style="-fx-background-color: transparent;" styleClass="currentDetail" />
+                                        <TextArea id="currentDetail" fx:id="currentDetail" layoutX="1.0" layoutY="1.0" prefHeight="266.0" prefWidth="415.0" style="-fx-background-color: transparent;" styleClass="" />
                                     </children></AnchorPane>
                             </children>
                         </VBox>
@@ -92,6 +92,7 @@
                             <items>
                                 <MenuItem fx:id="gameItem" mnemonicParsing="false" text="Game" />
                                 <MenuItem fx:id="vocabItem" mnemonicParsing="false" text="Vocabulary" />
+                                <MenuItem id="translateItem" fx:id="translateItem" mnemonicParsing="false" text="Translate" />
                             </items>
                         </ContextMenu>
                     </contextMenu>

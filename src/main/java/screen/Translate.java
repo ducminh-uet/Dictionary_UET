@@ -23,14 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 
-public class Edit implements Initializable {
+public class Translate implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        accept.setOnAction(e -> {
-            Accept();
-            System.out.println("Haha");
-
-        });
 
         logout.setOnAction(e -> {
             Logout();
@@ -41,32 +36,8 @@ public class Edit implements Initializable {
 
 
     @FXML
-    private void Accept() {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText("Bạn có chắc chắn muốn sửa từ này ?");
-        ButtonType ButtonTypeYes = new ButtonType("Có", ButtonBar.ButtonData.YES);
-        ButtonType ButtonTypeNo = new ButtonType("Không", ButtonBar.ButtonData.NO);
-
-        alert.getButtonTypes().addAll(ButtonTypeYes, ButtonTypeNo);
-        alert.getButtonTypes().remove(ButtonType.OK);
-        alert.getButtonTypes().remove(ButtonType.CANCEL);
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if(result.get() == ButtonTypeYes) {
-            System.out.println("Thêm code sau :v");
-        } else if (result.get() == ButtonTypeNo) {
-            System.out.println("Tắt thông báo");
-        }
-
-        alert.show();
-    }
-
-
-    @FXML
     private void Logout() {
-        show("/com/example/demo/Main.fxml");
+        show("/com/example/dictionary_uet/Main.fxml");
     }
 
     private void setNode(Node node) {
@@ -85,13 +56,11 @@ public class Edit implements Initializable {
     }
 
     @FXML
-    private Button accept,logout;
+    private Button logout;
+
 
     @FXML
-    private  TextField editWord;
-
-    @FXML
-    private TextArea editDetail;
+    private TextArea translate,translateDetail;
 
     @FXML
     private  AnchorPane screen;
