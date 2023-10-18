@@ -18,11 +18,11 @@
                 <TextArea fx:id="addDetail" prefHeight="317.0" prefWidth="554.0" promptText="Nội dung" />
             </children>
         </VBox>
-        <Button id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;">
+        <Button id="logout" fx:id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;">
             <graphic>
                 <ImageView id="out" fitHeight="46.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../image/out.png" />
+                        <Image url="@/image/out.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -31,7 +31,7 @@
             <graphic>
                 <ImageView id="correct" fx:id="correct" fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../image/correct.png" />
+                        <Image url="@/image/correct.png" />
                     </image>
                 </ImageView>
             </graphic></Button>

@@ -20,6 +20,11 @@
 
     -fx-font-size: 14px;
 }
+
+.currentDetail {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
 .detail {
     -fx-text-fill: black;
 

@@ -25,7 +25,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class Main implements Initializable {
     // Add your controller logic here
@@ -115,9 +116,9 @@ public class Main implements Initializable {
                 }
             });
 
-            addItem.setOnAction(e -> show("/com/example/demo/AddWord.fxml"));
+            addItem.setOnAction(e -> show("/com/example/dictionary_uet/AddWord.fxml/"));
 
-            editItem.setOnAction(e -> show("/com/example/demo/EditWord.fxml"));
+            editItem.setOnAction(e -> show("/com/example/dictionary_uet/EditWord.fxml/"));
 
             deleteItem.setOnAction(e -> show("/com/example/demo/DeleteWord.fxml"));
 

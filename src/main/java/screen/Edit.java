@@ -41,7 +41,7 @@ public class Edit implements Initializable {
 
     @FXML
     private void Logout() {
-        show("/com/example/dictionary_uet/Main.fxml");
+        show("/com/example/dictionary_uet/Main.fxml/");
     }
 
     private void setNode(Node node) {
@@ -83,7 +83,7 @@ public class Edit implements Initializable {
     }
 
     @FXML
-    private Button accept,logout;
+    private Button accept, logout;
 
     @FXML
     private  TextField editWord;

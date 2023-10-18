@@ -66,7 +66,7 @@ public class Add implements Initializable {
 
     @FXML
     private void Logout() {
-        show("/com/example/dictionary_uet/Main.fxml");
+        show("/com/example/dictionary_uet/Main.fxml/");
     }
 
     private void setNode(Node node) {

@@ -1,6 +1,8 @@
 package dictionary.tool;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Sound {
     public static void Speech (String text) {
