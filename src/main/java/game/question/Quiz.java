@@ -47,6 +47,7 @@ public class Quiz {
         this.currentQuestionIndex = currentQuestionIndex;
     }
 
+
     public int getScore() {
         return score;
     }
@@ -55,6 +56,10 @@ public class Quiz {
         this.score = score;
     }
 
+    // get current question
+    public Question getCurrentQuestion(){
+        return this.categories.get(currentCategoryIndex).getQuestions().get(getCurrentQuestionIndex());
+    }
     public void startQuiz() {
         if (categories.isEmpty()) {
             System.out.println("No categories found. Quiz cannot start.");

@@ -1,12 +1,13 @@
 package game.question;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 public class Question {
     private String question;
     private ArrayList<String> answersOptions;
     private int correctAnswerIndex;
     private int score;
     private boolean isAttempted;
+
     // Constructor
     public Question(String question, ArrayList<String> answers, int correctAnswerIndex, int score) {
         this.question = question;
@@ -19,6 +20,7 @@ public class Question {
 
     /**
      * question .
+     *
      * @return question
      */
     public String getQuestion() {
@@ -31,6 +33,7 @@ public class Question {
 
     /**
      * answers .
+     *
      * @return answers
      */
     public ArrayList<String> getAnswers() {
@@ -38,7 +41,7 @@ public class Question {
     }
 
     public void setAnswers(ArrayList<String> answers) {
-        this.answersOptions= answers;
+        this.answersOptions = answers;
     }
 
     public int getCorrectAnswerIndex() {
@@ -51,6 +54,7 @@ public class Question {
 
     /**
      * get Score .
+     *
      * @return Score of question .
      */
     public int getScore() {
@@ -63,6 +67,7 @@ public class Question {
 
     /**
      * Kiểm tra câu hỏi đã được hỏi .
+     *
      * @return isAttempted .
      */
     public boolean isAttempted() {
@@ -77,6 +82,7 @@ public class Question {
         // Kiểm tra xem đáp án của người dùng có đúng hay không
         return userAnswerIndex == correctAnswerIndex;
     }
+
     @Override
     public String toString() {
         return "Question{" +

@@ -1,7 +1,8 @@
 package game.question;
 
 import java.util.ArrayList;
-
+// Chọn từ đúng nhật
+// Chọn từ đối nghĩa gì bla
 public class Category {
     private ArrayList<Question> questions;
     private String title;
