@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+
 public class Edit implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,37 +35,17 @@ public class Edit implements Initializable {
         logout.setOnAction(e -> {
             Logout();
             System.out.println("Haha");
-        });
-
+        }) ;
 
     }
 
-    @FXML
-    private void Logout() {
-        show("/com/example/dictionary_uet/Main.fxml");
-    }
-
-    private void setNode(Node node) {
-        screen.getChildren().clear();
-        screen.getChildren().add(node);
-    }
-
-    @FXML
-    private void show(String path) {
-        try {
-            AnchorPane component = FXMLLoader.load(getClass().getResource(path));
-            setNode(component);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void Accept() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText("Bạn có chắc chắn muốn sửa từ này từ này ?");
+        alert.setContentText("Bạn có chắc chắn muốn sửa từ này ?");
         ButtonType ButtonTypeYes = new ButtonType("Có", ButtonBar.ButtonData.YES);
         ButtonType ButtonTypeNo = new ButtonType("Không", ButtonBar.ButtonData.NO);
 
@@ -80,6 +61,27 @@ public class Edit implements Initializable {
         }
 
         alert.show();
+    }
+
+
+    @FXML
+    private void Logout() {
+        show("/com/example/demo/Main.fxml");
+    }
+
+    private void setNode(Node node) {
+        screen.getChildren().clear();
+        screen.getChildren().add(node);
+    }
+
+    @FXML
+    private void show(String path) {
+        try {
+            AnchorPane component = FXMLLoader.load(getClass().getResource(path));
+            setNode(component);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
