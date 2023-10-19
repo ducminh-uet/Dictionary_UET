@@ -1,3 +1,5 @@
+package game.question;
+
 import game.Input.InputData;
 import game.question.Category;
 import game.question.Question;
@@ -6,18 +8,51 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Quiz {
-    private ArrayList<Category> categories;
-    private int currentCategoryIndex;
-    private int currentQuestionIndex;
-    private int score;
+    private ArrayList<Category> categories; //Nhóm câu hỏi
+    private int currentCategoryIndex; // Nhóm câu hỏi hiện tại
+    private int currentQuestionIndex; // Số thứ tự câu hỏi hiêện tại
+    private int score; // Điểm
     private Scanner scanner;
-
+    // Constructor
     public Quiz(ArrayList<Category> categories) {
         this.categories = categories;
         this.currentCategoryIndex = 0;
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.scanner = new Scanner(System.in);
+    }
+    // Getter and Setter
+
+    public ArrayList<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<Category> categories) {
+        this.categories = categories;
+    }
+
+    public int getCurrentCategoryIndex() {
+        return currentCategoryIndex;
+    }
+
+    public void setCurrentCategoryIndex(int currentCategoryIndex) {
+        this.currentCategoryIndex = currentCategoryIndex;
+    }
+
+    public int getCurrentQuestionIndex() {
+        return currentQuestionIndex;
+    }
+
+    public void setCurrentQuestionIndex(int currentQuestionIndex) {
+        this.currentQuestionIndex = currentQuestionIndex;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void startQuiz() {
