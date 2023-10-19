@@ -24,14 +24,10 @@ public class QuizController {
 
     private Quiz quiz;
     private int score;
-
-    public QuizController() {
-    }
-
+    // Getter and Setter
     public Quiz getQuiz() {
         return quiz;
     }
-
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
