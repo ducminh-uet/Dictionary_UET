@@ -1,4 +1,6 @@
 package dictionary.tool;
+import dictionary.Word;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ public class SQL {
      * Method đã là static nên anh em cứ đập SQL.getAllWords,...mà không cần tạo đối tượng.
      */
     public static List<String> getAllWords() {
+
         List<String> words = new ArrayList<>();
         Connection conn = null;
         try {

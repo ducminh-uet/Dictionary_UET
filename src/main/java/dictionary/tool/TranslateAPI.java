@@ -12,7 +12,7 @@ import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class Translate {
+public class TranslateAPI {
     public static final HashMap<String,String> languages= new HashMap<String,String>();
     static {
         languages.put("AFRIKAANS", "af");
