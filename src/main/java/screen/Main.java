@@ -3,7 +3,7 @@ package screen;
 import dictionary.tool.SQL;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import dictionary.tool.Translate;
+import dictionary.tool.TranslateAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,7 +38,7 @@ public class Main implements Initializable {
         try {
 
             String initWord = "Hello";
-            String wordResult = Translate.translate("en", "vi", initWord);
+            String wordResult = TranslateAPI.translate("en", "vi", initWord);
 
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +22,27 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
+import dictionary.tool.TranslateAPI;
 
 public class Translate implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        StringBuffer text = new StringBuffer();
+
+        translate.textProperty().addListener((observable, oldValue, newText) -> {
+            text.setLength(0); // Xóa nội dung cũ của StringBuffer
+            text.append(newText); // Thêm nội dung mới từ TextArea vào StringBuffer
+            // Dịch và Cập nhật nội dung của cái vừa nhập
+            try {
+                translateDetail.setText(TranslateAPI.translate("en","vi",text.toString()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
 
         logout.setOnAction(e -> {
             Logout();
