@@ -59,7 +59,7 @@ public class Main implements Initializable {
                     if (index >= 0 && index < SQL.getAllDetails().size()) {
                         webEngine.loadContent(SQL.getAllDetails().get(index));
                     }
-                //    webEngine.loadContent(a);
+                    //    webEngine.loadContent(a);
                 }
             });
 
@@ -83,11 +83,13 @@ public class Main implements Initializable {
                     resultListView.getItems().clear();
                     resultListView.getItems().addAll(filteredWords);
                     resultListView.setVisible(true);
+
                 } else {
                     resultListView.getItems().clear();
                     resultListView.setVisible(false);
                 }
             });
+
 
             historySearch.setVisible(false); //Ẩn mặc định
 
