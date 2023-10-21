@@ -82,3 +82,8 @@
     -fx-text-fill: black;
 
 }
+.translate {
+    -fx-font-size : 17;
+    -fx-text-fill : black;
+    -fx-font-weight: bold;
+}

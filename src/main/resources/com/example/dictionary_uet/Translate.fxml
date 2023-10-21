@@ -9,12 +9,6 @@
 
 <AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Translate">
     <children>
-        <VBox layoutX="61.0" layoutY="23.0" prefHeight="355.0" prefWidth="517.0">
-            <children>
-                <TextArea id="translate" fx:id="translate" prefHeight="293.0" prefWidth="517.0" promptText="Nhập nội dung cần dịch" />
-                <TextArea id="translateDetail" fx:id="translateDetail" prefHeight="317.0" prefWidth="554.0" promptText="Bản dịch" editable="false" />
-            </children>
-        </VBox>
         <Button id="logout" fx:id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" onAction="#Logout" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;">
             <graphic>
                 <ImageView fitHeight="46.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
@@ -24,5 +18,29 @@
                 </ImageView>
             </graphic>
         </Button>
+      <VBox layoutX="60.0" layoutY="43.0" prefHeight="150.0" prefWidth="517.0">
+         <children>
+            <TextArea fx:id="translate" prefHeight="200.0" prefWidth="200.0" promptText="Nhập nội dung cần dịch" />
+         </children>
+      </VBox>
+      <VBox layoutX="60.0" layoutY="236.0" prefHeight="150.0" prefWidth="517.0">
+         <children>
+            <TextArea fx:id="translateDetail" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Button layoutX="155.0" layoutY="3.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="37.0" style=" -fx-background-color: transparent;" />
+      <Label layoutX="63.0" layoutY="8.0" prefHeight="35.0" prefWidth="106.0" styleClass="translate" stylesheets="@/Style.css" text="Văn bản gốc" />
+      <Label layoutX="63.0" layoutY="201.0" prefHeight="35.0" prefWidth="74.0" styleClass="translate" stylesheets="@/Style.css" text="Bản dịch" />
+      <Button layoutX="127.0" layoutY="196.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" style=" -fx-background-color: transparent;" />
+      <ImageView fitHeight="33.0" fitWidth="47.0" layoutX="133.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/volume.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="163.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/volume.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

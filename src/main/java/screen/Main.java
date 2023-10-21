@@ -1,13 +1,12 @@
 package screen;
 
 import dictionary.tool.SQL;
+import javafx.application.Platform;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import dictionary.tool.TranslateAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +20,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import dictionary.tool.Sound;
@@ -30,8 +31,7 @@ import java.net.URISyntaxException;
 
 
 public class Main implements Initializable {
-    // Add your controller logic here
-
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         StringBuffer selected = new StringBuffer();
@@ -59,7 +59,7 @@ public class Main implements Initializable {
                     if (index >= 0 && index < SQL.getAllDetails().size()) {
                         webEngine.loadContent(SQL.getAllDetails().get(index));
                     }
-                //    webEngine.loadContent(a);
+
                 }
             });
 
@@ -67,27 +67,32 @@ public class Main implements Initializable {
                 Sound.Speech(selected.toString());
             });
 
-
-
-            //scrollPane.setContent(allWords);
-
             searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                String keyword = newValue.trim().toLowerCase(); //trim() : xóa khoảng trắng ở đầu và cuối chuỗi
-                //toLowerCase() : chuyển hoa -> thường
+                //sử dụng bất đồng bộ
+                executor.submit(() -> {
+                    String keyword = newValue.trim().toLowerCase();
+                    if (!keyword.isEmpty()) {
+                        List<String> filteredWords = relatedWords.stream()
+                                .filter(word -> word.toLowerCase().startsWith(keyword))
+                                .collect(Collectors.toList());
 
-                if (!keyword.isEmpty()) {
-                    List<String> filteredWords = relatedWords.stream() //Lọc sử dụng JavaStream
-                            .filter(word -> word.toLowerCase().startsWith(keyword)) //Tạo bộ lọc
-                            .collect(Collectors.toList());  //Lọc
-
-                    resultListView.getItems().clear();
-                    resultListView.getItems().addAll(filteredWords);
-                    resultListView.setVisible(true);
-                } else {
-                    resultListView.getItems().clear();
-                    resultListView.setVisible(false);
-                }
+                        // cập nhật
+                        Platform.runLater(() -> {
+                            resultListView.getItems().clear();
+                            resultListView.getItems().addAll(filteredWords);
+                            resultListView.setVisible(true);
+                        });
+                    } else {
+                        // cập nhật
+                        Platform.runLater(() -> {
+                            resultListView.getItems().clear();
+                            resultListView.setVisible(false);
+                        });
+                    }
+                });
             });
+
+
 
             historySearch.setVisible(false); //Ẩn mặc định
 
@@ -128,6 +133,11 @@ public class Main implements Initializable {
                 show("/com/example/dictionary_uet/Translate.fxml");
             });
 
+            // tắt ExecutorService khi out
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                executor.shutdown();
+            }));
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (URISyntaxException e) {
@@ -157,7 +167,6 @@ public class Main implements Initializable {
 
     @FXML
     private TextField searchField,current;
-
 
     @FXML
     private List<String> relatedWords;
