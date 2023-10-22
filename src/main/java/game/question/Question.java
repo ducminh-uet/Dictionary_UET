@@ -1,97 +1,63 @@
 package game.question;
 
 import java.util.ArrayList;
+
 public class Question {
-    private String question;
-    private ArrayList<String> answersOptions;
-    private int correctAnswerIndex;
-    private int score;
-    private boolean isAttempted;
-
+    private String title;
+    private String questionText;
+    private ArrayList<String> answer = new ArrayList<>();
+    private String correctAnswer;
+    private Boolean isAttempt;
     // Constructor
-    public Question(String question, ArrayList<String> answers, int correctAnswerIndex, int score) {
-        this.question = question;
-        this.answersOptions = answers;
-        this.correctAnswerIndex = correctAnswerIndex;
-        this.score = score;
-        this.isAttempted = false;
-    }
-    // Setter and Getter
-
-    /**
-     * question .
-     *
-     * @return question
-     */
-    public String getQuestion() {
-        return question;
+    public Question(String title, String questionText, ArrayList<String> answer, String correctAnswer, Boolean isAttemp) {
+        this.title = title;
+        this.questionText = questionText;
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
+        this.isAttempt = isAttempt;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public Question() {
+    }
+    // Getter and setter
+
+    public String getTitle() {
+        return title;
     }
 
-    /**
-     * answers .
-     *
-     * @return answers
-     */
-    public ArrayList<String> getAnswers() {
-        return answersOptions;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setAnswers(ArrayList<String> answers) {
-        this.answersOptions = answers;
+    public String getQuestionText() {
+        return questionText;
     }
 
-    public int getCorrectAnswerIndex() {
-        return correctAnswerIndex;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
-    public void setCorrectAnswerIndex(int correctAnswerIndex) {
-        this.correctAnswerIndex = correctAnswerIndex;
+    public ArrayList<String> getAnswer() {
+        return answer;
     }
 
-    /**
-     * get Score .
-     *
-     * @return Score of question .
-     */
-    public int getScore() {
-        return score;
+    public void setAnswer(ArrayList<String> answer) {
+        this.answer = answer;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    /**
-     * Kiểm tra câu hỏi đã được hỏi .
-     *
-     * @return isAttempted .
-     */
-    public boolean isAttempted() {
-        return isAttempted;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
-    public void setAttempted(boolean attempted) {
-        isAttempted = attempted;
+    public Boolean getAttempt() {
+        return isAttempt;
     }
 
-    public boolean checkAnswer(int userAnswerIndex) {
-        // Kiểm tra xem đáp án của người dùng có đúng hay không
-        return userAnswerIndex == correctAnswerIndex;
+    public void setAttempt(Boolean attempt) {
+        isAttempt = attempt;
     }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "question='" + question + '\'' +
-                ", answers=" + answersOptions +
-                ", correctAnswerIndex=" + correctAnswerIndex +
-                ", score=" + score +
-                ", isAttempted=" + isAttempted +
-                '}';
-    }
-
 }
