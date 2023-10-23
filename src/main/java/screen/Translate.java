@@ -103,7 +103,7 @@ public class Translate implements Initializable {
     }
 
     @FXML
-    private Button logout,volume1,volume2;
+    private Button logout;
 
     @FXML
     private TextArea translate, translateDetail;
