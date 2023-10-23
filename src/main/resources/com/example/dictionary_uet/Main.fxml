@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.web.WebView?>
+<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main">
+    <children>
+        <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0" >
+            <children>
+                <HBox layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="575.0" styleClass="HBox" stylesheets="@/Style.css">
+                    <children>
+                        <VBox prefHeight="308.0" prefWidth="152.0" styleClass="detail" stylesheets="@/Style.css">
+                            <children>
+                                <AnchorPane fx:id="allWordsListView" minWidth="-Infinity" prefHeight="315.0" prefWidth="121.0">
+                                    <children>
+                                        <ListView fx:id="allWords" prefHeight="312.0" prefWidth="149.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="detailVBox" prefHeight="315.0" prefWidth="418.0" styleClass="detail" stylesheets="@/Style.css">
+                            <children>
+                                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                                    <children>
+                                        <Button id="volumeButton" fx:id="volumeButton" layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                                            <graphic>
+                                                <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/image/volume.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <TextField id="current" fx:id="current" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" editable="false"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                                    <children>
+                                        <WebView id="currentDetail" fx:id="currentDetail" layoutX="3.0" layoutY="3.0" prefHeight="260.0" prefWidth="416.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+        <Pane layoutY="7.0" prefHeight="60.0" prefWidth="590.0">
+            <children>
+                <TextField fx:id="searchField" layoutX="82.0" layoutY="11.0" prefHeight="39.0" prefWidth="504.0" promptText="Nhập từ cần tìm ở đây" styleClass="searchField" stylesheets="@/Style.css" />
+                <Button fx:id="arrowButton" layoutX="534.0" layoutY="11.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="51.0" style=" -fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/image/arrow.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button id="plus" fx:id="plus" layoutX="477.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/image/plus.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <contextMenu>
+                        <ContextMenu fx:id="plusMenu">
+                            <items>
+                                <MenuItem fx:id="addItem" mnemonicParsing="false" text="Thêm từ" />
+                                <MenuItem fx:id="editItem" mnemonicParsing="false" text="Sửa từ" />
+                                <MenuItem fx:id="deleteItem" mnemonicParsing="false" text="Xóa từ" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </Button>
+                <Button fx:id="menu" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="62.0" style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/image/menu.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <contextMenu>
+                        <ContextMenu fx:id="mainMenu" style="-fx-text-fill: black; -fx-font-size: 14px; ">
+                            <items>
+                                <MenuItem id="gameItem" fx:id="gameItem" mnemonicParsing="false" text="Game" />
+                                <MenuItem id="vocabItem" fx:id="vocabItem" mnemonicParsing="false" text="Vocabulary" />
+                                <MenuItem id="translateItem" fx:id="translateItem" mnemonicParsing="false" text="Translate" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </Button>
+            </children>
+        </Pane>
+        <ListView fx:id="resultListView" layoutX="83.0" layoutY="55.0" prefHeight="248.0" prefWidth="452.0" style="listView" stylesheets="@/Style.css" visible="false">
+        </ListView>
+        <ListView fx:id="historySearch" layoutX="83.0" layoutY="55.0" prefHeight="248.0" prefWidth="452.0" style="listView" stylesheets="@/Style.css" visible="false" />
+    </children>
+</AnchorPane>

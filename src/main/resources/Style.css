@@ -1,0 +1,89 @@
+.border{
+    -fx-text-fill: #9f45b0;
+    -fx-border-color: black;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.HBox {
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+.allWords {
+    -fx-text-fill: black;
+
+    -fx-font-size: 14px;
+}
+
+.currentDetail {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+.detail {
+    -fx-text-fill: black;
+
+    -fx-font-size: 14px;
+}
+
+.listView {
+    -fx-text-fill: black;
+
+    -fx-font-size: 14px;
+}
+
+.searchField {
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+     -fx-border-radius: 5;
+}
+
+.menu-button {
+    -fx-background-color: transparent; /* Xóa nền */
+    -fx-text-fill : black;
+    -fx-border-color: black; /* Màu viền */
+    -fx-border-width: 1.6px; /* Độ rộng của viền */
+    -fx-font-size: 17px;
+    -fx-background-radius: 6;
+    -fx-border-radius: 5;
+}
+
+.alert {
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-size: 14px;
+    -fx-border-color: black;
+}
+
+/* Tùy chỉnh kiểu dáng cho tiêu đề */
+.alert .header {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+/* Tùy chỉnh kiểu dáng cho nội dung */
+.alert .content {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+
+}
+
+/* Tùy chỉnh kiểu dáng cho các nút */
+.alert .button-bar .button {
+    -fx-background-color: #00CCCC;
+    -fx-text-fill: black;
+
+}
+.translate {
+    -fx-font-size : 17;
+    -fx-text-fill : black;
+    -fx-font-weight: bold;
+}
