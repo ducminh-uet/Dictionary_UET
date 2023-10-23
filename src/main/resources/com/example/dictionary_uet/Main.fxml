@@ -11,7 +11,7 @@
 <?import javafx.scene.web.WebView?>
 <AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main">
     <children>
-        <AnchorPane layoutY="65.0" prefHeight="328.0" prefWidth="600.0">
+        <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0" >
             <children>
                 <HBox layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="575.0" styleClass="HBox" stylesheets="@/Style.css">
                     <children>
@@ -37,7 +37,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <TextField id="current" fx:id="current" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
+                                        <TextField id="current" fx:id="current" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" editable="false"/>
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">

@@ -8,10 +8,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Test {
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        String wordResult = TranslateAPI.translate("vi", "en", "Kẻ địch là huyền thoại");
-        System.out.println(wordResult);
-        Sound.Speech(wordResult);
-
+    public static void main(String[] args) throws Exception {
+        String text = "Việt Nam";
+        Sound.Speech(text);
     }
 }

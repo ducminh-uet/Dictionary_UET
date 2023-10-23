@@ -18,7 +18,7 @@ public class SQL {
         try {
             String url = "jdbc:mysql://localhost:3306/newschema";
             String username = "root";
-            String password = "";
+            String password = "a2vodich";
 
             conn = DriverManager.getConnection(url, username, password);
 
@@ -56,7 +56,7 @@ public class SQL {
         try {
             String url = "jdbc:mysql://localhost:3306/newschema";
             String username = "root";
-            String password = "";
+            String password = "a2vodich";
 
             conn = DriverManager.getConnection(url, username, password);
 
