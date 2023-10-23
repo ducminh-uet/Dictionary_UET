@@ -26,6 +26,9 @@
          <tooltip>
             <Tooltip fx:id="Logout" text="Thoát" />
          </tooltip>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
         <Button id="accept" fx:id="accept" layoutY="81.0" mnemonicParsing="false" onAction="#Accept" prefHeight="39.0" prefWidth="59.0" style="-fx-background-color: transparent;">
             <graphic>
@@ -37,6 +40,9 @@
             </graphic>
          <tooltip>
             <Tooltip fx:id="Accept" text="Đồng ý" />
-         </tooltip></Button>
+         </tooltip>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
     </children>
 </AnchorPane>

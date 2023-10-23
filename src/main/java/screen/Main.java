@@ -2,6 +2,7 @@ package screen;
 
 import dictionary.tool.SQL;
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import dictionary.tool.TranslateAPI;
@@ -32,7 +33,6 @@ public class Main implements Initializable {
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        StringBuffer selected = new StringBuffer();
         try {
 
             String initWord = "Hello";
@@ -45,12 +45,6 @@ public class Main implements Initializable {
             allWords.setItems(FXCollections.observableList(SQL.getAllWords())); // Lấy danh sách từ
             allWords.setOnMouseClicked(event -> {
                 String selectedWord = allWords.getSelectionModel().getSelectedItem();
-                /*Đầu tiên là cái selected này nó sẽ không tự xóa cái trước đó.
-                Nghĩa là anh em chọn từ A, chọn từ B, chọn từ C thì khi phát âm từ C nó sẽ ra
-                ABC, nên khi chọn 1 từ thì xóa toàn bộ cái cũ đi, và cho cái từ mới vào.
-                */
-                selected.setLength(0);
-                selected.append(selectedWord);
                 if (selectedWord != null) {
                     current.setText(selectedWord);
                     int index = allWords.getSelectionModel().getSelectedIndex();
@@ -60,9 +54,40 @@ public class Main implements Initializable {
 
                 }
             });
+            searchField.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    String keyword = searchField.getText().trim();
+                    if (!keyword.isEmpty()) {
+                        List<String> filteredWords = relatedWords.stream()
+                                .filter(word -> word.toLowerCase().startsWith(keyword.toLowerCase()))
+                                .collect(Collectors.toList());
+
+                        if (!filteredWords.isEmpty()) {
+                            String selectedWord = filteredWords.get(0);
+                            current.setText(selectedWord);
+                            int index = relatedWords.indexOf(selectedWord);
+                            if (index >= 0 && index < SQL.getAllDetails().size()) {
+                                webEngine.loadContent(SQL.getAllDetails().get(index));
+                            }
+                        }
+                        else {
+                            // Hiển thị cảnh báo "No data"
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("No data");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Không có dữ liệu về từ bạn đang tìm kiếm!");
+                            alert.showAndWait();
+                        }
+                    }
+                    resultListView.setVisible(false); // Ẩn ListView
+                }
+            });
 
             volumeButton.setOnAction(e -> {
-                Sound.Speech(selected.toString());
+                String selectedWord = current.getText(); // Lấy từ hiện tại
+                if (selectedWord != null) {
+                    Sound.Speech(selectedWord); // Phát âm từ được chọn
+                }
             });
 
             searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -79,6 +104,17 @@ public class Main implements Initializable {
                             resultListView.getItems().clear();
                             resultListView.getItems().addAll(filteredWords);
                             resultListView.setVisible(true);
+                            resultListView.setOnMouseClicked(event -> {
+                                String selectedWord = resultListView.getSelectionModel().getSelectedItem();
+                                if (selectedWord != null) {
+                                    current.setText(selectedWord);
+                                    int index = relatedWords.indexOf(selectedWord); // Tìm chỉ số của từ trong relatedWords
+                                    if (index >= 0 && index < SQL.getAllDetails().size()) {
+                                        webEngine.loadContent(SQL.getAllDetails().get(index));
+                                    }
+                                    resultListView.setVisible(false); // Ẩn ListView
+                                }
+                            });
                         });
                     } else {
                         // cập nhật

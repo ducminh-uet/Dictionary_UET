@@ -26,6 +26,19 @@ This Dictionary helps users improve their English proficiency, it provides an ea
 - Google API
 
 # Developer
-- Nguyen [ducminh-uet](https://github.com/ducminh-uet) Viet Duc
-- Nguyen [HungEB2098](https://github.com/hoanglmv/Dictionary/commits?author=HungEB2098) Huu Viet Hung
-- Le [hoanglmv](https://github.com/hoanglmv/Dictionary/commits?author=hoanglmv) Mai Viet Hoang
+- Nguyen [ducminh-uet](https://github.com/ducminh-uet) Viet Duc:
+
+  - Back end dev
+  - Tester
+  - UX dev
+  - TTS API and Google translate API
+  - Collect data and Connect to database
+  - Develop version cmd
+- Nguyen [HungEB2098](https://github.com/hoanglmv/Dictionary/commits?author=HungEB2098) Huu Viet Hung :
+
+  - Design UI
+  - Front end dev
+  - Back end dev
+- Le [hoanglmv](https://github.com/hoanglmv/Dictionary/commits?author=hoanglmv) Mai Viet Hoang:
+  - Develop version cmd
+  - Desgin and develop Game application
