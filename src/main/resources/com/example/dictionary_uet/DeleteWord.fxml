@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Delete">
+    <children>
+        <AnchorPane layoutY="65.0" prefHeight="328.0" prefWidth="600.0">
+            <children>
+                <HBox layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="575.0" styleClass="HBox" stylesheets="@/Style.css">
+                    <children>
+                        <VBox prefHeight="308.0" prefWidth="152.0" styleClass="detail" stylesheets="@/Style.css">
+                            <children>
+                                <AnchorPane fx:id="allWordsListView" minWidth="-Infinity" prefHeight="315.0" prefWidth="121.0">
+                                    <children>
+                                        <ListView fx:id="allWords" prefHeight="312.0" prefWidth="149.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="detailVBox" prefHeight="315.0" prefWidth="418.0" styleClass="detail" stylesheets="@/Style.css">
+                            <children>
+                                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                                    <children>
+                                        <Button id="volumeButton" fx:id="volumeButton" layoutX="365.0" layoutY="2.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                                            <graphic>
+                                                <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/image/volume.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <TextField id="current" fx:id="current" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
+                                    <children>
+                                        <WebView id="currentDetail" fx:id="currentDetail" layoutX="3.0" layoutY="3.0" prefHeight="260.0" prefWidth="416.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+        <Pane layoutY="7.0" prefHeight="60.0" prefWidth="590.0">
+            <children>
+                <TextField fx:id="searchField" layoutX="82.0" layoutY="11.0" prefHeight="39.0" prefWidth="504.0" promptText="Nhập từ cần xóa ở đây" styleClass="searchField" stylesheets="@/Style.css" />
+                <Button fx:id="logout" layoutX="-6.0" layoutY="-16.0" mnemonicParsing="false" onAction="#Logout" prefHeight="106.0" prefWidth="101.0" style="-fx-background-color: transparent;">
+                    <tooltip>
+                        <Tooltip fx:id="Logout" text="Thoát" />
+                    </tooltip>
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/image/out.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
