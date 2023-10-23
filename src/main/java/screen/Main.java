@@ -18,14 +18,12 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import dictionary.tool.Sound;
-import javafx.scene.web.WebView;
 
 import java.net.URISyntaxException;
 
@@ -92,8 +90,6 @@ public class Main implements Initializable {
                 });
             });
 
-
-
             historySearch.setVisible(false); //Ẩn mặc định
 
             arrowButton.setOnAction(e -> {
@@ -126,7 +122,7 @@ public class Main implements Initializable {
 
             editItem.setOnAction(e -> show("/com/example/dictionary_uet/EditWord.fxml"));
 
-            //deleteItem.setOnAction(e -> show("/com/example/demo/Translate.fxml"));
+            deleteItem.setOnAction(e -> show("/com/example/dictionary_uet/DeleteWord.fxml"));
 
             translateItem.setOnAction(e -> {
                 System.out.println("Hello");
@@ -182,4 +178,7 @@ public class Main implements Initializable {
 
     @FXML
     AnchorPane screen;
+
+    @FXML
+    private Tooltip history,edit,Menu;
 }

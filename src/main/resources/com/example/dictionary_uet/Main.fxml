@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -7,8 +8,8 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.web.WebView?>
+
 <AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main">
     <children>
         <AnchorPane layoutY="65.0" prefHeight="328.0" prefWidth="600.0">
@@ -62,6 +63,9 @@
                             </image>
                         </ImageView>
                     </graphic>
+               <tooltip>
+                  <Tooltip fx:id="history" text="Lịch sử tra từ" />
+               </tooltip>
                 </Button>
                 <Button id="plus" fx:id="plus" layoutX="477.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="56.0" style="-fx-background-color: transparent;">
                     <graphic>
@@ -80,6 +84,9 @@
                             </items>
                         </ContextMenu>
                     </contextMenu>
+               <tooltip>
+                  <Tooltip fx:id="edit" text="Chỉnh sửa từ điển" />
+               </tooltip>
                 </Button>
                 <Button fx:id="menu" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="62.0" style="-fx-background-color: transparent;">
                     <graphic>
@@ -98,6 +105,9 @@
                             </items>
                         </ContextMenu>
                     </contextMenu>
+               <tooltip>
+                  <Tooltip fx:id="Menu" text="Menu" />
+               </tooltip>
                 </Button>
             </children>
         </Pane>

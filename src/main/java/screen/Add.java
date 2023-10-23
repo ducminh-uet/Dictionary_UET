@@ -1,5 +1,6 @@
 package screen;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,10 +27,29 @@ import javafx.scene.control.Alert.AlertType;
 public class Add implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        accept.setOnMouseEntered(event -> {
+            accept.setScaleX(1.2);
+            accept.setScaleY(1.2);
+        });
+
+        accept.setOnMouseExited(event -> {
+            accept.setScaleX(1.0);
+            accept.setScaleY(1.0);
+        });
+
         accept.setOnAction(e -> {
             Accept();
             System.out.println("Haha");
+        });
 
+        logout.setOnMouseEntered(event -> {
+            logout.setScaleX(1.2);
+            logout.setScaleY(1.2);
+        });
+
+        logout.setOnMouseExited(event -> {
+            logout.setScaleX(1.0);
+            logout.setScaleY(1.0);
         });
 
         logout.setOnAction(e -> {
@@ -66,8 +86,12 @@ public class Add implements Initializable {
 
     @FXML
     private void Logout() {
-        show("/com/example/dictionary_uet/Main.fxml/");
+        // Sử dụng Platform.runLater để thực hiện công việc trên một tiến trình khác
+        Platform.runLater(() -> {
+            show("/com/example/dictionary_uet/Main.fxml/");
+        });
     }
+
 
     private void setNode(Node node) {
         screen.getChildren().clear();
@@ -95,5 +119,8 @@ public class Add implements Initializable {
 
     @FXML
     private  AnchorPane screen;
+
+    @FXML
+    private Tooltip Logout,Accept;
 
 }
