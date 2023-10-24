@@ -25,7 +25,7 @@ public class GameController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private int score;
+    private int score = 0;
 
     private ArrayList<Question> questions;
     private int currentQuestionIndex; // Keep track of the current question index.
@@ -38,7 +38,7 @@ public class GameController {
     }
 
     public void backToMenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        root = FXMLLoader.load(getClass().getResource("MenuController.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -50,7 +50,8 @@ public class GameController {
             currentQuestionIndex++; // Move to the next question.
             displayCurrentQuestion();
         } else {
-            // Handle the end of the quiz (e.g., show the user's score).
+            // No more questions; display the score screen.
+            displayScoreScreen();
         }
     }
 
@@ -63,18 +64,32 @@ public class GameController {
 
         // Check if the selected answer is correct.
         if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
-            // Increment the user's score or perform other actions for a correct answer.
-            score++;
+            // Increment the user's score for a correct answer.
+            score += 10;
         }
+
+        // Disable radio buttons to prevent multiple selections.
+        option1.setDisable(true);
+        option2.setDisable(true);
+        option3.setDisable(true);
+        option4.setDisable(true);
 
         // Move to the next question.
         nextQuestion(event);
     }
 
     public String getSelectedAnswer() {
-        // Implement this method to get the selected answer (e.g., from the RadioButton).
-        // Return the selected answer as a String.
-        return "";
+        if (option1.isSelected()) {
+            return option1.getText();
+        } else if (option2.isSelected()) {
+            return option2.getText();
+        } else if (option3.isSelected()) {
+            return option3.getText();
+        } else if (option4.isSelected()) {
+            return option4.getText();
+        } else {
+            return ""; // Handle if no option is selected.
+        }
     }
 
     public void displayCurrentQuestion() {
@@ -87,5 +102,28 @@ public class GameController {
         option2.setText(currentQuestion.getAnswer().get(1));
         option3.setText(currentQuestion.getAnswer().get(2));
         option4.setText(currentQuestion.getAnswer().get(3));
+
+        // Enable radio buttons.
+        option1.setDisable(false);
+        option2.setDisable(false);
+        option3.setDisable(false);
+        option4.setDisable(false);
+    }
+
+    public void displayScoreScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ScoreScreen.fxml"));
+            Parent scoreScreenRoot = loader.load();
+
+            ScoreScreenController scoreScreenController = loader.getController();
+            scoreScreenController.setScore(score);
+
+            stage = (Stage) myTitle.getScene().getWindow();
+            scene = new Scene(scoreScreenRoot);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

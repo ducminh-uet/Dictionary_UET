@@ -17,10 +17,11 @@
         <Label fx:id="myTitle" text="Question Title" />
         <Label fx:id="myQuestion" text="Question Text" />
 
-        <RadioButton fx:id="option1" text="Option 1" />
-        <RadioButton fx:id="option2" text="Option 2" />
-        <RadioButton fx:id="option3" text="Option 3" />
-        <RadioButton fx:id="option4" text="Option 4" />
+        <RadioButton fx:id="option1" text="Option A"  />
+        <RadioButton fx:id="option2" text="Option B"  />
+        <RadioButton fx:id="option3" text="Option C"  />
+        <RadioButton fx:id="option4" text="Option D"  />
+
 
         <Button text="Next Question" onAction="#nextQuestion" />
         <Button text="Select Answer" onAction="#selectAnswer" />
