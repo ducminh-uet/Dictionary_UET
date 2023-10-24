@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="game.screen.GameController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Define the user interface elements for your quiz game -->
+    <VBox alignment="CENTER" spacing="20" layoutX="150.0" layoutY="50.0">
+        <Label fx:id="myTitle" text="Question Title" />
+        <Label fx:id="myQuestion" text="Question Text" />
+
+        <RadioButton fx:id="option1" text="Option A"  />
+        <RadioButton fx:id="option2" text="Option B"  />
+        <RadioButton fx:id="option3" text="Option C"  />
+        <RadioButton fx:id="option4" text="Option D"  />
+
+
+        <Button text="Next Question" onAction="#nextQuestion" />
+        <Button text="Select Answer" onAction="#selectAnswer" />
+
+    </VBox>
+
+</AnchorPane>

@@ -1,0 +1,29 @@
+/* Định dạng tiêu đề */
+.label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0044cc; /* Màu chữ */
+}
+
+/* Định dạng nút Bắt đầu */
+.button {
+    -fx-font-size: 24px;
+    -fx-background-color: #32CD32; /* Màu nền */
+    -fx-text-fill: #FFFFFF; /* Màu chữ */
+    -fx-padding: 15px 30px;
+}
+
+/* Định dạng nút khi di chuột qua */
+.button:hover {
+    -fx-background-color: #228B22; /* Màu nền khi di chuột qua */
+}
+
+/* Định dạng nền của AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f0f0f0; /* Màu nền của toàn bộ menu */
+}
+
+/* Định dạng VBox (để căn giữa phần nội dung) */
+.vbox {
+    -fx-alignment: CENTER;
+}
