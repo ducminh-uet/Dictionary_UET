@@ -11,5 +11,6 @@ public class Test {
     public static void main(String[] args) throws Exception {
         String text = "Việt Nam";
         Sound.Speech(text);
+        System.out.println(text);
     }
 }

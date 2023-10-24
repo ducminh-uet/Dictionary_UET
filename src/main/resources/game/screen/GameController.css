@@ -1,0 +1,35 @@
+/* Định dạng tiêu đề */
+#myTitle {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #003366; /* Màu chữ */
+}
+
+/* Định dạng câu hỏi */
+#myQuestion {
+    -fx-font-size: 18px;
+    -fx-text-fill: #666666;
+}
+
+/* Định dạng RadioButton */
+#option1, #option2, #option3, #option4 {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5px 10px;
+}
+
+/* Định dạng nút Next Question */
+#nextQuestion {
+    -fx-font-size: 20px;
+    -fx-background-color: #4CAF50; /* Màu nền */
+    -fx-text-fill: #FFFFFF; /* Màu chữ */
+    -fx-padding: 10px 20px;
+}
+
+/* Định dạng nút Select Answer */
+#selectAnswer {
+    -fx-font-size: 20px;
+    -fx-background-color: #337AB7; /* Màu nền */
+    -fx-text-fill: #FFFFFF; /* Màu chữ */
+    -fx-padding: 10px 20px;
+}
