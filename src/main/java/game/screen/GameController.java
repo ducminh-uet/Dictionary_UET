@@ -79,17 +79,17 @@ public class GameController {
     }
 
     public String getSelectedAnswer() {
+        String res = "";
         if (option1.isSelected()) {
-            return option1.getText();
+            res =  option1.getText();
         } else if (option2.isSelected()) {
-            return option2.getText();
+            res = option2.getText();
         } else if (option3.isSelected()) {
-            return option3.getText();
+            res = option3.getText();
         } else if (option4.isSelected()) {
-            return option4.getText();
-        } else {
-            return ""; // Handle if no option is selected.
+            res = option4.getText();
         }
+        return res;
     }
 
     public void displayCurrentQuestion() {

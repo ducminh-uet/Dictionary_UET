@@ -1,3 +1,7 @@
+root {
+-fx-background-image:url("C:\Users\firek\OneDrive\Máy tính\neon-quiz-sign-glow-question-mark-lighting-frame_53562-12652.avif");
+-fx-background-size:cover;
+}
 /* Định dạng tiêu đề */
 .label {
     -fx-font-size: 36px;
