@@ -108,6 +108,12 @@ public class GameController {
         option2.setDisable(false);
         option3.setDisable(false);
         option4.setDisable(false);
+
+        // Clear the selection of all radio buttons.
+        option1.setSelected(false);
+        option2.setSelected(false);
+        option3.setSelected(false);
+        option4.setSelected(false);
     }
 
     public void displayScoreScreen() {
