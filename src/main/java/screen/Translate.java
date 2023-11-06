@@ -62,6 +62,18 @@ public class Translate implements Initializable {
             }
         });
 
+
+        logout.setOnMouseEntered(event -> {
+            logout.setScaleX(1.2);
+            logout.setScaleY(1.2);
+        });
+
+        logout.setOnMouseExited(event -> {
+            logout.setScaleX(1.0);
+            logout.setScaleY(1.0);
+        });
+
+
         logout.setOnAction(e -> {
             Logout();
             System.out.println("Haha");
@@ -93,7 +105,6 @@ public class Translate implements Initializable {
     @FXML
     private Button logout;
 
-
     @FXML
     private TextArea translate, translateDetail;
 
@@ -101,5 +112,9 @@ public class Translate implements Initializable {
     private AnchorPane screen;
 
     @FXML
+    private Tooltip Logout;
+
+    @FXML
     private ImageView word, detail;
+
 }

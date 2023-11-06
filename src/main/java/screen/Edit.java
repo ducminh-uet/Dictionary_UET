@@ -26,10 +26,30 @@ import javafx.scene.control.Alert.AlertType;
 public class Edit implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        accept.setOnMouseEntered(event -> {
+            accept.setScaleX(1.2);
+            accept.setScaleY(1.2);
+        });
+
+        accept.setOnMouseExited(event -> {
+            accept.setScaleX(1.0);
+            accept.setScaleY(1.0);
+        });
+
         accept.setOnAction(e -> {
             Accept();
             System.out.println("Haha");
 
+        });
+
+        logout.setOnMouseEntered(event -> {
+            logout.setScaleX(1.2);
+            logout.setScaleY(1.2);
+        });
+
+        logout.setOnMouseExited(event -> {
+            logout.setScaleX(1.0);
+            logout.setScaleY(1.0);
         });
 
         logout.setOnAction(e -> {
@@ -95,5 +115,8 @@ public class Edit implements Initializable {
 
     @FXML
     private  AnchorPane screen;
+
+    @FXML
+    private Tooltip Logout,Accept;
 
 }
