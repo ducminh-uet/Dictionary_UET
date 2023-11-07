@@ -1,6 +1,7 @@
 package screen;
 
 import dictionary.tool.Sound;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,23 +28,29 @@ import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import dictionary.tool.TranslateAPI;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Translate implements Initializable {
+    private Thread translationThread = null; // Khởi tạo một Thread
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        StringBuffer text = new StringBuffer();
-
         translate.textProperty().addListener((observable, oldValue, newText) -> {
-            text.setLength(0); // Xóa nội dung cũ của StringBuffer
-            text.append(newText); // Thêm nội dung mới từ TextArea vào StringBuffer
-            // Dịch và Cập nhật nội dung của cái vừa nhập
-            try {
-                translateDetail.setText(TranslateAPI.translate("en", "vi", text.toString()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
+            if (translationThread != null && translationThread.isAlive()) {
+                translationThread.interrupt();
             }
+            translationThread = new Thread(() -> {
+                try {
+                    String translatedText = TranslateAPI.translate("en", "vi", newText);
+                    Platform.runLater(() -> {
+                        translateDetail.setText(translatedText);
+                    });
+                } catch (IOException | URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            translationThread.start();
         });
         // Ấn vào loa thì đọc cái mình muốn dịch.
         word.setOnMouseClicked(event -> {

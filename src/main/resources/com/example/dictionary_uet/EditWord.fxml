@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Edit">
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: DARKCYAN;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox layoutX="61.0" layoutY="23.0" prefHeight="355.0" prefWidth="517.0">
-            <children>
-                <TextField fx:id="editWord" id="editWord" prefHeight="62.0" prefWidth="554.0" promptText="Nhập từ cần thêm" />
-                <TextArea fx:id="editDetail" id="editDetail" prefHeight="317.0" prefWidth="554.0" promptText="Nội dung" />
-            </children>
-        </VBox>
-        <Button id="logout" fx:id="logout" layoutX="-2.0" layoutY="23.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: transparent;" onAction="#Logout">
-            <graphic>
-                <ImageView id="out" fx:id="" fitHeight="46.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@/image/out.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
-        <Button id="accept" fx:id="accept" layoutY="81.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="59.0" style="-fx-background-color: transparent;" onAction="#Accept">
-            <graphic>
-                <ImageView id="correct" fx:id="correct" fitHeight="34.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@/image/correct.png" />
-                    </image>
-                </ImageView>
-            </graphic></Button>
+        <Label text="Easy Doctor" />
+        <TextField promptText="Username" />
+        <TextField promptText="Password" />
     </children>
-</AnchorPane>
+    <padding>
+        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+    </padding>
+</VBox>
