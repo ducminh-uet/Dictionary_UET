@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.screen.MenuController">
+    <stylesheets>
+        <URL value="@MenuController.css" />
+    </stylesheets>
+    <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0" spacing="20" style="-fx-background-color: #0074E4; -fx-background-image: ;" stylesheets="@MenuController.css">
+        <Label text="Welcome to Quiz Game">
+            <font>
+                <Font name="Bell MT Italic" size="30.0" />
+            </font>
+        </Label>
+        <Button id="startButton" onAction="#startGame" text="Start Game" />
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+      <effect>
+         <Lighting>
+            <bumpInput>
+               <Shadow />
+            </bumpInput>
+            <light>
+               <Light.Distant />
+            </light>
+         </Lighting>
+      </effect>
+    </VBox>
+</AnchorPane>

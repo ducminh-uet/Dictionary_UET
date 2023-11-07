@@ -1,0 +1,36 @@
+/* Định dạng AnchorPane */
+.anchor-pane {
+    -fx-background-color: rgb(81, 131, 112) /* Màu nền */
+}
+
+/* Định dạng cho Label tiêu đề */
+.title-label {
+    -fx-font-size: 24px; /* Kích thước phông chữ */
+    -fx-font-weight: bold; /* Đậm */
+    -fx-text-fill: #0074E4; /* Màu chữ */
+    -fx-alignment: CENTER; /* Canh giữa */
+}
+
+/* Định dạng cho Label câu hỏi */
+.question-label {
+    -fx-font-size: 16px; /* Kích thước phông chữ */
+    -fx-text-fill: #333; /* Màu chữ */
+}
+
+/* Định dạng cho RadioButton */
+.radio-button {
+    -fx-font-size: 16px; /* Kích thước phông chữ */
+    -fx-text-fill: #333; /* Màu chữ */
+}
+
+/* Định dạng cho Button hành động */
+.action-button {
+    -fx-background-color: #0074E4; /* Màu nền nút */
+    -fx-text-fill: white; /* Màu chữ nút */
+    -fx-font-size: 16px; /* Kích thước phông chữ nút */
+    -fx-padding: 10 20; /* Khoảng cách xung quanh văn bản nút */
+}
+
+.action-button:hover {
+    -fx-background-color: #0051A3; /* Màu khi di chuột qua nút */
+}

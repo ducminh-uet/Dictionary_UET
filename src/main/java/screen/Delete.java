@@ -22,25 +22,12 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.web.WebView;
 
 
-public class Add implements Initializable {
+public class Delete implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        accept.setOnMouseEntered(event -> {
-            accept.setScaleX(1.2);
-            accept.setScaleY(1.2);
-        });
-
-        accept.setOnMouseExited(event -> {
-            accept.setScaleX(1.0);
-            accept.setScaleY(1.0);
-        });
-
-        accept.setOnAction(e -> {
-            Accept();
-            System.out.println("Haha");
-        });
 
         logout.setOnMouseEntered(event -> {
             logout.setScaleX(1.2);
@@ -83,7 +70,6 @@ public class Add implements Initializable {
         alert.show();
     }
 
-
     @FXML
     private void Logout() {
         // Sử dụng Platform.runLater để thực hiện công việc trên một tiến trình khác
@@ -109,18 +95,21 @@ public class Add implements Initializable {
     }
 
     @FXML
-    private Button accept,logout;
+    private ListView<String> allWords;
 
     @FXML
-    private  TextField addWord;
+    private Button logout;
 
     @FXML
-    private TextArea addDetail;
+    private  TextField searchField,current;
+
+    @FXML
+    private WebView currentDetail;
 
     @FXML
     private  AnchorPane screen;
 
     @FXML
-    private Tooltip Logout,Accept;
+    private Tooltip Logout;
 
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.web.WebView?>
+
 <AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main">
     <children>
-        <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0" >
+        <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0">
             <children>
                 <HBox layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="575.0" styleClass="HBox" stylesheets="@/Style.css">
                     <children>
@@ -36,8 +37,11 @@
                                                     </image>
                                                 </ImageView>
                                             </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                         </Button>
-                                        <TextField id="current" fx:id="current" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" editable="false"/>
+                                        <TextField id="current" fx:id="current" editable="false" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
@@ -62,6 +66,12 @@
                             </image>
                         </ImageView>
                     </graphic>
+               <tooltip>
+                  <Tooltip fx:id="history" text="Lịch sử tra từ" />
+               </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
                 <Button id="plus" fx:id="plus" layoutX="477.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="56.0" style="-fx-background-color: transparent;">
                     <graphic>
@@ -80,6 +90,12 @@
                             </items>
                         </ContextMenu>
                     </contextMenu>
+               <tooltip>
+                  <Tooltip fx:id="edit" text="Chỉnh sửa từ điển" />
+               </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
                 <Button fx:id="menu" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="62.0" style="-fx-background-color: transparent;">
                     <graphic>
@@ -98,6 +114,12 @@
                             </items>
                         </ContextMenu>
                     </contextMenu>
+               <tooltip>
+                  <Tooltip fx:id="Menu" text="Menu" />
+               </tooltip>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
             </children>
         </Pane>
