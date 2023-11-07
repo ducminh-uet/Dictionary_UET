@@ -13,6 +13,7 @@
     </stylesheets>
     <Label fx:id="myTitle" layoutX="50.0" layoutY="20.0" prefHeight="30.0" prefWidth="500.0" styleClass="title-label" text="Question Title" />
     <Label fx:id="myQuestion" layoutX="50.0" layoutY="70.0" prefHeight="100.0" prefWidth="500.0" styleClass="question-label" text="Question Text" />
+   <Label fx:id="countdownLabel" layoutX="425.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="CDTime" />
 
                 <RadioButton fx:id="option1" layoutX="74.0" layoutY="170.0" text="Option A">
         <toggleGroup>
