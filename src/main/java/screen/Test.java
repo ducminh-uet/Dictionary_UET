@@ -9,8 +9,10 @@ import java.net.URISyntaxException;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        String text = "Việt Nam";
-        Sound.Speech(text);
-        System.out.println(text);
+        TranslateAPI translateAPI = new TranslateAPI();
+        System.out.println(translateAPI.translate("fr", "vi", "je t'aime"));
+
+        Sound.Speech(translateAPI.translate("fr", "vi", "je t'aime"));
+        System.out.println(translateAPI.translate("fr", "vi", "je t'aime"));
     }
 }

@@ -1,6 +1,7 @@
 package game.screen;
-
 import game.tool.InputData;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import game.question.Question;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,15 +28,27 @@ public class GameController {
     private Scene scene;
     private Parent root;
     private int score = 0;
+    private Timeline questionTimer;
 
     private ArrayList<Question> questions;
     private int currentQuestionIndex; // Keep track of the current question index.
 
     public void initialize() {
         // Load questions from a file using the InputData class or another method.
-        questions = InputData.loadQuestionsFromFile("D:\\Java\\Dictionary_UET\\src\\main\\java\\game\\tool\\input.txt");
+        questions = InputData.loadQuestionsFromFile("src\\main\\java\\game\\tool\\input.txt");
         currentQuestionIndex = 0; // Start with the first question.
         displayCurrentQuestion();
+        questionTimer = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(5), // Set the duration to 15 seconds
+                        event -> {
+                            // Code to move to the next question after 15 seconds
+                            nextQuestion(null);
+                        }
+                )
+        );
+        questionTimer.setCycleCount(1); // Run only once per question
+        questionTimer.play();
     }
 
     public void backToMenu(ActionEvent event) throws IOException {
@@ -49,6 +63,7 @@ public class GameController {
         if (currentQuestionIndex < questions.size() - 1) {
             currentQuestionIndex++; // Move to the next question.
             displayCurrentQuestion();
+            resetTimer();
         } else {
             // No more questions; display the score screen.
             displayScoreScreen();
@@ -56,6 +71,8 @@ public class GameController {
     }
 
     public void selectAnswer(ActionEvent event) {
+        // Stop the question timer
+        questionTimer.stop();
         // Get the selected answer.
         String selectedAnswer = getSelectedAnswer();
 
@@ -79,17 +96,17 @@ public class GameController {
     }
 
     public String getSelectedAnswer() {
+        String res = "";
         if (option1.isSelected()) {
-            return option1.getText();
+            res =  option1.getText();
         } else if (option2.isSelected()) {
-            return option2.getText();
+            res = option2.getText();
         } else if (option3.isSelected()) {
-            return option3.getText();
+            res = option3.getText();
         } else if (option4.isSelected()) {
-            return option4.getText();
-        } else {
-            return ""; // Handle if no option is selected.
+            res = option4.getText();
         }
+        return res;
     }
 
     public void displayCurrentQuestion() {
@@ -108,6 +125,12 @@ public class GameController {
         option2.setDisable(false);
         option3.setDisable(false);
         option4.setDisable(false);
+
+        // Clear the selection of all radio buttons.
+        option1.setSelected(false);
+        option2.setSelected(false);
+        option3.setSelected(false);
+        option4.setSelected(false);
     }
 
     public void displayScoreScreen() {
@@ -125,5 +148,9 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void resetTimer() {
+        questionTimer.stop();
+        questionTimer.play();
     }
 }
