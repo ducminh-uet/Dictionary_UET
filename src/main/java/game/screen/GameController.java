@@ -1,4 +1,5 @@
 package game.screen;
+
 import game.tool.InputData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,14 +25,17 @@ public class GameController {
     Label myQuestion;
     @FXML
     RadioButton option1, option2, option3, option4;
+    @FXML
+    Label countdownLabel;
     private Stage stage;
     private Scene scene;
     private Parent root;
     private int score = 0;
-    private Timeline questionTimer;
+    private Timeline questionTimer = new Timeline();
 
     private ArrayList<Question> questions;
     private int currentQuestionIndex; // Keep track of the current question index.
+    private int timerSeconds = 15;
 
     public void initialize() {
         // Load questions from a file using the InputData class or another method.
@@ -40,14 +44,22 @@ public class GameController {
         displayCurrentQuestion();
         questionTimer = new Timeline(
                 new KeyFrame(
-                        Duration.seconds(5), // Set the duration to 15 seconds
+                        Duration.seconds(1),
                         event -> {
-                            // Code to move to the next question after 15 seconds
-                            nextQuestion(null);
+                            timerSeconds--;
+                            updateCountdownLabel();
+                            if (timerSeconds == 0) {
+                                // Time is up, move to the next question.
+                                nextQuestion(null);
+                            }
                         }
                 )
         );
-        questionTimer.setCycleCount(1); // Run only once per question
+        questionTimer.setCycleCount(timerSeconds); // Run for 15 seconds.
+        questionTimer.setOnFinished(event -> {
+            // Time's up, move to the next question.
+            nextQuestion(null);
+        });
         questionTimer.play();
     }
 
@@ -98,7 +110,7 @@ public class GameController {
     public String getSelectedAnswer() {
         String res = "";
         if (option1.isSelected()) {
-            res =  option1.getText();
+            res = option1.getText();
         } else if (option2.isSelected()) {
             res = option2.getText();
         } else if (option3.isSelected()) {
@@ -119,6 +131,9 @@ public class GameController {
         option2.setText(currentQuestion.getAnswer().get(1));
         option3.setText(currentQuestion.getAnswer().get(2));
         option4.setText(currentQuestion.getAnswer().get(3));
+        timerSeconds = 15;
+        updateCountdownLabel();
+        questionTimer.playFromStart();
 
         // Enable radio buttons.
         option1.setDisable(false);
@@ -149,8 +164,13 @@ public class GameController {
             e.printStackTrace();
         }
     }
+
     public void resetTimer() {
         questionTimer.stop();
         questionTimer.play();
+    }
+
+    private void updateCountdownLabel() {
+        countdownLabel.setText(String.format("Time remaining: %02d seconds", timerSeconds));
     }
 }
