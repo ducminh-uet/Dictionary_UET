@@ -13,6 +13,7 @@ public class main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("MenuController.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("MenuController.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
 

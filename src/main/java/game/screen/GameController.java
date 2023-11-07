@@ -1,5 +1,4 @@
 package game.screen;
-
 import game.tool.InputData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import game.question.Question;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
