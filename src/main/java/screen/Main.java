@@ -1,7 +1,13 @@
 package screen;
 
+import javafx.event.EventType;
 import dictionary.tool.SQL;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -28,8 +34,13 @@ import dictionary.tool.Sound;
 
 import java.net.URISyntaxException;
 
+import static com.sun.javafx.util.Utils.getScreen;
+
 
 public class Main implements Initializable {
+     //Tạo sự kiện tùy chỉnh
+
+
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,11 +94,19 @@ public class Main implements Initializable {
                 }
             });
 
+
+
             volumeButton.setOnAction(e -> {
                 String selectedWord = current.getText(); // Lấy từ hiện tại
                 if (selectedWord != null) {
                     Sound.Speech(selectedWord); // Phát âm từ được chọn
                 }
+            });
+
+            setDark(dark);
+            dark.setOnAction(e -> {
+                System.out.println("Haha");
+                toggleButtonAction();
             });
 
             searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -126,6 +145,7 @@ public class Main implements Initializable {
                 });
             });
 
+
             historySearch.setVisible(false); //Ẩn mặc định
 
             arrowButton.setOnAction(e -> {
@@ -162,7 +182,8 @@ public class Main implements Initializable {
 
             translateItem.setOnAction(e -> {
                 System.out.println("Hello");
-                show("/com/example/dictionary_uet/Translate.fxml");
+                //show("/com/example/dictionary_uet/Translate.fxml");
+                show2();
             });
 
             // tắt ExecutorService khi out
@@ -175,6 +196,29 @@ public class Main implements Initializable {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+    }
+    //end initialize
+    public Translate getMain() {
+        return translateController;
+    }
+
+    public void setMain(Translate translateController) {
+        this.translateController = translateController;
+    }
+
+    private Translate translateController;
+
+    @FXML
+    public void toggleButtonAction() {
+        if (dark.isSelected()) {
+            toggle_image.setImage(new Image("/image/toggle.png"));
+        } else {
+            toggle_image.setImage(new Image("/image/toggle2.png"));
+        }
+
+        boolean toggled = dark.isSelected();
+        Translate.changeInterfaceColor(toggled);
+
     }
 
     private void setNode(Node node) {
@@ -191,6 +235,21 @@ public class Main implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void show2() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionary_uet/Translate.fxml"));
+            AnchorPane component = loader.load();
+            translateController = loader.getController(); // Gán controller đã load cho biến translateController
+            setNode(component);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private WebView currentDetail;
 
@@ -216,5 +275,21 @@ public class Main implements Initializable {
     AnchorPane screen;
 
     @FXML
-    private Tooltip history,edit,Menu;
+    private ToggleButton dark;
+
+    @FXML
+    private Tooltip history,edit,Menu,toggle;
+
+    @FXML
+    private ImageView toggle_image;
+
+    public ToggleButton getDark() {
+        return dark;
+    }
+
+    public void setDark(ToggleButton dark) {
+        this.dark = dark;
+    }
+
+
 }

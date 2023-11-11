@@ -29,6 +29,13 @@ import javafx.scene.control.Alert.AlertType;
 import dictionary.tool.TranslateAPI;
 
 public class Translate implements Initializable {
+
+//    private Main main;
+//
+//    public void setMain(Main main) {
+//        this.main = main;
+//    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         StringBuffer text = new StringBuffer();
@@ -62,7 +69,6 @@ public class Translate implements Initializable {
             }
         });
 
-
         logout.setOnMouseEntered(event -> {
             logout.setScaleX(1.2);
             logout.setScaleY(1.2);
@@ -79,9 +85,21 @@ public class Translate implements Initializable {
             System.out.println("Haha");
         });
 
+
     }
+    //end initialize
+    public static void changeInterfaceColor(boolean toggled) {
+        // Thay đổi màu của cả hai giao diện dựa trên trạng thái toggled
+        if (toggled) {
+            screen.setStyle("-fx-background-color: #FFE4B5;");
 
+        } else {
+            // Khôi phục màu của giao diện 1
+            screen.setStyle("-fx-background-color: #103667;");
+            // Khôi phục màu của giao diện 2
 
+        }
+    }
     @FXML
     private void Logout() {
         show("/com/example/dictionary_uet/Main.fxml");
@@ -102,6 +120,8 @@ public class Translate implements Initializable {
         }
     }
 
+
+
     @FXML
     private Button logout;
 
@@ -109,7 +129,7 @@ public class Translate implements Initializable {
     private TextArea translate, translateDetail;
 
     @FXML
-    private AnchorPane screen;
+    private static AnchorPane screen;
 
     @FXML
     private Tooltip Logout;
