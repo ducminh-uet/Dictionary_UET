@@ -1,7 +1,0 @@
-# General Knowledge
-What is the capital of France?,Paris,10,0,Paris;London;Berlin;Madrid
-What is the largest planet in the solar system?,Jupiter,10,0,Jupiter;Saturn;Mars;Venus
-
-# History
-In which year did World War I begin?,1914,10,0,1914;1916;1918;1920
-Who was the first President of the United States?,George Washington,10,0,George Washington;Thomas Jefferson;John Adams;James Madison

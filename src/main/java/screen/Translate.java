@@ -1,6 +1,7 @@
 package screen;
 
 import dictionary.tool.Sound;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -23,34 +23,33 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import dictionary.tool.TranslateAPI;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Translate implements Initializable {
 
-//    private Main main;
-//
-//    public void setMain(Main main) {
-//        this.main = main;
-//    }
+    private Thread translationThread = null; // Khởi tạo một Thread
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        StringBuffer text = new StringBuffer();
-
         translate.textProperty().addListener((observable, oldValue, newText) -> {
-            text.setLength(0); // Xóa nội dung cũ của StringBuffer
-            text.append(newText); // Thêm nội dung mới từ TextArea vào StringBuffer
-            // Dịch và Cập nhật nội dung của cái vừa nhập
-            try {
-                translateDetail.setText(TranslateAPI.translate("en", "vi", text.toString()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
+            if (translationThread != null && translationThread.isAlive()) {
+                translationThread.interrupt();
             }
+            translationThread = new Thread(() -> {
+                try {
+                    String translatedText = TranslateAPI.translate("en", "vi", newText);
+                    Platform.runLater(() -> {
+                        translateDetail.setText(translatedText);
+                    });
+                } catch (IOException | URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            translationThread.start();
         });
         // Ấn vào loa thì đọc cái mình muốn dịch.
         word.setOnMouseClicked(event -> {
@@ -88,18 +87,7 @@ public class Translate implements Initializable {
 
     }
     //end initialize
-    public static void changeInterfaceColor(boolean toggled) {
-        // Thay đổi màu của cả hai giao diện dựa trên trạng thái toggled
-        if (toggled) {
-            screen.setStyle("-fx-background-color: #FFE4B5;");
 
-        } else {
-            // Khôi phục màu của giao diện 1
-            screen.setStyle("-fx-background-color: #103667;");
-            // Khôi phục màu của giao diện 2
-
-        }
-    }
     @FXML
     private void Logout() {
         show("/com/example/dictionary_uet/Main.fxml");

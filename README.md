@@ -22,8 +22,10 @@ This Dictionary helps users improve their English proficiency, it provides an ea
 
 **Resource**:
 - Javafx and Scence Builder for Front End Development
-- The Free Vietnamese Dictionary Project for Offline Dictionary.
-- Google API
+- The Free Vietnamese Dictionary database for Dictionary.
+- Google Translate API
+- Voice RSS API
+- FreeTTS
 
 # Developer
 - Nguyen [ducminh-uet](https://github.com/ducminh-uet) Viet Duc:
@@ -39,6 +41,7 @@ This Dictionary helps users improve their English proficiency, it provides an ea
   - Design UI
   - Front end dev
   - Back end dev
+  - UX dev
 - Le [hoanglmv](https://github.com/hoanglmv/Dictionary/commits?author=hoanglmv) Mai Viet Hoang:
   - Develop version cmd
   - Desgin and develop Game application

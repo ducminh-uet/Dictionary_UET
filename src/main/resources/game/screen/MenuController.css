@@ -1,0 +1,27 @@
+/* Apply styling to the AnchorPane */
+.anchor-pane {
+    -fx-background-color: rgb(81, 131, 112); /* Background color */
+}
+
+/* Apply styling to the VBox */
+.vbox {
+    -fx-alignment: CENTER; /* Center-align contents */
+    -fx-spacing: 20; /* Spacing between elements */
+}
+
+/* Apply styling to the Label */
+.label {
+    -fx-text-fill: #333; /* Text color */
+}
+
+/* Apply styling to the Button */
+.button#startButton {
+    -fx-background-color: #4c86af; /* Button background color */
+    -fx-text-fill: white; /* Button text color */
+    -fx-font-size: 16px; /* Button text size */
+    -fx-padding: 10 20; /* Padding around the button text */
+}
+
+.button#startButton:hover {
+    -fx-background-color: #45A049; /* Hover color for the button */
+}

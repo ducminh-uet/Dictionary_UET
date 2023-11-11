@@ -1,0 +1,17 @@
+/* Định dạng AnchorPane */
+.anchor-pane {
+    -fx-background-color: #F0F0F0; /* Màu nền */
+}
+
+/* Định dạng cho Label tiêu đề */
+.title-label {
+    -fx-font-size: 24px; /* Kích thước phông chữ */
+    -fx-font-weight: bold; /* Đậm */
+    -fx-text-fill: #0074E4; /* Màu chữ */
+}
+
+/* Định dạng cho Label điểm số */
+.score-label {
+    -fx-font-size: 36px; /* Kích thước phông chữ */
+    -fx-text-fill: #333; /* Màu chữ */
+}

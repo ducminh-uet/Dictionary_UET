@@ -1,10 +1,11 @@
 package dictionary;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Dictionary extends HashMap{
+public class Dictionary extends HashMap {
     /**
      * Constructor 1
      */
@@ -40,16 +41,17 @@ public class Dictionary extends HashMap{
 
     /**
      * Find all words starting with string
+     *
      * @return all words
      */
     public ArrayList<Word> findAllWords(String string) {
-        ArrayList<Word> wordList=new ArrayList<>();
+        ArrayList<Word> wordList = new ArrayList<>();
         Queue<HashMap> hashMapsQueue = new LinkedList<>();
         hashMapsQueue.offer(findChildrenHashMap(Word.hashCode(string)));
-        while (hashMapsQueue.size()>0) {
-            HashMap currentHashMap=hashMapsQueue.poll();
-            if(currentHashMap.word != null) wordList.add(currentHashMap.word);
-            if(currentHashMap.next != null) for (HashMap nextHashMap : currentHashMap.next){
+        while (hashMapsQueue.size() > 0) {
+            HashMap currentHashMap = hashMapsQueue.poll();
+            if (currentHashMap.word != null) wordList.add(currentHashMap.word);
+            if (currentHashMap.next != null) for (HashMap nextHashMap : currentHashMap.next) {
                 if (nextHashMap != null) hashMapsQueue.offer(nextHashMap);
             }
         }
@@ -58,19 +60,19 @@ public class Dictionary extends HashMap{
 
     /**
      * Add a new word
-     *
-     * @param word
      */
-    public void addWord(Word word){
-        addWord(word,word.hashCode());
+
+    public void addWord(Word word) {
+        addWord(word, word.hashCode());
     }
 
     /**
      * Add all words from the word list
+     *
      * @param wordList
      */
-    public void addAllWords(ArrayList<Word> wordList){
-        for(Word word : wordList){
+    public void addAllWords(ArrayList<Word> wordList) {
+        for (Word word : wordList) {
             addWord(word);
         }
     }
@@ -80,7 +82,7 @@ public class Dictionary extends HashMap{
      *
      * @param word
      */
-    public void removeWord(Word word){
+    public void removeWord(Word word) {
         removeWord(word.hashCode());
     }
 
@@ -89,9 +91,13 @@ public class Dictionary extends HashMap{
      *
      * @param wordList
      */
-    public void removeAllWords(ArrayList<Word> wordList){
-        for(Word word : wordList){
+    public void removeAllWords(ArrayList<Word> wordList) {
+        for (Word word : wordList) {
             removeWord(word);
         }
+    }
+
+    public void sortWordsByWordTarget(ArrayList<Word> wordList) {
+        wordList.sort(Comparator.comparing(Word::getWord_target));
     }
 }
