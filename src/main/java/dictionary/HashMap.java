@@ -1,5 +1,7 @@
 package dictionary;
 
+import java.util.ArrayList;
+
 public class HashMap{
     protected Word word;
     protected HashMap[] next=null;
@@ -7,7 +9,9 @@ public class HashMap{
     /**
      * Constructor
      */
-    public HashMap(){}
+    public HashMap(){
+
+    }
 
     /**
      * Find a children hash map by its preceding word's hash code

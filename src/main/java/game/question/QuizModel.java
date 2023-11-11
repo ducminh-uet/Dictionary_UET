@@ -20,7 +20,7 @@ public class QuizModel {
     }
 
     public static void main(String[] args) {
-        QuizModel quiz = new QuizModel(InputData.loadQuestionsFromFile("D:\\Java\\Dictionary_UET\\src\\main\\java\\game\\tool\\input.txt"));
+        QuizModel quiz = new QuizModel(InputData.loadQuestionsFromFile("Dictionary_UET\\src\\main\\java\\game\\tool\\input.txt"));
         System.out.println(quiz.getQuestions().get(0).getQuestionText());
     }
 }
