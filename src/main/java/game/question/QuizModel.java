@@ -4,7 +4,7 @@ import game.tool.InputData;
 
 import java.util.ArrayList;
 
-public class QuizModel {
+public class QuizModel extends Question{
     ArrayList<Question> questions;
     // Getter and Setter
     public ArrayList<Question> getQuestions() {
