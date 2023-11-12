@@ -1,6 +1,6 @@
 /* Định dạng AnchorPane */
 .anchor-pane {
-    -fx-background-color: rgb(81, 131, 112) /* Màu nền */
+    -fx-background-color: rgb(81, 131, 112); /* Màu nền */
 }
 
 /* Định dạng cho Label tiêu đề */
