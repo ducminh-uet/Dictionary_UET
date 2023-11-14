@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -134,6 +135,11 @@ public class GameController {
         String selectedAnswer = getSelectedAnswer();
         // Get the current question.
         Question currentQuestion = questions.get(currentQuestionIndex);
+
+        // Stop both correct and incorrect answer players
+        correctAnswerPlayer.stop();
+        incorrectAnswerPlayer.stop();
+
         // Check if the selected answer is correct.
         if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
             // Increment the user's score for a correct answer.
@@ -148,6 +154,7 @@ public class GameController {
         // Set the answerSelected flag to true.
         answerSelected = true;
     }
+
 
     public String getSelectedAnswer() {
         String res = "";
@@ -260,13 +267,12 @@ public class GameController {
         // Initialize MediaPlayer for clock ticking sound
         //Media clockTickSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());
         //clockTickPlayer = new MediaPlayer(clockTickSound);
-
         // Initialize MediaPlayer for correct answer sound
-        Media correctAnswerSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toString());
+        Media correctAnswerSound = new Media(new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
         correctAnswerPlayer = new MediaPlayer(correctAnswerSound);
 
         // Initialize MediaPlayer for incorrect answer sound
-        Media incorrectAnswerSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toString());
+        Media incorrectAnswerSound = new Media(new File("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toURI().toString());
         incorrectAnswerPlayer = new MediaPlayer(incorrectAnswerSound);
     }
 }
