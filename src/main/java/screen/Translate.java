@@ -98,7 +98,6 @@ public class Translate implements Initializable {
         screen.getChildren().add(node);
     }
 
-    @FXML
     private void show(String path) {
         try {
             AnchorPane component = FXMLLoader.load(getClass().getResource(path));
@@ -117,7 +116,7 @@ public class Translate implements Initializable {
     private TextArea translate, translateDetail;
 
     @FXML
-    private static AnchorPane screen;
+    private AnchorPane screen;
 
     @FXML
     private Tooltip Logout;
