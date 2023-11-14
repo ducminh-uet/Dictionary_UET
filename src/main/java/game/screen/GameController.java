@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.media.MediaPlayer;
@@ -52,8 +53,10 @@ public class GameController {
     private boolean answerSelected = false;
 
     private String playerName;
-    private MediaPlayer mediaPlayer;
-    private Media backgroundMusic;
+    private boolean isMusicPlaying = true; // Flag to track whether the music is playing.
+
+    @FXML
+    private Button musicToggleButton;
 
     public GameController() {
     }
@@ -169,6 +172,10 @@ public class GameController {
         option2.setText(currentQuestion.getAnswer().get(1));
         option3.setText(currentQuestion.getAnswer().get(2));
         option4.setText(currentQuestion.getAnswer().get(3));
+
+        // Reset the correctAnswerLabel text.
+        correctAnswerLabel.setText("");
+
         timerSeconds = 15;
         updateCountdownLabel();
         questionTimer.playFromStart();
@@ -212,7 +219,7 @@ public class GameController {
     }
 
     private void updateCountdownLabel() {
-        countdownLabel.setText(String.format("Time remaining: %02d seconds", timerSeconds));
+        countdownLabel.setText(String.format("00:%02d", timerSeconds));
     }
 
     private void displayCorrectAnswer(String correctAnswer) {
@@ -226,7 +233,7 @@ public class GameController {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = now.format(formatter);
-            String scoreData = formattedDateTime + " - " + playerName + ": " + score + "\n";
+            String scoreData = formattedDateTime + " - " + ": " + score + "\n";
 
             // Append the score data to a file named "scores.txt"
             Files.write(Paths.get("src\\main\\java\\game\\history\\scores.txt"), scoreData.getBytes(), StandardOpenOption.APPEND);

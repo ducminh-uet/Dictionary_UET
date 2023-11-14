@@ -1,0 +1,16 @@
+/* History.css */
+
+#historyTextArea {
+    -fx-font-size: 14px;
+    -fx-control-inner-background: #ecf0f1; /* Background color for the TextArea */
+}
+
+#returnToMenuButton {
+    -fx-font-size: 16px;
+    -fx-background-color: #3498db; /* Button background color */
+    -fx-text-fill: #ffffff; /* Button text color */
+}
+
+#returnToMenuButton:hover {
+    -fx-background-color: #2980b9; /* Button background color on hover */
+}
