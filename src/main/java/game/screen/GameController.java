@@ -17,9 +17,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import game.question.Question;
 import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-
-import javax.print.attribute.standard.Media;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -53,10 +53,8 @@ public class GameController {
     private boolean answerSelected = false;
 
     private String playerName;
-    private boolean isMusicPlaying = true; // Flag to track whether the music is playing.
-
-    @FXML
-    private Button musicToggleButton;
+    private MediaPlayer correctAnswerPlayer; // MediaPlayer for correct answer sound
+    private MediaPlayer incorrectAnswerPlayer;
 
     public GameController() {
     }
@@ -66,6 +64,7 @@ public class GameController {
         questions = InputData.loadQuestionsFromFile("src\\main\\java\\game\\tool\\input.txt");
         currentQuestionIndex = 0; // Start with the first question.
         displayCurrentQuestion();
+        initializeSound();
         questionTimer = new Timeline(
                 new KeyFrame(
                         Duration.seconds(1),
@@ -121,7 +120,6 @@ public class GameController {
     }
 
 
-
     public void selectAnswer(ActionEvent event) {
         // Check if the answer has already been selected.
         if (answerSelected) {
@@ -140,6 +138,9 @@ public class GameController {
         if (selectedAnswer.equals(currentQuestion.getCorrectAnswer())) {
             // Increment the user's score for a correct answer.
             score += 10;
+            correctAnswerPlayer.play();
+        } else {
+            incorrectAnswerPlayer.play();
         }
         // Display the correct answer label for 5 seconds.
         displayCorrectAnswer(currentQuestion.getCorrectAnswer());
@@ -254,5 +255,18 @@ public class GameController {
         option2.setDisable(false);
         option3.setDisable(false);
         option4.setDisable(false);
+    }
+    public void initializeSound() {
+        // Initialize MediaPlayer for clock ticking sound
+        //Media clockTickSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());
+        //clockTickPlayer = new MediaPlayer(clockTickSound);
+
+        // Initialize MediaPlayer for correct answer sound
+        Media correctAnswerSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toString());
+        correctAnswerPlayer = new MediaPlayer(correctAnswerSound);
+
+        // Initialize MediaPlayer for incorrect answer sound
+        Media incorrectAnswerSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toString());
+        incorrectAnswerPlayer = new MediaPlayer(incorrectAnswerSound);
     }
 }
