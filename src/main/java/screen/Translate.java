@@ -30,7 +30,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Translate implements Initializable {
-
     private Thread translationThread = null; // Khởi tạo một Thread
 
     @Override
@@ -78,15 +77,13 @@ public class Translate implements Initializable {
             logout.setScaleY(1.0);
         });
 
-
         logout.setOnAction(e -> {
             Logout();
             System.out.println("Haha");
         });
 
-
     }
-    //end initialize
+    // end initialize
 
     @FXML
     private void Logout() {
@@ -106,8 +103,6 @@ public class Translate implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 
     @FXML
     private Button logout;
