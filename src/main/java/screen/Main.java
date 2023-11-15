@@ -1,5 +1,6 @@
 package screen;
 
+import data.DataManager;
 import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
@@ -78,7 +79,8 @@ public class Main implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(SQL.getAllWords());
+            DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
+            wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
             allWords.setItems(wordList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
@@ -334,8 +336,10 @@ public class Main implements Initializable {
      * Ham addWord
      */
     private void addWordToDictionary(String word, String meaning) {
-        Word newWord = new Word(word,meaning);
+        Word newWord = new Word(word, meaning);
         wordList.add(newWord);
+        SQL.addWordToDataBase(word, meaning);
+        DataManager.getInstance().setWordList(wordList);
     }
 
     /**
@@ -384,7 +388,9 @@ public class Main implements Initializable {
             int index = wordList.indexOf(existingWordObject);
 
             // Thay thế từ cũ bằng từ mới
-            wordList.get(index).setWord_explain(newMeaning);
+            DataManager.getInstance().getWordList().get(index).setWord_explain(newMeaning);
+
+            SQL.replaceWord(existingWord, newMeaning);
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -393,6 +399,7 @@ public class Main implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Thay thế từ", "Từ đã được thay thế thành công!");
         }
     }
+
     private void showEditWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Sửa từ");
@@ -484,6 +491,7 @@ public class Main implements Initializable {
         // Hiển thị Dialog
         dialog.showAndWait();
     }
+
     private void showDeleteWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Xóa từ");
@@ -532,9 +540,8 @@ public class Main implements Initializable {
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList
         wordList.remove(word);
-
-        // Cập nhật danh sách hiển thị
-        allWords.setItems(FXCollections.observableList(wordList));
+        SQL.deleteWord(word.getWord_target());
+        DataManager.getInstance().setWordList(wordList);
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
