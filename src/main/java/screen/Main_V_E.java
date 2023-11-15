@@ -260,12 +260,19 @@ public class Main_V_E implements Initializable {
 
             toggle_image.setImage(new Image("/image/toggle2.png"));
             notificationLabel.setVisible(true);
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> hideLabel()));
-            timeline.setDelay(Duration.millis(100)); // Delay 0.1s --> timeline
+            //notificationLabel.setOpacity(0);
 
+            FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+            fadeInTransition.setFromValue(0);
+            fadeInTransition.setToValue(1);
 
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(2), event -> hideLabel())
+            );
+            timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
+
+            fadeInTransition.play();
             timeline.play();
-
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 executor.shutdown();
