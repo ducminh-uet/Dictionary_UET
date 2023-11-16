@@ -1,5 +1,6 @@
 package screen;
 
+import data.DataManager;
 import javafx.animation.FadeTransition;
 import javafx.event.EventType;
 import dictionary.tool.SQL;
@@ -34,9 +35,9 @@ import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -45,6 +46,7 @@ import dictionary.tool.Sound;
 import javafx.util.Callback;
 
 import java.net.URISyntaxException;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -95,8 +97,11 @@ public class Main implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(SQL.getAllWords());
+            DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
+            wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
             allWords.setItems(wordList);
+            ArrayList<Word> copyList = new ArrayList<>(wordList);
+            displayNewWord(copyList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
                 @Override
@@ -406,6 +411,8 @@ public class Main implements Initializable {
     private void addWordToDictionary(String word, String meaning) {
         Word newWord = new Word(word, meaning);
         wordList.add(newWord);
+        SQL.addWordToDataBase(word, meaning);
+        DataManager.getInstance().setWordList(wordList);
     }
 
     /**
@@ -455,7 +462,9 @@ public class Main implements Initializable {
             int index = wordList.indexOf(existingWordObject);
 
             // Thay thế từ cũ bằng từ mới
-            wordList.get(index).setWord_explain(newMeaning);
+            DataManager.getInstance().getWordList().get(index).setWord_explain(newMeaning);
+
+            SQL.replaceWord(existingWord, newMeaning);
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -612,11 +621,30 @@ public class Main implements Initializable {
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList
         wordList.remove(word);
-
-        // Cập nhật danh sách hiển thị
-        allWords.setItems(FXCollections.observableList(wordList));
+        SQL.deleteWord(word.getWord_target());
+        DataManager.getInstance().setWordList(wordList);
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
+    }
+
+    private void displayNewWord(ArrayList<Word> words) {
+        // Tạo seed dựa trên ngày hiện tại (được lấy theo múi giờ GMT+7)
+        long seed = LocalDate.now(ZoneId.of("GMT+7")).toEpochDay();
+
+        // Lấy danh sách từ từ CSDL hoặc từ nơi khác
+
+        // Trộn danh sách từ dựa trên seed
+        Collections.shuffle(words, new Random(seed));
+
+        // Lấy từ đầu tiên từ danh sách (đã được trộn)
+        if (!words.isEmpty()) {
+            Word newWord = words.get(0);
+
+            String displayContent = "\n\n\n\n\n\nTừ mới hôm nay là: " + newWord.getWord_target() + "\n\n"
+                    + newWord.getWord_explain();
+            // Hiển thị từ mới trong currentDetail
+            currentDetail.getEngine().loadContent(displayContent);
+        }
     }
 }

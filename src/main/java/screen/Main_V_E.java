@@ -1,5 +1,6 @@
 package screen;
 
+import dictionary.tool.IOdictionary;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 
@@ -32,9 +33,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -45,6 +44,7 @@ public class Main_V_E implements Initializable {
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
+    private IOdictionary ioDictionary = new IOdictionary();  // Thêm đoạn này để sử dụng IOdictionary
 
     @FXML
     private ListView<Word> allWords;
@@ -84,7 +84,8 @@ public class Main_V_E implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(SQL.getAllWords());
+            wordList = FXCollections.observableList(ioDictionary.read());
+            removeDuplicateWords();
             allWords.setItems(wordList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
@@ -139,7 +140,11 @@ public class Main_V_E implements Initializable {
             volumeButton.setOnAction(e -> {
                 String selectedWord = current.getText();
                 if (selectedWord != null) {
-                    Sound.Speech(selectedWord);
+                    try {
+                        Sound.SpeechVietNam(selectedWord);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
 
@@ -612,5 +617,20 @@ public class Main_V_E implements Initializable {
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
+    }
+    private void removeDuplicateWords() {
+        Set<String> wordTargets = new HashSet<>();
+        Iterator<Word> iterator = wordList.iterator();
+
+        while (iterator.hasNext()) {
+            Word word = iterator.next();
+            if (!wordTargets.add(word.getWord_target().toLowerCase())) {
+                // Nếu từ đã tồn tại, loại bỏ nó khỏi danh sách
+                iterator.remove();
+            }
+        }
+
+        // Cập nhật danh sách hiển thị
+        allWords.setItems(FXCollections.observableList(wordList));
     }
 }
