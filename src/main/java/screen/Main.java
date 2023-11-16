@@ -1,23 +1,13 @@
 package screen;
 
-import javafx.animation.FadeTransition;
-import javafx.event.EventType;
-import dictionary.tool.SQL;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
+import dictionary.tool.Sound;
 import dictionary.tool.TranslateAPI;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,13 +17,18 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,17 +36,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
-
-import dictionary.tool.Sound;
-import javafx.util.Callback;
-
-import java.net.URISyntaxException;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
