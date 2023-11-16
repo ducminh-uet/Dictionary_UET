@@ -1,17 +1,15 @@
-/* Định dạng AnchorPane */
-.anchor-pane {
-    -fx-background-color: #F0F0F0; /* Màu nền */
-}
+/* ScoreScreen.css */
 
-/* Định dạng cho Label tiêu đề */
 .title-label {
-    -fx-font-size: 24px; /* Kích thước phông chữ */
-    -fx-font-weight: bold; /* Đậm */
-    -fx-text-fill: #0074E4; /* Màu chữ */
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+    /* Change the color as needed */
 }
 
-/* Định dạng cho Label điểm số */
 .score-label {
-    -fx-font-size: 36px; /* Kích thước phông chữ */
-    -fx-text-fill: #333; /* Màu chữ */
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2ecc71;
+    /* Change the color as needed */
 }

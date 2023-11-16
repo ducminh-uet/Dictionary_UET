@@ -275,15 +275,17 @@ public class Main implements Initializable {
 
             toggle_image.setImage(new Image("/image/toggle.png"));
             notificationLabel.setVisible(true);
-            //notificationLabel.setOpacity(0);
+            // notificationLabel.setOpacity(0);
 
             FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
             fadeInTransition.setFromValue(0);
             fadeInTransition.setToValue(1);
 
             Timeline timeline = new Timeline(
+
                     new KeyFrame(Duration.seconds(1), event -> hideLabel())
             ); //Delay 2s
+
             timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
 
             fadeInTransition.play();
@@ -299,18 +301,21 @@ public class Main implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    //end initialize
+    // end initialize
 
     @FXML
     public void toggleButtonAction() {
         if (dark.isSelected()) {
+
             handleButtonClick();
+
             show("/com/example/dictionary_uet/Main_V_E.fxml");
             System.out.println("Chuyen ve V - E\nNut mau trang");
 
         }
 
     }
+
     private void hideLabel() {
         notificationLabel.setVisible(false);
         FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
@@ -329,7 +334,9 @@ public class Main implements Initializable {
 
     }
 
-        private void setNode(Node node) {
+
+
+    private void setNode(Node node) {
         screen.getChildren().clear();
         screen.getChildren().add(node);
     }
@@ -366,8 +373,7 @@ public class Main implements Initializable {
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(addButton, cancelButton);
         dialog.getDialogPane().getStylesheets().add(
-                getClass().getResource("/Style.css").toExternalForm()
-        );
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Thêm
         dialog.setResultConverter(param -> {
@@ -416,7 +422,7 @@ public class Main implements Initializable {
      * Ham addWord
      */
     private void addWordToDictionary(String word, String meaning) {
-        Word newWord = new Word(word,meaning);
+        Word newWord = new Word(word, meaning);
         wordList.add(newWord);
     }
 
@@ -433,13 +439,13 @@ public class Main implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận thêm từ");
         alert.setHeaderText(null);
-        alert.setContentText("Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
+        alert.setContentText(
+                "Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
 
         ButtonType replaceButton = new ButtonType("Thay thế từ cũ");
         ButtonType keepOldButton = new ButtonType("Giữ nguyên từ cũ", ButtonType.CANCEL.getButtonData());
 
         alert.getButtonTypes().setAll(replaceButton, keepOldButton);
-
 
         alert.showAndWait().ifPresent(response -> {
             if (response == replaceButton) {
@@ -476,6 +482,7 @@ public class Main implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Thay thế từ", "Từ đã được thay thế thành công!");
         }
     }
+
     private void showEditWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Sửa từ");
@@ -495,8 +502,7 @@ public class Main implements Initializable {
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(editButton, cancelButton);
         dialog.getDialogPane().getStylesheets().add(
-                getClass().getResource("/Style.css").toExternalForm()
-        );
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Sửa
         dialog.setResultConverter(param -> {
@@ -510,7 +516,8 @@ public class Main implements Initializable {
                     showEditMeaningDialog(word);
                 } else {
                     // Nếu không, hiển thị thông báo
-                    showAlert(Alert.AlertType.WARNING, "Từ chưa có", "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
+                    showAlert(Alert.AlertType.WARNING, "Từ chưa có",
+                            "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
                 }
             }
             return param;
@@ -551,8 +558,7 @@ public class Main implements Initializable {
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(saveButton, cancelButton);
         dialog.getDialogPane().getStylesheets().add(
-                getClass().getResource("/Style.css").toExternalForm()
-        );
+                getClass().getResource("/Style.css").toExternalForm());
         // Thiết lập cách xử lý khi nhấn nút Lưu
         dialog.setResultConverter(param -> {
             if (param == saveButton) {
@@ -572,6 +578,7 @@ public class Main implements Initializable {
         // Hiển thị Dialog
         dialog.showAndWait();
     }
+
     private void showDeleteWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Xóa từ");
@@ -591,8 +598,7 @@ public class Main implements Initializable {
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(deleteButton, cancelButton);
         dialog.getDialogPane().getStylesheets().add(
-                getClass().getResource("/Style.css").toExternalForm()
-        );
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Xóa
         dialog.setResultConverter(param -> {
@@ -618,7 +624,8 @@ public class Main implements Initializable {
 
     /**
      * Xóa từ.
-     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm từ rồi ném vào đây cho nó xóa.
+     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm
+     * từ rồi ném vào đây cho nó xóa.
      */
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList

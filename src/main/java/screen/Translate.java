@@ -36,7 +36,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Translate implements Initializable {
-
     private Thread translationThread = null; // Khởi tạo một Thread
 
     @Override
@@ -84,7 +83,6 @@ public class Translate implements Initializable {
             logout.setScaleY(1.0);
         });
 
-
         logout.setOnAction(e -> {
             handleButtonClick();
             Logout();
@@ -102,8 +100,9 @@ public class Translate implements Initializable {
 
         fadeInTransition.play();
         timeline.play();
+
     }
-    //end initialize
+    // end initialize
 
     private void hideLabel() {
         notificationLabel.setVisible(false);

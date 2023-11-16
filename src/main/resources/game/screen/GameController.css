@@ -1,36 +1,42 @@
-/* Định dạng AnchorPane */
-.anchor-pane {
-    -fx-background-color: rgb(81, 131, 112) /* Màu nền */
-}
+/* GameController.css */
 
-/* Định dạng cho Label tiêu đề */
 .title-label {
-    -fx-font-size: 24px; /* Kích thước phông chữ */
-    -fx-font-weight: bold; /* Đậm */
-    -fx-text-fill: #0074E4; /* Màu chữ */
-    -fx-alignment: CENTER; /* Canh giữa */
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+    /* Change the color as needed */
 }
 
-/* Định dạng cho Label câu hỏi */
 .question-label {
-    -fx-font-size: 16px; /* Kích thước phông chữ */
-    -fx-text-fill: #333; /* Màu chữ */
+    -fx-font-size: 18px;
+    -fx-text-fill: #2c3e50;
+    /* Change the color as needed */
+    -fx-wrap-text: true;
 }
 
-/* Định dạng cho RadioButton */
-.radio-button {
-    -fx-font-size: 16px; /* Kích thước phông chữ */
-    -fx-text-fill: #333; /* Màu chữ */
+#countdownLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #e74c3c;
+    /* Change the color as needed */
 }
 
-/* Định dạng cho Button hành động */
+.radioButton {
+    -fx-font-size: 16px;
+    -fx-text-fill: #34495e;
+    /* Change the color as needed */
+}
+
 .action-button {
-    -fx-background-color: #0074E4; /* Màu nền nút */
-    -fx-text-fill: white; /* Màu chữ nút */
-    -fx-font-size: 16px; /* Kích thước phông chữ nút */
-    -fx-padding: 10 20; /* Khoảng cách xung quanh văn bản nút */
+    -fx-font-size: 18px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #2ecc71;
+    /* Change the color as needed */
 }
 
-.action-button:hover {
-    -fx-background-color: #0051A3; /* Màu khi di chuột qua nút */
+#correctAnswerLabel {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e74c3c;
+    /* Change the color as needed */
 }

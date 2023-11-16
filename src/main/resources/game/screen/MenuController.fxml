@@ -23,21 +23,22 @@
             </font>
         </Label>
         <Button id="startButton" onAction="#startGame" text="Start Game" />
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <cursor>
-         <Cursor fx:constant="DEFAULT" />
-      </cursor>
-      <effect>
-         <Lighting>
-            <bumpInput>
-               <Shadow />
-            </bumpInput>
-            <light>
-               <Light.Distant />
-            </light>
-         </Lighting>
-      </effect>
+      <Button fx:id="History" mnemonicParsing="false" onAction="#showHistory" prefHeight="45.0" prefWidth="127.0" text="History" />
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <cursor>
+            <Cursor fx:constant="DEFAULT" />
+        </cursor>
+        <effect>
+            <Lighting>
+                <bumpInput>
+                    <Shadow />
+                </bumpInput>
+                <light>
+                    <Light.Distant />
+                </light>
+            </Lighting>
+        </effect>
     </VBox>
 </AnchorPane>
