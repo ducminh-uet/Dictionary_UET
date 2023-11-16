@@ -4,8 +4,9 @@ import game.tool.InputData;
 
 import java.util.ArrayList;
 
-public class QuizModel extends Question{
+public class QuizModel extends Question {
     ArrayList<Question> questions;
+
     // Getter and Setter
     public ArrayList<Question> getQuestions() {
         return questions;
@@ -14,13 +15,15 @@ public class QuizModel extends Question{
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
+
     // Constructor
     public QuizModel(ArrayList<Question> questions) {
         this.questions = questions;
     }
 
     public static void main(String[] args) {
-        QuizModel quiz = new QuizModel(InputData.loadQuestionsFromFile("Dictionary_UET\\src\\main\\java\\game\\tool\\input.txt"));
+        QuizModel quiz = new QuizModel(
+                InputData.loadQuestionsFromFile("Dictionary_UET\\src\\main\\java\\game\\tool\\input.txt"));
         System.out.println(quiz.getQuestions().get(0).getQuestionText());
     }
 }

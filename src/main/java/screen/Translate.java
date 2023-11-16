@@ -15,7 +15,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -24,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import dictionary.tool.TranslateAPI;
@@ -69,7 +67,6 @@ public class Translate implements Initializable {
             }
         });
 
-
         logout.setOnMouseEntered(event -> {
             logout.setScaleX(1.2);
             logout.setScaleY(1.2);
@@ -80,14 +77,13 @@ public class Translate implements Initializable {
             logout.setScaleY(1.0);
         });
 
-
         logout.setOnAction(e -> {
             Logout();
             System.out.println("Haha");
         });
 
     }
-
+    // end initialize
 
     @FXML
     private void Logout() {
@@ -99,7 +95,6 @@ public class Translate implements Initializable {
         screen.getChildren().add(node);
     }
 
-    @FXML
     private void show(String path) {
         try {
             AnchorPane component = FXMLLoader.load(getClass().getResource(path));

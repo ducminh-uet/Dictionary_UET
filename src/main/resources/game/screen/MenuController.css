@@ -7,20 +7,25 @@ VBox {
 Label {
     -fx-font-family: "Bell MT Italic";
     -fx-font-size: 30px;
-    -fx-text-fill: #ffffff; /* Change the color as needed */
+    -fx-text-fill: #ffffff;
+    /* Change the color as needed */
 }
 
-#startButton, #History {
+#startButton,
+#History {
     -fx-font-size: 18px;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-text-fill: #ffffff;
-    -fx-background-color: #2ecc71; /* Change the color as needed */
+    -fx-background-color: #2ecc71;
+    /* Change the color as needed */
     -fx-border-radius: 5px;
-    -fx-cursor: HAND; /* Change cursor type as needed */
+    -fx-cursor: HAND;
+    /* Change cursor type as needed */
 }
 
-#startButton:hover, #History:hover {
-    -fx-background-color: #27ae60; /* Change the color as needed */
+#startButton:hover,
+#History:hover {
+    -fx-background-color: #27ae60;
+    /* Change the color as needed */
 }
-

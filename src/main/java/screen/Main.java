@@ -1,6 +1,18 @@
 package screen;
 
 import data.DataManager;
+import javafx.animation.FadeTransition;
+import javafx.event.EventType;
+import dictionary.tool.SQL;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
@@ -23,9 +35,9 @@ import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -33,8 +45,14 @@ import java.util.stream.Collectors;
 import dictionary.tool.Sound;
 import javafx.util.Callback;
 
-
 import java.net.URISyntaxException;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
@@ -82,6 +100,8 @@ public class Main implements Initializable {
             DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
             wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
             allWords.setItems(wordList);
+            ArrayList<Word> copyList = new ArrayList<>(wordList);
+            displayNewWord(copyList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
                 @Override
@@ -195,7 +215,6 @@ public class Main implements Initializable {
                 }
             });
 
-
             historySearch.setOnMouseClicked(e -> {
                 String selectedWord = historySearch.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
@@ -245,12 +264,28 @@ public class Main implements Initializable {
             translateItem.setOnAction(e -> {
                 System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
+
             });
 
             gameItem.setOnAction(e -> {
                 System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
+
+            toggle_image.setImage(new Image("/image/toggle.png"));
+            notificationLabel.setVisible(true);
+            // notificationLabel.setOpacity(0);
+
+            FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+            fadeInTransition.setFromValue(0);
+            fadeInTransition.setToValue(1);
+
+            Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(2), event -> hideLabel()));
+            timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
+
+            fadeInTransition.play();
+            timeline.play();
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 executor.shutdown();
@@ -261,6 +296,31 @@ public class Main implements Initializable {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+    }
+    // end initialize
+
+    @FXML
+    public void toggleButtonAction() {
+        if (dark.isSelected()) {
+            // toggle_image.setImage(new Image("/image/toggle2.png"));
+            // notificationLabel.setVisible(true);
+            show("/com/example/dictionary_uet/Main_V_E.fxml");
+            System.out.println("Chuyen ve V - E\nNut mau trang");
+
+        }
+
+    }
+
+    private void hideLabel() {
+
+        notificationLabel.setVisible(false);
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+        fadeOutTransition.setFromValue(1);
+        fadeOutTransition.setToValue(0);
+
+        fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
+
+        fadeOutTransition.play();
     }
 
     private void setNode(Node node) {
@@ -299,6 +359,8 @@ public class Main implements Initializable {
         ButtonType addButton = new ButtonType("Thêm", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(addButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Thêm
         dialog.setResultConverter(param -> {
@@ -323,6 +385,17 @@ public class Main implements Initializable {
         // Hiển thị Dialog
         dialog.showAndWait();
     }
+
+    @FXML
+    private ToggleButton dark;
+
+    @FXML
+    private Tooltip toggle;
+
+    @FXML
+    private ImageView toggle_image;
+    @FXML
+    private Label notificationLabel;
 
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
@@ -355,7 +428,8 @@ public class Main implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận thêm từ");
         alert.setHeaderText(null);
-        alert.setContentText("Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
+        alert.setContentText(
+                "Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
 
         ButtonType replaceButton = new ButtonType("Thay thế từ cũ");
         ButtonType keepOldButton = new ButtonType("Giữ nguyên từ cũ", ButtonType.CANCEL.getButtonData());
@@ -418,6 +492,8 @@ public class Main implements Initializable {
         ButtonType editButton = new ButtonType("Sửa", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(editButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Sửa
         dialog.setResultConverter(param -> {
@@ -431,7 +507,8 @@ public class Main implements Initializable {
                     showEditMeaningDialog(word);
                 } else {
                     // Nếu không, hiển thị thông báo
-                    showAlert(Alert.AlertType.WARNING, "Từ chưa có", "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
+                    showAlert(Alert.AlertType.WARNING, "Từ chưa có",
+                            "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
                 }
             }
             return param;
@@ -471,7 +548,8 @@ public class Main implements Initializable {
         ButtonType saveButton = new ButtonType("Lưu", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(saveButton, cancelButton);
-
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
         // Thiết lập cách xử lý khi nhấn nút Lưu
         dialog.setResultConverter(param -> {
             if (param == saveButton) {
@@ -510,6 +588,8 @@ public class Main implements Initializable {
         ButtonType deleteButton = new ButtonType("Xóa", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(deleteButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Xóa
         dialog.setResultConverter(param -> {
@@ -535,7 +615,8 @@ public class Main implements Initializable {
 
     /**
      * Xóa từ.
-     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm từ rồi ném vào đây cho nó xóa.
+     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm
+     * từ rồi ném vào đây cho nó xóa.
      */
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList
@@ -545,5 +626,25 @@ public class Main implements Initializable {
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
+    }
+
+    private void displayNewWord(ArrayList<Word> words) {
+        // Tạo seed dựa trên ngày hiện tại (được lấy theo múi giờ GMT+7)
+        long seed = LocalDate.now(ZoneId.of("GMT+7")).toEpochDay();
+
+        // Lấy danh sách từ từ CSDL hoặc từ nơi khác
+
+        // Trộn danh sách từ dựa trên seed
+        Collections.shuffle(words, new Random(seed));
+
+        // Lấy từ đầu tiên từ danh sách (đã được trộn)
+        if (!words.isEmpty()) {
+            Word newWord = words.get(0);
+
+            String displayContent = "\n\n\n\n\n\nTừ mới hôm nay là: " + newWord.getWord_target() + "\n\n"
+                    + newWord.getWord_explain();
+            // Hiển thị từ mới trong currentDetail
+            currentDetail.getEngine().loadContent(displayContent);
+        }
     }
 }

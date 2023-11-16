@@ -76,9 +76,7 @@ public class GameController {
                                 // Time is up, move to the next question.
                                 nextQuestion(null);
                             }
-                        }
-                )
-        );
+                        }));
         questionTimer.setCycleCount(timerSeconds); // Run for 15 seconds.
         questionTimer.setOnFinished(event -> {
             // Time's up, move to the next question.
@@ -120,7 +118,6 @@ public class GameController {
         }
     }
 
-
     public void selectAnswer(ActionEvent event) {
         // Check if the answer has already been selected.
         if (answerSelected) {
@@ -155,7 +152,6 @@ public class GameController {
         answerSelected = true;
     }
 
-
     public String getSelectedAnswer() {
         String res = "";
         if (option1.isSelected()) {
@@ -173,7 +169,8 @@ public class GameController {
     public void displayCurrentQuestion() {
         // Get the current question.
         Question currentQuestion = questions.get(currentQuestionIndex);
-        // Update the UI elements (labels, radio buttons) with the current question data.
+        // Update the UI elements (labels, radio buttons) with the current question
+        // data.
         myTitle.setText(currentQuestion.getTitle());
         myQuestion.setText(currentQuestion.getQuestionText());
         option1.setText(currentQuestion.getAnswer().get(0));
@@ -244,7 +241,8 @@ public class GameController {
             String scoreData = formattedDateTime + " - " + ": " + score + "\n";
 
             // Append the score data to a file named "scores.txt"
-            Files.write(Paths.get("src\\main\\java\\game\\history\\scores.txt"), scoreData.getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("src\\main\\java\\game\\history\\scores.txt"), scoreData.getBytes(),
+                    StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -263,16 +261,20 @@ public class GameController {
         option3.setDisable(false);
         option4.setDisable(false);
     }
+
     public void initializeSound() {
         // Initialize MediaPlayer for clock ticking sound
-        //Media clockTickSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());
-        //clockTickPlayer = new MediaPlayer(clockTickSound);
+        // Media clockTickSound = new
+        // Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());
+        // clockTickPlayer = new MediaPlayer(clockTickSound);
         // Initialize MediaPlayer for correct answer sound
-        Media correctAnswerSound = new Media(new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
+        Media correctAnswerSound = new Media(
+                new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
         correctAnswerPlayer = new MediaPlayer(correctAnswerSound);
 
         // Initialize MediaPlayer for incorrect answer sound
-        Media incorrectAnswerSound = new Media(new File("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toURI().toString());
+        Media incorrectAnswerSound = new Media(
+                new File("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toURI().toString());
         incorrectAnswerPlayer = new MediaPlayer(incorrectAnswerSound);
     }
 }
