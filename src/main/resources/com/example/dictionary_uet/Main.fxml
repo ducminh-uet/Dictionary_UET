@@ -47,7 +47,7 @@
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
                                     <children>
                                         <WebView id="currentDetail" fx:id="currentDetail" layoutX="3.0" layoutY="3.0" prefHeight="260.0" prefWidth="416.0" />
-                              <Label id="notificationLabel" fx:id="notificationLabel" layoutX="42.0" layoutY="35.0" text="Bạn đang ở chế độ dịch English - Vietnamese" visible="false" />
+                              <Label id="notificationLabel" fx:id="notificationLabel" layoutX="42.0" layoutY="35.0" styleClass="Label" stylesheets="@/Style.css" text="Bạn đang ở chế độ dịch English - Vietnamese" visible="false" />
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -124,7 +124,7 @@
                 </Button>
             <ToggleButton id="dark" fx:id="dark" layoutX="60.0" layoutY="11.0" mnemonicParsing="false" onAction="#toggleButtonAction" prefHeight="39.0" prefWidth="38.0" selected="true" style="-fx-background-color: transparent;">
                <tooltip>
-                  <Tooltip fx:id="toggle" text="Dark Mode" />
+                  <Tooltip fx:id="toggle" text="Chuyển sang V-E" />
                </tooltip>
                <graphic>
                   <ImageView fx:id="toggle_image" fitHeight="37.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
