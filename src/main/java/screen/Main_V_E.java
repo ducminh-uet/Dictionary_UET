@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
@@ -77,7 +78,7 @@ public class Main_V_E implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            screen.setStyle("-fx-background-color: #CCFF66;");
+            screen.setStyle("-fx-background-color: #FFE4B5;");
             String initWord = "Hello";
             String wordResult = TranslateAPI.translate("en", "vi", initWord);
 
@@ -236,24 +237,29 @@ public class Main_V_E implements Initializable {
             });
 
             addItem.setOnAction(e -> {
+                handleButtonClick();
                 showAddWordDialog();
             });
 
             editItem.setOnAction(e -> {
+                handleButtonClick();
                 showEditWordDialog();
             });
 
             deleteItem.setOnAction(e -> {
+                handleButtonClick();
                 showDeleteWordDialog();
             });
 
             translateItem.setOnAction(e -> {
-                System.out.println("Hello");
+                handleButtonClick();
+                //System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
 
             });
 
             gameItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
@@ -267,8 +273,8 @@ public class Main_V_E implements Initializable {
             fadeInTransition.setToValue(1);
 
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(2), event -> hideLabel())
-            );
+                    new KeyFrame(Duration.seconds(1), event -> hideLabel())
+            ); //Delay 2s
             timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
 
             fadeInTransition.play();
@@ -289,6 +295,7 @@ public class Main_V_E implements Initializable {
     @FXML
     public void toggleButtonAction() {
         if (dark.isSelected()) {
+            handleButtonClick();
             //toggle_image.setImage(new Image("/image/toggle.png"));
             show("/com/example/dictionary_uet/Main.fxml");
             System.out.println("Chuyen ve E - V\nNut mau den");
@@ -298,17 +305,21 @@ public class Main_V_E implements Initializable {
     }
 
     private void hideLabel() {
-
         notificationLabel.setVisible(false);
         FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
         fadeOutTransition.setFromValue(1);
         fadeOutTransition.setToValue(0);
-
-
         fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
-
-
         fadeOutTransition.play();
+    }
+
+    public void handleButtonClick() {
+        // Load the audio file
+        String audioFile = getClass().getResource("/sound/button1_click.mp3").toString();
+        AudioClip audioClip = new AudioClip(audioFile);
+        // Play the audio
+        audioClip.play();
+
     }
 
     private void setNode(Node node) {

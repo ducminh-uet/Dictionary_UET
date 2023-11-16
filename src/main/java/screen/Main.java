@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import dictionary.Dictionary;
@@ -145,8 +146,6 @@ public class Main implements Initializable {
                 }
             });
 
-
-
             volumeButton.setOnAction(e -> {
                 String selectedWord = current.getText();
                 if (selectedWord != null) {
@@ -247,26 +246,29 @@ public class Main implements Initializable {
             });
 
             addItem.setOnAction(e -> {
+                handleButtonClick();
                 showAddWordDialog();
             });
 
-
-
             editItem.setOnAction(e -> {
+                handleButtonClick();
                 showEditWordDialog();
             });
 
             deleteItem.setOnAction(e -> {
+                handleButtonClick();
                 showDeleteWordDialog();
             });
 
             translateItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
 
             });
 
             gameItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
@@ -280,8 +282,8 @@ public class Main implements Initializable {
             fadeInTransition.setToValue(1);
 
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(2), event -> hideLabel())
-            );
+                    new KeyFrame(Duration.seconds(1), event -> hideLabel())
+            ); //Delay 2s
             timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
 
             fadeInTransition.play();
@@ -302,8 +304,7 @@ public class Main implements Initializable {
     @FXML
     public void toggleButtonAction() {
         if (dark.isSelected()) {
-            //toggle_image.setImage(new Image("/image/toggle2.png"));
-            //notificationLabel.setVisible(true);
+            handleButtonClick();
             show("/com/example/dictionary_uet/Main_V_E.fxml");
             System.out.println("Chuyen ve V - E\nNut mau trang");
 
@@ -311,21 +312,24 @@ public class Main implements Initializable {
 
     }
     private void hideLabel() {
-
         notificationLabel.setVisible(false);
         FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
         fadeOutTransition.setFromValue(1);
         fadeOutTransition.setToValue(0);
-
-
         fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
-
-
         fadeOutTransition.play();
     }
 
+    public void handleButtonClick() {
+        // Load the audio file
+        String audioFile = getClass().getResource("/sound/button1_click.mp3").toString();
+        AudioClip audioClip = new AudioClip(audioFile);
+        // Play the audio
+        audioClip.play();
 
-    private void setNode(Node node) {
+    }
+
+        private void setNode(Node node) {
         screen.getChildren().clear();
         screen.getChildren().add(node);
     }
