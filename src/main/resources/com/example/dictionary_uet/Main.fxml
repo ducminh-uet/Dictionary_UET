@@ -42,6 +42,15 @@
                                  </cursor>
                                         </Button>
                                         <TextField id="current" fx:id="current" editable="false" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
+                              <Button id="star" fx:id="star" layoutX="309.0" layoutY="2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="56.0" style="-fx-background-color: transparent;" onAction="#switchToSave">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/image/whitestar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
@@ -112,6 +121,7 @@
                                 <MenuItem id="gameItem" fx:id="gameItem" mnemonicParsing="false" text="Game" />
                                 <MenuItem id="vocabItem" fx:id="vocabItem" mnemonicParsing="false" text="Vocabulary" />
                                 <MenuItem id="translateItem" fx:id="translateItem" mnemonicParsing="false" text="Translate" />
+                                <MenuItem fx:id="savedWords" mnemonicParsing="false" text="Saved Words" />
                             </items>
                         </ContextMenu>
                     </contextMenu>

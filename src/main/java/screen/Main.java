@@ -11,6 +11,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,6 +45,8 @@ public class Main implements Initializable {
     private ObservableList<Word> wordList;
     private String existingWord;
 
+    private boolean starview = false;
+
     @FXML
     private ListView<Word> allWords;
 
@@ -57,10 +60,10 @@ public class Main implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button arrowButton, volumeButton, plus, menu;
+    private Button arrowButton, volumeButton, plus, menu, star;
 
     @FXML
-    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem;
+    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem, savedWords;
 
     @FXML
     private ContextMenu plusMenu, mainMenu;
@@ -218,7 +221,7 @@ public class Main implements Initializable {
                 }
             });
 
-            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem);
+            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem, savedWords);
             mainMenu.getItems().setAll(menuItems);
 
             menu.setOnAction(event -> {
@@ -257,9 +260,41 @@ public class Main implements Initializable {
                 show("/game/screen/MenuController.fxml/");
             });
 
+
+            savedWords.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Truy cap danh sach tu vung da luu");
+                show("/com/example/dictionary_uet/Save.fxml");
+            });
+
+            Image image1 = new Image("/image/yellowstar.png");
+            ImageView imageView1 = new ImageView(image1);
+
+            Image image2 = new Image("/image/whitestar.png");
+            ImageView imageView2 = new ImageView(image2);
+
+            star.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Lưu từ yêu thích");
+                starview = !starview;
+                if (starview) {
+                    star.setGraphic(imageView1);
+                    imageView1.setLayoutX(0);
+                    imageView1.setLayoutY(0);
+                    imageView1.setFitWidth(23);
+                    imageView1.setFitHeight(25);
+                } else {
+                    star.setGraphic(imageView2);
+                    imageView2.setLayoutX(0);
+                    imageView2.setLayoutY(0);
+                    imageView2.setFitWidth(23);
+                    imageView2.setFitHeight(25);
+                }
+                //starview = !starview;
+            });
+
             toggle_image.setImage(new Image("/image/toggle.png"));
             notificationLabel.setVisible(true);
-            // notificationLabel.setOpacity(0);
 
             FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
             fadeInTransition.setFromValue(0);
@@ -286,6 +321,12 @@ public class Main implements Initializable {
         }
     }
     // end initialize
+
+    @FXML
+    private void switchToSave(ActionEvent event) {
+        InterfaceManager.getInstance().setPreviousInterface("E-V");
+        //switchToInterface3Scene(event);
+    }
 
     @FXML
     public void toggleButtonAction() {

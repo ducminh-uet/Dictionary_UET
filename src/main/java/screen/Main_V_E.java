@@ -1,18 +1,17 @@
 package screen;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
-
 import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
 import dictionary.tool.Sound;
 import dictionary.tool.TranslateAPI;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +27,6 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -47,6 +45,8 @@ public class Main_V_E implements Initializable {
     private ObservableList<Word> wordList;
     private String existingWord;
 
+    private boolean starview = false;
+
     @FXML
     private ListView<Word> allWords;
 
@@ -60,10 +60,10 @@ public class Main_V_E implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button arrowButton, volumeButton, plus, menu;
+    private Button arrowButton, volumeButton, plus, menu, star;
 
     @FXML
-    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem;
+    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem, savedWords;
 
     @FXML
     private ContextMenu plusMenu, mainMenu;
@@ -225,7 +225,7 @@ public class Main_V_E implements Initializable {
                 }
             });
 
-            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem);
+            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem, savedWords);
             mainMenu.getItems().setAll(menuItems);
 
             menu.setOnAction(event -> {
@@ -264,6 +264,41 @@ public class Main_V_E implements Initializable {
                 show("/game/screen/MenuController.fxml/");
             });
 
+
+            savedWords.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Truy cap danh sach tu vung da luu");
+                show("/com/example/dictionary_uet/Save.fxml");
+                // Trong sự kiện của nút chuyển sang Giao diện 3
+
+            });
+
+            Image image1 = new Image("/image/yellowstar.png");
+            ImageView imageView1 = new ImageView(image1);
+
+            Image image2 = new Image("/image/whitestar.png");
+            ImageView imageView2 = new ImageView(image2);
+
+            star.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Lưu từ yêu thích");
+                starview = !starview;
+                if (starview) {
+                    star.setGraphic(imageView1);
+                    imageView1.setLayoutX(0); // Đặt vị trí X
+                    imageView1.setLayoutY(0);  // Đặt vị trí Y
+                    imageView1.setFitWidth(23);
+                    imageView1.setFitHeight(25);
+                } else {
+                    star.setGraphic(imageView2);
+                    imageView2.setLayoutX(0); // Đặt vị trí X
+                    imageView2.setLayoutY(0);  // Đặt vị trí Y
+                    imageView2.setFitWidth(23);
+                    imageView2.setFitHeight(25);
+                }
+                //starview = !starview;
+            });
+
             toggle_image.setImage(new Image("/image/toggle2.png"));
             notificationLabel.setVisible(true);
             //notificationLabel.setOpacity(0);
@@ -291,6 +326,12 @@ public class Main_V_E implements Initializable {
         }
     }
     //end initialize
+
+    @FXML
+    private void switchToSave(ActionEvent event) {
+        InterfaceManager.getInstance().setPreviousInterface("V-E");
+        //switchToInterface3Scene(event);
+    }
 
     @FXML
     public void toggleButtonAction() {
