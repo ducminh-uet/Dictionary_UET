@@ -28,6 +28,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameController {
     @FXML
@@ -63,6 +64,7 @@ public class GameController {
     public void initialize() {
         // Load questions from a file using the InputData class or another method.
         questions = InputData.loadQuestionsFromFile("src\\main\\java\\game\\tool\\input.txt");
+        Collections.shuffle(questions);
         currentQuestionIndex = 0; // Start with the first question.
         displayCurrentQuestion();
         initializeSound();
@@ -107,7 +109,7 @@ public class GameController {
         // Stop the correct answer transition if it's in progress.
         correctAnswerTransition.stop();
 
-        if (currentQuestionIndex < questions.size() - 1) {
+        if (currentQuestionIndex < 10) {
             currentQuestionIndex++; // Move to the next question.
             displayCurrentQuestion();
             resetTimer();
