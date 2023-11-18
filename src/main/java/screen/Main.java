@@ -11,7 +11,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -263,6 +262,7 @@ public class Main implements Initializable {
 
             savedWords.setOnAction(e -> {
                 handleButtonClick();
+                switchToSave();
                 System.out.println("Truy cap danh sach tu vung da luu");
                 show("/com/example/dictionary_uet/Save.fxml");
             });
@@ -322,21 +322,18 @@ public class Main implements Initializable {
     }
     // end initialize
 
-    @FXML
-    private void switchToSave(ActionEvent event) {
+
+    public void switchToSave() {
         InterfaceManager.getInstance().setPreviousInterface("E-V");
-        //switchToInterface3Scene(event);
+        System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
     }
 
     @FXML
     public void toggleButtonAction() {
         if (dark.isSelected()) {
-
             handleButtonClick();
-
             show("/com/example/dictionary_uet/Main_V_E.fxml");
             System.out.println("Chuyen ve V - E\nNut mau trang");
-
         }
 
     }

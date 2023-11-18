@@ -70,11 +70,18 @@ public class Save implements Initializable {
         logout.setOnAction(e -> {
             handleButtonClick();
             System.out.println("test");
-            if(previousInterface.equals("V-E")) {
-                Logout1();
+            String a = InterfaceManager.getInstance().getPreviousInterface();
+            System.out.println("a = " + a);
+            if (a != null) {
+                if (a.equals("V-E")) {
+                    Logout1();
+                } else {
+                    Logout();
+                }
             } else {
-                Logout();
+                System.out.println("NULL?");
             }
+
         });
     }
 

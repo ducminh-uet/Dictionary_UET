@@ -11,7 +11,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -267,6 +266,7 @@ public class Main_V_E implements Initializable {
 
             savedWords.setOnAction(e -> {
                 handleButtonClick();
+                switchToSave();
                 System.out.println("Truy cap danh sach tu vung da luu");
                 show("/com/example/dictionary_uet/Save.fxml");
                 // Trong sự kiện của nút chuyển sang Giao diện 3
@@ -285,14 +285,14 @@ public class Main_V_E implements Initializable {
                 starview = !starview;
                 if (starview) {
                     star.setGraphic(imageView1);
-                    imageView1.setLayoutX(0); // Đặt vị trí X
-                    imageView1.setLayoutY(0);  // Đặt vị trí Y
+                    imageView1.setLayoutX(0);
+                    imageView1.setLayoutY(0);
                     imageView1.setFitWidth(23);
                     imageView1.setFitHeight(25);
                 } else {
                     star.setGraphic(imageView2);
-                    imageView2.setLayoutX(0); // Đặt vị trí X
-                    imageView2.setLayoutY(0);  // Đặt vị trí Y
+                    imageView2.setLayoutX(0);
+                    imageView2.setLayoutY(0);
                     imageView2.setFitWidth(23);
                     imageView2.setFitHeight(25);
                 }
@@ -327,10 +327,9 @@ public class Main_V_E implements Initializable {
     }
     //end initialize
 
-    @FXML
-    private void switchToSave(ActionEvent event) {
+    public void switchToSave() {
         InterfaceManager.getInstance().setPreviousInterface("V-E");
-        //switchToInterface3Scene(event);
+
     }
 
     @FXML
