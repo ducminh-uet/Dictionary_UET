@@ -10,9 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import game.question.Question;
@@ -29,6 +27,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 public class GameController {
     @FXML
@@ -41,7 +40,8 @@ public class GameController {
     Label countdownLabel;
     @FXML
     Label correctAnswerLabel;
-
+    @FXML
+    Button returnToMenuButton;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -62,6 +62,7 @@ public class GameController {
     }
 
     public void initialize() {
+        returnToMenuButton = new Button();
         // Load questions from a file using the InputData class or another method.
         questions = InputData.loadQuestionsFromFile("src\\main\\java\\game\\tool\\input.txt");
         Collections.shuffle(questions);
@@ -97,12 +98,26 @@ public class GameController {
         });
     }
 
-    public void backToMenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("MenuController.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    private void returnToMenu(ActionEvent event) throws IOException {
+        // Show a confirmation alert before returning to the menu.
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Return to Menu");
+        alert.setHeaderText("Bạn có muốn quay lại về Menu?");
+        alert.setContentText("Quá trình của bạn có thể không được lưu.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User clicked OK, proceed to load the menu.
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuController.fxml"));
+            Parent menuRoot = loader.load();
+            Scene menuScene = new Scene(menuRoot);
+
+            // Get the stage from the event source (the button).
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(menuScene);
+            stage.show();
+        }
     }
 
     public void nextQuestion(ActionEvent event) {
@@ -265,6 +280,7 @@ public class GameController {
         option3.setDisable(false);
         option4.setDisable(false);
     }
+
     public void initializeSound() {
         // Initialize MediaPlayer for clock ticking sound
         //Media clockTickSound = new Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());

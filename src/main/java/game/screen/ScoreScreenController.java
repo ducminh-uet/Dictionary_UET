@@ -20,9 +20,11 @@ public class ScoreScreenController {
     private Label scoreLabel;
     @FXML
     Button returnToMenuButton;
+
     public void setScore(int score) {
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText(""+score);
     }
+
     public void returnToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MenuController.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

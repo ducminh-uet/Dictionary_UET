@@ -1,53 +1,31 @@
 /* MenuController.css */
 
-/* Style for the VBox */
 VBox {
-    -fx-background-color: #0074E4; /* Background color */
-    -fx-spacing: 20; /* Spacing between children */
-    -fx-alignment: center; /* Center-align children */
+    -fx-background-color: #FFFFFF;
 }
 
-/* Style for the Label */
 Label {
     -fx-font-family: "Bell MT Italic";
-    -fx-font-size: 30.0;
-    -fx-text-fill: white; /* Text color */
+    -fx-font-size: 30px;
+    -fx-text-fill: #ffffff;
+    /* Change the color as needed */
 }
 
-/* Style for the startButton */
-#startButton {
-    -fx-font-size: 18.0;
-    -fx-pref-width: 150px;
-    -fx-pref-height: 40px;
-    -fx-background-color: #4CAF50; /* Green background color */
-    -fx-text-fill: #FFFFFF; /* Text color */
-}
-
-/* Style for the History button */
+#startButton,
 #History {
-    -fx-font-size: 16.0;
-    -fx-pref-width: 127px;
-    -fx-pref-height: 45px;
-    -fx-background-color: #2196F3; /* Blue background color */
-    -fx-text-fill: #FFFFFF; /* Text color */
-}
-
-/* Style for the default button */
-Button {
-    -fx-font-size: 16.0;
+    -fx-font-size: 18px;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
-    -fx-background-color: #555555; /* Default button background color */
-    -fx-text-fill: #FFFFFF; /* Text color */
+    -fx-text-fill: #ffffff;
+    -fx-background-color:transparent;
+    /* Change the color as needed */
+    -fx-border-radius: 5px;
+    -fx-cursor: HAND;
+    /* Change cursor type as needed */
 }
 
-/* Add hover effect to buttons */
-Button:hover {
-    -fx-background-color: #333333; /* Darker background color on hover */
-    -fx-cursor: HAND; /* Change cursor on hover */
-}
-
-/* Add effects to the VBox */
-VBox {
-    -fx-effect: dropshadow(three-pass-box, #666666, 10, 0, 0, 0);
+#startButton:hover,
+#History:hover {
+    -fx-background-color: #27ae60;
+    /* Change the color as needed */
 }
