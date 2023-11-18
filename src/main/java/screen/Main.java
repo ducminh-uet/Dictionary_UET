@@ -322,7 +322,6 @@ public class Main implements Initializable {
     }
     // end initialize
 
-
     public void switchToSave() {
         InterfaceManager.getInstance().setPreviousInterface("E-V");
         System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
@@ -355,8 +354,6 @@ public class Main implements Initializable {
         audioClip.play();
 
     }
-
-
 
     private void setNode(Node node) {
         screen.getChildren().clear();
