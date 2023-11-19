@@ -30,9 +30,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -44,7 +42,10 @@ public class Main implements Initializable {
     private ObservableList<Word> wordList;
     private String existingWord;
 
-    private boolean starview = false;
+    //private boolean starview = false;
+
+    private Map<Word, Boolean> savestate = new HashMap<>();;
+
 
     @FXML
     private ListView<Word> allWords;
@@ -98,14 +99,78 @@ public class Main implements Initializable {
                 }
             });
 
+//            for(Word y : wordList) {
+//                savestate.put(y, false);
+//            }
+            Image image1 = new Image("/image/yellowstar.png");
+            ImageView imageView1 = new ImageView(image1);
+
+            Image image2 = new Image("/image/whitestar.png");
+            ImageView imageView2 = new ImageView(image2);
+
+
             allWords.setOnMouseClicked(event -> {
                 Word selectedWord = allWords.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                        if(b) {
+                            star.setGraphic(imageView1);
+                            imageView1.setLayoutX(0);
+                            imageView1.setLayoutY(0);
+                            imageView1.setFitWidth(23);
+                            imageView1.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(true);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        } else {
+                            star.setGraphic(imageView2);
+                            imageView2.setLayoutX(0);
+                            imageView2.setLayoutY(0);
+                            imageView2.setFitWidth(23);
+                            imageView2.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(false);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        }
                     current.setText(selectedWord.getWord_target());
                     webEngine.loadContent(selectedWord.getWord_explain());
 
                 }
             });
+
+            star.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Lưu từ yêu thích");
+                Word selectedWord = allWords.getSelectionModel().getSelectedItem();
+                if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                    b = !b;
+                    if (b) {
+                        star.setGraphic(imageView1);
+                        imageView1.setLayoutX(0);
+                        imageView1.setLayoutY(0);
+                        imageView1.setFitWidth(23);
+                        imageView1.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(true);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    } else {
+                        star.setGraphic(imageView2);
+                        imageView2.setLayoutX(0);
+                        imageView2.setLayoutY(0);
+                        imageView2.setFitWidth(23);
+                        imageView2.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(false);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    }
+                }
+            });
+
 
             searchField.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
@@ -267,39 +332,6 @@ public class Main implements Initializable {
                 show("/com/example/dictionary_uet/Save.fxml");
             });
 
-            Image image1 = new Image("/image/yellowstar.png");
-            ImageView imageView1 = new ImageView(image1);
-
-            Image image2 = new Image("/image/whitestar.png");
-            ImageView imageView2 = new ImageView(image2);
-
-            star.setOnAction(e -> {
-                handleButtonClick();
-                System.out.println("Lưu từ yêu thích");
-                starview = !starview;
-                if (starview) {
-                    star.setGraphic(imageView1);
-                    imageView1.setLayoutX(0);
-                    imageView1.setLayoutY(0);
-                    imageView1.setFitWidth(23);
-                    imageView1.setFitHeight(25);
-                    InterfaceManager.getInstance().setState(true);
-                    if(allWords.getSelectionModel().getSelectedItem() != null) {
-                        InterfaceManager.getInstance().setSelected(allWords.getSelectionModel().getSelectedItem());
-                    }
-                } else {
-                    star.setGraphic(imageView2);
-                    imageView2.setLayoutX(0);
-                    imageView2.setLayoutY(0);
-                    imageView2.setFitWidth(23);
-                    imageView2.setFitHeight(25);
-                    InterfaceManager.getInstance().setState(false);
-                    if(allWords.getSelectionModel().getSelectedItem() != null) {
-                        InterfaceManager.getInstance().setSelected(allWords.getSelectionModel().getSelectedItem());
-                    }
-                }
-
-            });
 
 
             toggle_image.setImage(new Image("/image/toggle.png"));

@@ -32,6 +32,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -44,7 +45,8 @@ public class Main_V_E implements Initializable {
     private ObservableList<Word> wordList;
     private String existingWord;
 
-    private boolean starview = false;
+    private boolean starview;
+    private Map<Word, Boolean> savestate;
 
     @FXML
     private ListView<Word> allWords;
@@ -298,6 +300,7 @@ public class Main_V_E implements Initializable {
                 }
                 //starview = !starview;
             });
+
 
             toggle_image.setImage(new Image("/image/toggle2.png"));
             notificationLabel.setVisible(true);

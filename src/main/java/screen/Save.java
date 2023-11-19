@@ -59,7 +59,7 @@ public class Save implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boolean x = InterfaceManager.getInstance().isState();
-        if (x == true) {
+        if (x) {
             allWords.getItems().add(InterfaceManager.getInstance().getSelected());
         } else {
             allWords.getItems().remove(InterfaceManager.getInstance().getSelected());
