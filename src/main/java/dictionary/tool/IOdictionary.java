@@ -34,30 +34,33 @@ public class IOdictionary {
     public ArrayList<Word> read() {
         ArrayList<Word> result = new ArrayList<>();
 
-        try {
-            FileReader fileReader = new FileReader("src/main/java/data/V_E.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/java/data/V_E.txt"))) {
             String line;
 
-            // Biểu thức chính quy để tìm từ và nghĩa từ định dạng HTML
-            String regex = "<i>(.*?)</i><br/><ul><li><font color='#cc0000'><b>(.*?)</b></font></li></ul>";
-            Pattern pattern = Pattern.compile(regex);
-
             while ((line = bufferedReader.readLine()) != null) {
-                Matcher matcher = pattern.matcher(line);
-                while (matcher.find()) {
-                    String word = matcher.group(1); // Nhóm 1 là từ
-                    String meaning = matcher.group(2); // Nhóm 2 là nghĩa
+                // Sử dụng biểu thức chính quy để trích xuất nội dung giữa thẻ <i> và <br/>
+                String regexTarget = "<i>(.*?)</i>";
+                String regexExplain = "<html>(.*?)</html>";
+                Pattern patternTarget = Pattern.compile(regexTarget);
+                Pattern patternExplain = Pattern.compile(regexExplain);
+
+                // Lấy matcher cho từng pattern
+                Matcher matcherTarget = patternTarget.matcher(line);
+                Matcher matcherExplain = patternExplain.matcher(line);
+
+                // Nếu có sự khớp, lấy nội dung giữa thẻ <i> và <br/> làm target và nội dung giữa <html> và </html> làm explain
+                if (matcherTarget.find() && matcherExplain.find()) {
+                    String target = matcherTarget.group(1);
+                    String explain = matcherExplain.group(1);
 
                     // Tạo đối tượng Word và thêm vào danh sách kết quả
-                    Word newWord = new Word(word, meaning);
+                    Word newWord = new Word(target, explain);
                     result.add(newWord);
                 }
             }
 
             DictionarySorter.sortWords(result);
-            bufferedReader.close();
-            fileReader.close();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

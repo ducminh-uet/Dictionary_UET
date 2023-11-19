@@ -615,7 +615,7 @@ public class Main implements Initializable {
 
     /**
      * Xóa từ.
-     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm
+     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm.
      * từ rồi ném vào đây cho nó xóa.
      */
     private void deleteWord(Word word) {
