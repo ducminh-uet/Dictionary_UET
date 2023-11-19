@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
@@ -57,6 +58,23 @@ public class Save implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        boolean x = InterfaceManager.getInstance().isState();
+        if (x == true) {
+            allWords.getItems().add(InterfaceManager.getInstance().getSelected());
+        } else {
+            allWords.getItems().remove(InterfaceManager.getInstance().getSelected());
+        }
+
+        WebEngine webEngine = currentDetail.getEngine();
+        allWords.setOnMouseClicked(event -> {
+            Word selectedWord = allWords.getSelectionModel().getSelectedItem();
+            if (selectedWord != null) {
+                current.setText(selectedWord.getWord_target());
+                webEngine.loadContent(selectedWord.getWord_explain());
+
+            }
+        });
+
         logout.setOnMouseEntered(event -> {
             logout.setScaleX(1.2);
             logout.setScaleY(1.2);
@@ -97,7 +115,6 @@ public class Save implements Initializable {
     public void state() {
         previousInterface = InterfaceManager.getInstance().getPreviousInterface();
     }
-
 
     @FXML
     private void Logout() {

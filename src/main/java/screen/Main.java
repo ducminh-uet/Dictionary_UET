@@ -283,15 +283,24 @@ public class Main implements Initializable {
                     imageView1.setLayoutY(0);
                     imageView1.setFitWidth(23);
                     imageView1.setFitHeight(25);
+                    InterfaceManager.getInstance().setState(true);
+                    if(allWords.getSelectionModel().getSelectedItem() != null) {
+                        InterfaceManager.getInstance().setSelected(allWords.getSelectionModel().getSelectedItem());
+                    }
                 } else {
                     star.setGraphic(imageView2);
                     imageView2.setLayoutX(0);
                     imageView2.setLayoutY(0);
                     imageView2.setFitWidth(23);
                     imageView2.setFitHeight(25);
+                    InterfaceManager.getInstance().setState(false);
+                    if(allWords.getSelectionModel().getSelectedItem() != null) {
+                        InterfaceManager.getInstance().setSelected(allWords.getSelectionModel().getSelectedItem());
+                    }
                 }
-                //starview = !starview;
+
             });
+
 
             toggle_image.setImage(new Image("/image/toggle.png"));
             notificationLabel.setVisible(true);
