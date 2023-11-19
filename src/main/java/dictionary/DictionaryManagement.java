@@ -29,7 +29,7 @@ public class DictionaryManagement {
     }
     public void saveWordsToFile() {
         IOdictionary ioDictionaries = new IOdictionary();
-        ioDictionaries.write(dictionary.getDictionary());
+    //    ioDictionaries.write(dictionary.getDictionary());
     }
     public void addWord(Word word) {
         dictionary.addWord(word);
