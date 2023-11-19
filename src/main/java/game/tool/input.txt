@@ -1,24 +1,152 @@
-Title: Sample Question
-QuestionText: What is 2 + 2?
-Answer: Four
-Answer: Five
-Answer: Six
-Answer: Seven
-CorrectAnswer: Four
+Title: Math Question
+QuestionText: What is 8 + 4?
+Answer: Ten
+Answer: Twelve
+Answer: Fourteen
+Answer: Sixteen
+CorrectAnswer: Twelve
 IsAttempt: true
-Title: Sample Question
-QuestionText: What is 2 + 3?
-Answer: Four
-Answer: Five
-Answer: Six
-Answer: Seven
-CorrectAnswer: Five
+Title: Science Question
+QuestionText: What is the chemical symbol for water?
+Answer: H
+Answer: O
+Answer: W
+Answer: H2O
+CorrectAnswer: H2O
 IsAttempt: true
-Title: This is a test test test?
-QuestionText: Ai dep trai nhat ?
-Answer: Viet Duc
-Answer: Viet Hung
-Answer: Tuan Khai
-Answer: Viet Hoang
-CorrectAnswer: Viet Hoang
+Title: Geography Question
+QuestionText: Which continent is known as the "Land of the Rising Sun"?
+Answer: Europe
+Answer: Asia
+Answer: Africa
+Answer: North America
+CorrectAnswer: Asia
+IsAttempt: true
+Title: Literature Question
+QuestionText: Who wrote the play "Romeo and Juliet"?
+Answer: William Shakespeare
+Answer: Charles Dickens
+Answer: Jane Austen
+Answer: Mark Twain
+CorrectAnswer: William Shakespeare
+IsAttempt: true
+Title: History Question
+QuestionText: In which year did World War II end?
+Answer: 1945
+Answer: 1939
+Answer: 1950
+Answer: 1941
+CorrectAnswer: 1945
+IsAttempt: true
+Title: Technology Question
+QuestionText: What does CPU stand for?
+Answer: Central Processing Unit
+Answer: Central Program Unit
+Answer: Computer Personal Unit
+Answer: Central Processor Unit
+CorrectAnswer: Central Processing Unit
+IsAttempt: true
+Title: Music Question
+QuestionText: Who is known as the "King of Pop"?
+Answer: Elvis Presley
+Answer: Michael Jackson
+Answer: Madonna
+Answer: Beyoncé
+CorrectAnswer: Michael Jackson
+IsAttempt: true
+Title: Sports Question
+QuestionText: In which sport does Lionel Messi excel?
+Answer: Tennis
+Answer: Football (Soccer)
+Answer: Basketball
+Answer: Golf
+CorrectAnswer: Football (Soccer)
+IsAttempt: true
+Title: General Knowledge Question
+QuestionText: What is the capital city of Australia?
+Answer: Sydney
+Answer: Melbourne
+Answer: Canberra
+Answer: Brisbane
+CorrectAnswer: Canberra
+IsAttempt: true
+Title: Film Question
+QuestionText: Who directed the movie "Inception"?
+Answer: Christopher Nolan
+Answer: Steven Spielberg
+Answer: Quentin Tarantino
+Answer: James Cameron
+CorrectAnswer: Christopher Nolan
+IsAttempt: true
+Title: Nature Question
+QuestionText: What is the largest mammal on Earth?
+Answer: Elephant
+Answer: Giraffe
+Answer: Blue Whale
+Answer: Dolphin
+CorrectAnswer: Blue Whale
+IsAttempt: true
+Title: Language Question
+QuestionText: How many letters are there in the English alphabet?
+Answer: 26
+Answer: 20
+Answer: 30
+Answer: 22
+CorrectAnswer: 26
+IsAttempt: true
+Title: Space Question
+QuestionText: What is the closest planet to the Sun?
+Answer: Mars
+Answer: Venus
+Answer: Mercury
+Answer: Jupiter
+CorrectAnswer: Mercury
+IsAttempt: true
+Title: Health Question
+QuestionText: What is the powerhouse of the cell?
+Answer: Nucleus
+Answer: Mitochondria
+Answer: Endoplasmic Reticulum
+Answer: Golgi Apparatus
+CorrectAnswer: Mitochondria
+IsAttempt: true
+Title: Food Question
+QuestionText: Which fruit is known as the "king of fruits"?
+Answer: Banana
+Answer: Mango
+Answer: Apple
+Answer: Orange
+CorrectAnswer: Mango
+IsAttempt: true
+Title: Mythology Question
+QuestionText: Who is the king of the Greek gods in mythology?
+Answer: Zeus
+Answer: Poseidon
+Answer: Hades
+Answer: Apollo
+CorrectAnswer: Zeus
+IsAttempt: true
+Title: Art Question
+QuestionText: Who painted the Mona Lisa?
+Answer: Vincent van Gogh
+Answer: Pablo Picasso
+Answer: Leonardo da Vinci
+Answer: Michelangelo
+CorrectAnswer: Leonardo da Vinci
+IsAttempt: true
+Title: Political Question
+QuestionText: Who is the current President of the United States?
+Answer: Joe Biden
+Answer: Donald Trump
+Answer: Barack Obama
+Answer: George W. Bush
+CorrectAnswer: Joe Biden
+IsAttempt: true
+Title: Environmental Question
+QuestionText: What is the primary greenhouse gas responsible for climate change?
+Answer: Methane
+Answer: Carbon Dioxide
+Answer: Nitrous Oxide
+Answer: Ozone
+CorrectAnswer: Carbon Dioxide
 IsAttempt: true

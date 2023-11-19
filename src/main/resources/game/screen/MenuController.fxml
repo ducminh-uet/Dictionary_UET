@@ -5,40 +5,75 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.screen.MenuController" >
-    <stylesheets>
-        <URL value="@MenuController.css" />
-    </stylesheets>
-    <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0" spacing="20" style="-fx-background-color: #0074E4; -fx-background-image: ;" stylesheets="@MenuController.css">
-        <Label text="Welcome to Quiz Game">
-            <font>
-                <Font name="Bell MT Italic" size="30.0" />
-            </font>
-        </Label>
-        <Button id="startButton" onAction="#startGame" text="Start Game" />
-      <Button fx:id="History" mnemonicParsing="false" onAction="#showHistory" prefHeight="45.0" prefWidth="127.0" text="History" />
-        <opaqueInsets>
-            <Insets />
-        </opaqueInsets>
-        <cursor>
-            <Cursor fx:constant="DEFAULT" />
-        </cursor>
-        <effect>
-            <Lighting>
-                <bumpInput>
-                    <Shadow />
-                </bumpInput>
-                <light>
-                    <Light.Distant />
-                </light>
-            </Lighting>
-        </effect>
-    </VBox>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.screen.MenuController">
+   <stylesheets>
+      <URL value="@MenuController.css" />
+   </stylesheets>
+   <VBox alignment="CENTER" layoutY="0.0" prefHeight="400.0" prefWidth="600.0" spacing="20" style="-fx-background-color: transparent; -fx-background-image: ;" stylesheets="@MenuController.css">
+      <Label text="Welcome to Quiz Game">
+         <font>
+            <Font name="Bell MT Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button id="startButton" onAction="#startGame" prefHeight="33.0" prefWidth="90.0">
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="175.0" onDragDetected="#startGame" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imageForGame/start-button%20(1).png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="History" mnemonicParsing="false" onAction="#showHistory" prefHeight="45.0" prefWidth="127.0">
+         <graphic>
+            <ImageView fitHeight="54.0" fitWidth="66.0" onDragDetected="#showHistory" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imageForGame/challenge.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+      <effect>
+         <Lighting>
+            <bumpInput>
+               <DropShadow />
+            </bumpInput>
+            <light>
+               <Light.Distant />
+            </light>
+         </Lighting>
+      </effect>
+   </VBox>
+   <Button mnemonicParsing="false" onAction="#backToApp" prefHeight="51.0" prefWidth="59.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="349.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="541.0" AnchorPane.topAnchor="0.0">
+      <graphic>
+         <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@imageForGame/back-button.png" />
+            </image>
+         </ImageView>
+      </graphic>
+   </Button>
+   <ImageView fitHeight="68.0" fitWidth="59.0" layoutX="73.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="61.33333333333354">
+      <image>
+         <Image url="@imageForGame/planet.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="59.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="69.0" AnchorPane.rightAnchor="126.0">
+      <image>
+         <Image url="@imageForGame/saturn.png" />
+      </image>
+   </ImageView>
 </AnchorPane>
