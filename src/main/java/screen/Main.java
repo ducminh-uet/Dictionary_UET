@@ -17,7 +17,11 @@ import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
+import dictionary.tool.Sound;
 import dictionary.tool.TranslateAPI;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,13 +31,18 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -43,8 +52,6 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import dictionary.tool.Sound;
-import javafx.util.Callback;
-
 import java.net.URISyntaxException;
 
 import javafx.animation.KeyFrame;
@@ -54,12 +61,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+>>>>>>> 785e4a83aae9a8db398766a0b931152411166be7
 public class Main implements Initializable {
-    private List<String> searchHistory = new ArrayList<>();
-    DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
+
+    //private boolean starview = false;
+
+    private Map<Word, Boolean> savestate = new HashMap<>();;
+
 
     @FXML
     private ListView<Word> allWords;
@@ -74,10 +85,10 @@ public class Main implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button arrowButton, volumeButton, plus, menu;
+    private Button arrowButton, volumeButton, plus, menu, star;
 
     @FXML
-    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem;
+    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem, savedWords;
 
     @FXML
     private ContextMenu plusMenu, mainMenu;
@@ -116,14 +127,78 @@ public class Main implements Initializable {
                 }
             });
 
+//            for(Word y : wordList) {
+//                savestate.put(y, false);
+//            }
+            Image image1 = new Image("/image/yellowstar.png");
+            ImageView imageView1 = new ImageView(image1);
+
+            Image image2 = new Image("/image/whitestar.png");
+            ImageView imageView2 = new ImageView(image2);
+
+
             allWords.setOnMouseClicked(event -> {
                 Word selectedWord = allWords.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                        if(b) {
+                            star.setGraphic(imageView1);
+                            imageView1.setLayoutX(0);
+                            imageView1.setLayoutY(0);
+                            imageView1.setFitWidth(23);
+                            imageView1.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(true);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        } else {
+                            star.setGraphic(imageView2);
+                            imageView2.setLayoutX(0);
+                            imageView2.setLayoutY(0);
+                            imageView2.setFitWidth(23);
+                            imageView2.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(false);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        }
                     current.setText(selectedWord.getWord_target());
                     webEngine.loadContent(selectedWord.getWord_explain());
 
                 }
             });
+
+            star.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Lưu từ yêu thích");
+                Word selectedWord = allWords.getSelectionModel().getSelectedItem();
+                if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                    b = !b;
+                    if (b) {
+                        star.setGraphic(imageView1);
+                        imageView1.setLayoutX(0);
+                        imageView1.setLayoutY(0);
+                        imageView1.setFitWidth(23);
+                        imageView1.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(true);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    } else {
+                        star.setGraphic(imageView2);
+                        imageView2.setLayoutX(0);
+                        imageView2.setLayoutY(0);
+                        imageView2.setFitWidth(23);
+                        imageView2.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(false);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    }
+                }
+            });
+
 
             searchField.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
@@ -238,7 +313,7 @@ public class Main implements Initializable {
                 }
             });
 
-            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem);
+            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem, savedWords);
             mainMenu.getItems().setAll(menuItems);
 
             menu.setOnAction(event -> {
@@ -250,38 +325,55 @@ public class Main implements Initializable {
             });
 
             addItem.setOnAction(e -> {
+                handleButtonClick();
                 showAddWordDialog();
             });
 
             editItem.setOnAction(e -> {
+                handleButtonClick();
                 showEditWordDialog();
             });
 
             deleteItem.setOnAction(e -> {
+                handleButtonClick();
                 showDeleteWordDialog();
             });
 
             translateItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
 
             });
 
             gameItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
 
+
+            savedWords.setOnAction(e -> {
+                handleButtonClick();
+                switchToSave();
+                System.out.println("Truy cap danh sach tu vung da luu");
+                show("/com/example/dictionary_uet/Save.fxml");
+            });
+
+
+
             toggle_image.setImage(new Image("/image/toggle.png"));
             notificationLabel.setVisible(true);
-            // notificationLabel.setOpacity(0);
 
             FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
             fadeInTransition.setFromValue(0);
             fadeInTransition.setToValue(1);
 
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(2), event -> hideLabel()));
+
+                    new KeyFrame(Duration.seconds(1), event -> hideLabel())
+            ); //Delay 2s
+
             timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
 
             fadeInTransition.play();
@@ -299,28 +391,37 @@ public class Main implements Initializable {
     }
     // end initialize
 
+    public void switchToSave() {
+        InterfaceManager.getInstance().setPreviousInterface("E-V");
+        System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
+    }
+
     @FXML
     public void toggleButtonAction() {
         if (dark.isSelected()) {
-            // toggle_image.setImage(new Image("/image/toggle2.png"));
-            // notificationLabel.setVisible(true);
+            handleButtonClick();
             show("/com/example/dictionary_uet/Main_V_E.fxml");
             System.out.println("Chuyen ve V - E\nNut mau trang");
-
         }
 
     }
 
     private void hideLabel() {
-
         notificationLabel.setVisible(false);
         FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
         fadeOutTransition.setFromValue(1);
         fadeOutTransition.setToValue(0);
-
         fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
-
         fadeOutTransition.play();
+    }
+
+    public void handleButtonClick() {
+        // Load the audio file
+        String audioFile = getClass().getResource("/sound/button1_click.mp3").toString();
+        AudioClip audioClip = new AudioClip(audioFile);
+        // Play the audio
+        audioClip.play();
+
     }
 
     private void setNode(Node node) {

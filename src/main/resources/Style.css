@@ -129,3 +129,14 @@
     -fx-padding: 10px 14px; /* Độ rộng của MenuItem */
 }
 
+.Label {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 16px; /* Cỡ chữ */
+    -fx-font-weight: bold; /* */
+}
+
+.translate {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 15px; /* Cỡ chữ */
+}
+
