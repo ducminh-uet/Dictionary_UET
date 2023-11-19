@@ -69,21 +69,74 @@
     -fx-background-color: white;
     -fx-text-fill: black;
 }
-/* Tùy chỉnh kiểu dáng cho nội dung */
-.alert .content {
+/* Tùy chỉnh kiểu dáng cho tiêu đề của Dialog */
+.dialog-pane .header-panel {
+    -fx-background-color: black;
+    -fx-text-fill: black;
+}
+
+/* Tùy chỉnh kiểu dáng cho nội dung của Dialog */
+.dialog-pane .content-panel {
     -fx-text-fill: black;
     -fx-font-size: 14px;
-
 }
 
-/* Tùy chỉnh kiểu dáng cho các nút */
-.alert .button-bar .button {
-    -fx-background-color: #00CCCC;
+/* Tùy chỉnh kiểu dáng cho các nút trong Dialog */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #EEE9E9;
     -fx-text-fill: black;
+    -fx-border-radius: 2;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+    -fx-font-size: 14px;
+}
+/* Tùy chỉnh kiểu dáng cho Dialog */
+.dialog-pane {
+    -fx-background-color: #FFEFD5;
+}
+
+/* Tùy chỉnh viền của Dialog */
+.dialog-pane .dialog-pane {
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+#plusMenu .menu {
+    -fx-background-insets: 0; /* Loại bỏ khoảng trắng xung quanh */
+    -fx-padding: 0; /* Loại bỏ khoảng cách nội dung bên trong menu */
+    -fx-border-color: black; /* Màu viền */
+    -fx-border-width: 8; /* Loại bỏ viền mặc định */
+}
+
+.menu {
+    -fx-background-insets: 0;
 
 }
-.translate {
-    -fx-font-size : 17;
-    -fx-text-fill : black;
-    -fx-font-weight: bold;
+
+/* Tùy chỉnh kiểu dáng của MenuItem */
+.menu-item {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 14px; /* Cỡ chữ */
+
 }
+
+/* Tùy chỉnh kiểu dáng khi di chuột qua MenuItem */
+.menu-item:hover {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 16px; /* Cỡ chữ */
+    -fx-background-color: #3399CC; /* Màu nền khi di chuột qua */
+
+    -fx-padding: 10px 14px; /* Độ rộng của MenuItem */
+}
+
+.Label {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 16px; /* Cỡ chữ */
+    -fx-font-weight: bold; /* */
+}
+
+.translate {
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-font-size: 15px; /* Cỡ chữ */
+}
+

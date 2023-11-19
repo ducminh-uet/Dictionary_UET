@@ -1,10 +1,27 @@
 package screen;
 
+import data.DataManager;
+import javafx.animation.FadeTransition;
+import javafx.event.EventType;
+import dictionary.tool.SQL;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
+import dictionary.tool.Sound;
 import dictionary.tool.TranslateAPI;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,33 +31,46 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import dictionary.tool.Sound;
-import javafx.util.Callback;
-
-
 import java.net.URISyntaxException;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+>>>>>>> 785e4a83aae9a8db398766a0b931152411166be7
 public class Main implements Initializable {
-    private List<String> searchHistory = new ArrayList<>();
-    DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
+
+    //private boolean starview = false;
+
+    private Map<Word, Boolean> savestate = new HashMap<>();;
+
 
     @FXML
     private ListView<Word> allWords;
@@ -55,10 +85,10 @@ public class Main implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button arrowButton, volumeButton, plus, menu;
+    private Button arrowButton, volumeButton, plus, menu, star;
 
     @FXML
-    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem;
+    private MenuItem addItem, editItem, deleteItem, gameItem, vocabItem, translateItem, savedWords;
 
     @FXML
     private ContextMenu plusMenu, mainMenu;
@@ -78,8 +108,11 @@ public class Main implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(SQL.getAllWords());
+            DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
+            wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
             allWords.setItems(wordList);
+            ArrayList<Word> copyList = new ArrayList<>(wordList);
+            displayNewWord(copyList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
                 @Override
@@ -94,14 +127,78 @@ public class Main implements Initializable {
                 }
             });
 
+//            for(Word y : wordList) {
+//                savestate.put(y, false);
+//            }
+            Image image1 = new Image("/image/yellowstar.png");
+            ImageView imageView1 = new ImageView(image1);
+
+            Image image2 = new Image("/image/whitestar.png");
+            ImageView imageView2 = new ImageView(image2);
+
+
             allWords.setOnMouseClicked(event -> {
                 Word selectedWord = allWords.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                        if(b) {
+                            star.setGraphic(imageView1);
+                            imageView1.setLayoutX(0);
+                            imageView1.setLayoutY(0);
+                            imageView1.setFitWidth(23);
+                            imageView1.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(true);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        } else {
+                            star.setGraphic(imageView2);
+                            imageView2.setLayoutX(0);
+                            imageView2.setLayoutY(0);
+                            imageView2.setFitWidth(23);
+                            imageView2.setFitHeight(25);
+                            InterfaceManager.getInstance().setState(false);
+                            InterfaceManager.getInstance().setSelected(selectedWord);
+                            savestate.put(selectedWord, b);
+                        }
                     current.setText(selectedWord.getWord_target());
                     webEngine.loadContent(selectedWord.getWord_explain());
 
                 }
             });
+
+            star.setOnAction(e -> {
+                handleButtonClick();
+                System.out.println("Lưu từ yêu thích");
+                Word selectedWord = allWords.getSelectionModel().getSelectedItem();
+                if (selectedWord != null) {
+                    Boolean b = savestate.get(selectedWord);
+                    if(b == null) b = false;
+                    System.out.println(b);
+                    b = !b;
+                    if (b) {
+                        star.setGraphic(imageView1);
+                        imageView1.setLayoutX(0);
+                        imageView1.setLayoutY(0);
+                        imageView1.setFitWidth(23);
+                        imageView1.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(true);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    } else {
+                        star.setGraphic(imageView2);
+                        imageView2.setLayoutX(0);
+                        imageView2.setLayoutY(0);
+                        imageView2.setFitWidth(23);
+                        imageView2.setFitHeight(25);
+                        InterfaceManager.getInstance().setState(false);
+                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        savestate.put(selectedWord, b);
+                    }
+                }
+            });
+
 
             searchField.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
@@ -193,7 +290,6 @@ public class Main implements Initializable {
                 }
             });
 
-
             historySearch.setOnMouseClicked(e -> {
                 String selectedWord = historySearch.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
@@ -217,7 +313,7 @@ public class Main implements Initializable {
                 }
             });
 
-            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem);
+            ObservableList<MenuItem> menuItems = FXCollections.observableArrayList(gameItem, vocabItem, translateItem, savedWords);
             mainMenu.getItems().setAll(menuItems);
 
             menu.setOnAction(event -> {
@@ -229,26 +325,59 @@ public class Main implements Initializable {
             });
 
             addItem.setOnAction(e -> {
+                handleButtonClick();
                 showAddWordDialog();
             });
 
             editItem.setOnAction(e -> {
+                handleButtonClick();
                 showEditWordDialog();
             });
 
             deleteItem.setOnAction(e -> {
+                handleButtonClick();
                 showDeleteWordDialog();
             });
 
             translateItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
+
             });
 
             gameItem.setOnAction(e -> {
+                handleButtonClick();
                 System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
+
+
+            savedWords.setOnAction(e -> {
+                handleButtonClick();
+                switchToSave();
+                System.out.println("Truy cap danh sach tu vung da luu");
+                show("/com/example/dictionary_uet/Save.fxml");
+            });
+
+
+
+            toggle_image.setImage(new Image("/image/toggle.png"));
+            notificationLabel.setVisible(true);
+
+            FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+            fadeInTransition.setFromValue(0);
+            fadeInTransition.setToValue(1);
+
+            Timeline timeline = new Timeline(
+
+                    new KeyFrame(Duration.seconds(1), event -> hideLabel())
+            ); //Delay 2s
+
+            timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
+
+            fadeInTransition.play();
+            timeline.play();
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 executor.shutdown();
@@ -259,6 +388,40 @@ public class Main implements Initializable {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+    }
+    // end initialize
+
+    public void switchToSave() {
+        InterfaceManager.getInstance().setPreviousInterface("E-V");
+        System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
+    }
+
+    @FXML
+    public void toggleButtonAction() {
+        if (dark.isSelected()) {
+            handleButtonClick();
+            show("/com/example/dictionary_uet/Main_V_E.fxml");
+            System.out.println("Chuyen ve V - E\nNut mau trang");
+        }
+
+    }
+
+    private void hideLabel() {
+        notificationLabel.setVisible(false);
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+        fadeOutTransition.setFromValue(1);
+        fadeOutTransition.setToValue(0);
+        fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
+        fadeOutTransition.play();
+    }
+
+    public void handleButtonClick() {
+        // Load the audio file
+        String audioFile = getClass().getResource("/sound/button1_click.mp3").toString();
+        AudioClip audioClip = new AudioClip(audioFile);
+        // Play the audio
+        audioClip.play();
+
     }
 
     private void setNode(Node node) {
@@ -297,6 +460,8 @@ public class Main implements Initializable {
         ButtonType addButton = new ButtonType("Thêm", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(addButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Thêm
         dialog.setResultConverter(param -> {
@@ -322,6 +487,17 @@ public class Main implements Initializable {
         dialog.showAndWait();
     }
 
+    @FXML
+    private ToggleButton dark;
+
+    @FXML
+    private Tooltip toggle;
+
+    @FXML
+    private ImageView toggle_image;
+    @FXML
+    private Label notificationLabel;
+
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -334,8 +510,10 @@ public class Main implements Initializable {
      * Ham addWord
      */
     private void addWordToDictionary(String word, String meaning) {
-        Word newWord = new Word(word,meaning);
+        Word newWord = new Word(word, meaning);
         wordList.add(newWord);
+        SQL.addWordToDataBase(word, meaning);
+        DataManager.getInstance().setWordList(wordList);
     }
 
     /**
@@ -351,7 +529,8 @@ public class Main implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận thêm từ");
         alert.setHeaderText(null);
-        alert.setContentText("Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
+        alert.setContentText(
+                "Từ \"" + existingWord + "\" đã tồn tại trong từ điển. Bạn muốn thêm từ mới hay giữ nguyên từ cũ?");
 
         ButtonType replaceButton = new ButtonType("Thay thế từ cũ");
         ButtonType keepOldButton = new ButtonType("Giữ nguyên từ cũ", ButtonType.CANCEL.getButtonData());
@@ -384,7 +563,9 @@ public class Main implements Initializable {
             int index = wordList.indexOf(existingWordObject);
 
             // Thay thế từ cũ bằng từ mới
-            wordList.get(index).setWord_explain(newMeaning);
+            DataManager.getInstance().getWordList().get(index).setWord_explain(newMeaning);
+
+            SQL.replaceWord(existingWord, newMeaning);
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -393,6 +574,7 @@ public class Main implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Thay thế từ", "Từ đã được thay thế thành công!");
         }
     }
+
     private void showEditWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Sửa từ");
@@ -411,6 +593,8 @@ public class Main implements Initializable {
         ButtonType editButton = new ButtonType("Sửa", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(editButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Sửa
         dialog.setResultConverter(param -> {
@@ -424,7 +608,8 @@ public class Main implements Initializable {
                     showEditMeaningDialog(word);
                 } else {
                     // Nếu không, hiển thị thông báo
-                    showAlert(Alert.AlertType.WARNING, "Từ chưa có", "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
+                    showAlert(Alert.AlertType.WARNING, "Từ chưa có",
+                            "Từ này chưa có trong từ điển, bạn vui lòng thêm từ.");
                 }
             }
             return param;
@@ -464,7 +649,8 @@ public class Main implements Initializable {
         ButtonType saveButton = new ButtonType("Lưu", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(saveButton, cancelButton);
-
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
         // Thiết lập cách xử lý khi nhấn nút Lưu
         dialog.setResultConverter(param -> {
             if (param == saveButton) {
@@ -484,6 +670,7 @@ public class Main implements Initializable {
         // Hiển thị Dialog
         dialog.showAndWait();
     }
+
     private void showDeleteWordDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Xóa từ");
@@ -502,6 +689,8 @@ public class Main implements Initializable {
         ButtonType deleteButton = new ButtonType("Xóa", ButtonType.OK.getButtonData());
         ButtonType cancelButton = new ButtonType("Hủy", ButtonType.CANCEL.getButtonData());
         dialog.getDialogPane().getButtonTypes().addAll(deleteButton, cancelButton);
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/Style.css").toExternalForm());
 
         // Thiết lập cách xử lý khi nhấn nút Xóa
         dialog.setResultConverter(param -> {
@@ -527,16 +716,36 @@ public class Main implements Initializable {
 
     /**
      * Xóa từ.
-     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm từ rồi ném vào đây cho nó xóa.
+     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm.
+     * từ rồi ném vào đây cho nó xóa.
      */
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList
         wordList.remove(word);
-
-        // Cập nhật danh sách hiển thị
-        allWords.setItems(FXCollections.observableList(wordList));
+        SQL.deleteWord(word.getWord_target());
+        DataManager.getInstance().setWordList(wordList);
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
+    }
+
+    private void displayNewWord(ArrayList<Word> words) {
+        // Tạo seed dựa trên ngày hiện tại (được lấy theo múi giờ GMT+7)
+        long seed = LocalDate.now(ZoneId.of("GMT+7")).toEpochDay();
+
+        // Lấy danh sách từ từ CSDL hoặc từ nơi khác
+
+        // Trộn danh sách từ dựa trên seed
+        Collections.shuffle(words, new Random(seed));
+
+        // Lấy từ đầu tiên từ danh sách (đã được trộn)
+        if (!words.isEmpty()) {
+            Word newWord = words.get(0);
+
+            String displayContent = "\n\n\n\n\n\nTừ mới hôm nay là: " + newWord.getWord_target() + "\n\n"
+                    + newWord.getWord_explain();
+            // Hiển thị từ mới trong currentDetail
+            currentDetail.getEngine().loadContent(displayContent);
+        }
     }
 }

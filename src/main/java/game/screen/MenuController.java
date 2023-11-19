@@ -21,6 +21,7 @@ public class MenuController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void showHistory(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("HistoryController.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -28,6 +29,7 @@ public class MenuController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void backToApp(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/com/example/dictionary_uet/Main.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

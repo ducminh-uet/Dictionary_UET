@@ -4,55 +4,67 @@ import javafx.scene.chart.ScatterChart;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IOdictionary {
-    public void write(ArrayList<Word> tumoi) {
+    public void write(ArrayList<Word> words, Word newWord) {
         try {
             FileWriter fileWriter = new FileWriter("dictionaries.txt", true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (Word word : tumoi) {
+            // Thêm từ mới vào danh sách từ điển
+            words.add(newWord);
+
+            // Ghi lại toàn bộ danh sách từ điển vào tệp tin
+            for (Word word : words) {
                 bufferedWriter.write(word.getWord_target() + " " + word.getWord_explain());
                 bufferedWriter.newLine();
             }
+
             bufferedWriter.close();
             fileWriter.close();
-        } catch (FileNotFoundException e)  {
-            System.out.println("Khong tim thay file yeu cau");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
+
     public ArrayList<Word> read() {
-        ArrayList<Word> ketqua = new ArrayList<>();
-        String[] words;
-        try {
-            FileReader fileReader = new FileReader("dictionaries.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = "";
-            while (true) {
-                if (line == null) {
-                    break;
-                }
-                line = bufferedReader.readLine();
-                words = line.split("\t");
-                if (words.length >= 2) {
-                    Word word = new Word(words[0], words[1]);
-                    ketqua.add(word);
+        ArrayList<Word> result = new ArrayList<>();
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/java/data/V_E.txt"))) {
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                // Sử dụng biểu thức chính quy để trích xuất nội dung giữa thẻ <i> và <br/>
+                String regexTarget = "<i>(.*?)</i>";
+                String regexExplain = "<html>(.*?)</html>";
+                Pattern patternTarget = Pattern.compile(regexTarget);
+                Pattern patternExplain = Pattern.compile(regexExplain);
+
+                // Lấy matcher cho từng pattern
+                Matcher matcherTarget = patternTarget.matcher(line);
+                Matcher matcherExplain = patternExplain.matcher(line);
+
+                // Nếu có sự khớp, lấy nội dung giữa thẻ <i> và <br/> làm target và nội dung giữa <html> và </html> làm explain
+                if (matcherTarget.find() && matcherExplain.find()) {
+                    String target = matcherTarget.group(1);
+                    String explain = matcherExplain.group(1);
+
+                    // Tạo đối tượng Word và thêm vào danh sách kết quả
+                    Word newWord = new Word(target, explain);
+                    result.add(newWord);
                 }
             }
-            bufferedReader.close();
-            fileReader.close();
-        } catch (UnsupportedEncodingException e) {
-            System.out.println(e.getMessage());
+
+            DictionarySorter.sortWords(result);
+
         } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-
-    return ketqua;
+        return result;
     }
 }

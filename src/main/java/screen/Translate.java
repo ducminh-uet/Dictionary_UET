@@ -1,6 +1,9 @@
 package screen;
 
 import dictionary.tool.Sound;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
@@ -15,7 +18,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -24,10 +26,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import dictionary.tool.TranslateAPI;
+import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -69,7 +73,6 @@ public class Translate implements Initializable {
             }
         });
 
-
         logout.setOnMouseEntered(event -> {
             logout.setScaleX(1.2);
             logout.setScaleY(1.2);
@@ -80,14 +83,44 @@ public class Translate implements Initializable {
             logout.setScaleY(1.0);
         });
 
-
         logout.setOnAction(e -> {
+            handleButtonClick();
             Logout();
             System.out.println("Haha");
         });
 
+        FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+        fadeInTransition.setFromValue(0);
+        fadeInTransition.setToValue(1);
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(2), event -> hideLabel())
+        ); //Delay 2s
+        timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
+
+        fadeInTransition.play();
+        timeline.play();
+
+    }
+    // end initialize
+
+    private void hideLabel() {
+        notificationLabel.setVisible(false);
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
+        fadeOutTransition.setFromValue(1);
+        fadeOutTransition.setToValue(0);
+        fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
+        fadeOutTransition.play();
     }
 
+    public void handleButtonClick() {
+        // Load the audio file
+        String audioFile = getClass().getResource("/sound/button_click.mp3").toString();
+        AudioClip audioClip = new AudioClip(audioFile);
+        // Play the audio
+        audioClip.play();
+
+    }
 
     @FXML
     private void Logout() {
@@ -99,7 +132,6 @@ public class Translate implements Initializable {
         screen.getChildren().add(node);
     }
 
-    @FXML
     private void show(String path) {
         try {
             AnchorPane component = FXMLLoader.load(getClass().getResource(path));
@@ -123,5 +155,8 @@ public class Translate implements Initializable {
 
     @FXML
     private ImageView word, detail;
+
+    @FXML
+    private Label notificationLabel;
 
 }
