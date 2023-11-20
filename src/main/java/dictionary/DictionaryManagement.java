@@ -22,7 +22,7 @@ public class DictionaryManagement {
 
     public void insertFromFile(File file) {
         IOdictionary io = new IOdictionary();
-        ArrayList<Word> words_add = io.read();
+        ArrayList<Word> words_add = io.read("src/main/java/data/V_E.txt");
         for (Word adds : words_add) {
             dictionary.addWord(adds);
         }

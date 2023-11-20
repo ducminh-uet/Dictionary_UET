@@ -52,7 +52,7 @@ public class SQL {
         PreparedStatement statement = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/newschema";
+            String url = "jdbc:mysql://localhost:3306/test";
             String username = "root";
             String password = "";
 

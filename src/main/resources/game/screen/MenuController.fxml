@@ -28,7 +28,7 @@
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="175.0" onDragDetected="#startGame" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imageForGame/start-button%20(1).png" />
+                  <Image url="/game/screen/imageForGame/start-button (1).png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -36,7 +36,7 @@
          <graphic>
             <ImageView fitHeight="54.0" fitWidth="66.0" onDragDetected="#showHistory" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imageForGame/challenge.png" />
+                  <Image url="/game/screen/imageForGame/challenge.png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -61,19 +61,19 @@
       <graphic>
          <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@imageForGame/back-button.png" />
+               <Image url="/game/screen/imageForGame/back-button.png" />
             </image>
          </ImageView>
       </graphic>
    </Button>
    <ImageView fitHeight="68.0" fitWidth="59.0" layoutX="73.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="61.33333333333354">
       <image>
-         <Image url="@imageForGame/planet.png" />
+         <Image url="/game/screen/imageForGame/planet.png" />
       </image>
    </ImageView>
    <ImageView fitHeight="59.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="69.0" AnchorPane.rightAnchor="126.0">
       <image>
-         <Image url="@imageForGame/saturn.png" />
+         <Image url="/game/screen/imageForGame/saturn.png" />
       </image>
    </ImageView>
 </AnchorPane>

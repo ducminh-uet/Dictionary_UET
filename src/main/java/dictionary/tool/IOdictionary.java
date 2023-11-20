@@ -9,20 +9,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IOdictionary {
-    public void write(ArrayList<Word> words, Word newWord) {
+    public void write( Word newWord, String path) {
         try {
-            FileWriter fileWriter = new FileWriter("dictionaries.txt", true);
+            FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Thêm từ mới vào danh sách từ điển
-            words.add(newWord);
-
-            // Ghi lại toàn bộ danh sách từ điển vào tệp tin
-            for (Word word : words) {
-                bufferedWriter.write(word.getWord_target() + " " + word.getWord_explain());
-                bufferedWriter.newLine();
-            }
-
+            bufferedWriter.write("<i>" + newWord.getWord_target() + "</i> <html>" + newWord.getWord_explain() + "</html>");
+            bufferedWriter.newLine();
             bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {
@@ -31,10 +25,10 @@ public class IOdictionary {
     }
 
 
-    public ArrayList<Word> read() {
+    public ArrayList<Word> read(String path) {
         ArrayList<Word> result = new ArrayList<>();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/java/data/V_E.txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
