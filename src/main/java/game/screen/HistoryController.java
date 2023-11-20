@@ -47,8 +47,8 @@ public class HistoryController {
         // Show a confirmation alert before returning to the menu.
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Return to Menu");
-        alert.setHeaderText("Are you sure you want to return to the menu?");
-        alert.setContentText("Your progress will be lost.");
+        alert.setHeaderText("Bạn có muốn quay lại về Menu");
+        alert.setContentText("Quá trình của bạn có thể kh được lưu");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {

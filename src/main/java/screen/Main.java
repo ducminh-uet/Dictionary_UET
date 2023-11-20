@@ -1,5 +1,19 @@
 package screen;
 
+import data.DataManager;
+import javafx.animation.FadeTransition;
+import javafx.event.EventType;
+import dictionary.tool.SQL;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import dictionary.Dictionary;
 import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
@@ -30,14 +44,26 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import dictionary.tool.Sound;
+import java.net.URISyntaxException;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
-    DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
@@ -83,8 +109,11 @@ public class Main implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(SQL.getAllWords());
+            DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
+            wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
             allWords.setItems(wordList);
+            ArrayList<Word> copyList = new ArrayList<>(wordList);
+            displayNewWord(copyList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
                 @Override
@@ -484,6 +513,8 @@ public class Main implements Initializable {
     private void addWordToDictionary(String word, String meaning) {
         Word newWord = new Word(word, meaning);
         wordList.add(newWord);
+        SQL.addWordToDataBase(word, meaning);
+        DataManager.getInstance().setWordList(wordList);
     }
 
     /**
@@ -533,7 +564,9 @@ public class Main implements Initializable {
             int index = wordList.indexOf(existingWordObject);
 
             // Thay thế từ cũ bằng từ mới
-            wordList.get(index).setWord_explain(newMeaning);
+            DataManager.getInstance().getWordList().get(index).setWord_explain(newMeaning);
+
+            SQL.replaceWord(existingWord, newMeaning);
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -684,17 +717,36 @@ public class Main implements Initializable {
 
     /**
      * Xóa từ.
-     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm
+     * Cái hàm này sẽ nhận 1 từ vào để xóa, tức là mình sẽ tìm từ cần xóa ở hàm tìm.
      * từ rồi ném vào đây cho nó xóa.
      */
     private void deleteWord(Word word) {
         // Xóa từ khỏi danh sách wordList
         wordList.remove(word);
-
-        // Cập nhật danh sách hiển thị
-        allWords.setItems(FXCollections.observableList(wordList));
+        SQL.deleteWord(word.getWord_target());
+        DataManager.getInstance().setWordList(wordList);
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
+    }
+
+    private void displayNewWord(ArrayList<Word> words) {
+        // Tạo seed dựa trên ngày hiện tại (được lấy theo múi giờ GMT+7)
+        long seed = LocalDate.now(ZoneId.of("GMT+7")).toEpochDay();
+
+        // Lấy danh sách từ từ CSDL hoặc từ nơi khác
+
+        // Trộn danh sách từ dựa trên seed
+        Collections.shuffle(words, new Random(seed));
+
+        // Lấy từ đầu tiên từ danh sách (đã được trộn)
+        if (!words.isEmpty()) {
+            Word newWord = words.get(0);
+
+            String displayContent = "\n\n\n\n\n\nTừ mới hôm nay là: " + newWord.getWord_target() + "\n\n"
+                    + newWord.getWord_explain();
+            // Hiển thị từ mới trong currentDetail
+            currentDetail.getEngine().loadContent(displayContent);
+        }
     }
 }

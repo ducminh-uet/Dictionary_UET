@@ -1,7 +1,7 @@
 /* MenuController.css */
 
 VBox {
-    -fx-background-color: #0074E4;
+    -fx-background-color: #FFFFFF;
 }
 
 Label {
@@ -17,7 +17,7 @@ Label {
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-text-fill: #ffffff;
-    -fx-background-color: #2ecc71;
+    -fx-background-color: transparent;
     /* Change the color as needed */
     -fx-border-radius: 5px;
     -fx-cursor: HAND;

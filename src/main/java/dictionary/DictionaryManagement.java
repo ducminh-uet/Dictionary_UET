@@ -22,14 +22,14 @@ public class DictionaryManagement {
 
     public void insertFromFile(File file) {
         IOdictionary io = new IOdictionary();
-        ArrayList<Word> words_add = io.read();
+        ArrayList<Word> words_add = io.read("src/main/java/data/V_E.txt");
         for (Word adds : words_add) {
             dictionary.addWord(adds);
         }
     }
     public void saveWordsToFile() {
         IOdictionary ioDictionaries = new IOdictionary();
-        ioDictionaries.write(dictionary.getDictionary());
+    //    ioDictionaries.write(dictionary.getDictionary());
     }
     public void addWord(Word word) {
         dictionary.addWord(word);

@@ -25,13 +25,13 @@ public class Sound {
             return;
         }
 
-        // Khởi động giọng nói
+
         voice.allocate();
 
-        // Đọc đoạn văn bản
+
         voice.speak(text);
 
-        // Giải phóng tài nguyên giọng nói
+
         voice.deallocate();
     }
 
@@ -51,27 +51,27 @@ public class Sound {
         byte[] voice = tts.speech(params);
 
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(voice))) {
-            // Lấy AudioFormat
+
             javax.sound.sampled.AudioFormat format = audioInputStream.getFormat();
 
-            // Tạo một DataLine.Info cho SourceDataLine
+
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 
-            // Lấy SourceDataLine từ DataLine.Info
+
             SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
 
-            // Mở và bắt đầu phát âm thanh
+
             line.open(format);
             line.start();
 
-            // Đọc và phát dữ liệu âm thanh
+
             byte[] buffer = new byte[4096];
             int bytesRead;
             while ((bytesRead = audioInputStream.read(buffer)) != -1) {
                 line.write(buffer, 0, bytesRead);
             }
 
-            // Kết thúc phát âm thanh
+
             line.drain();
             line.stop();
             line.close();
@@ -92,20 +92,20 @@ public class Sound {
         byte[] voice = tts.speech(params);
 
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(voice))) {
-            // Lấy AudioFormat
+
             javax.sound.sampled.AudioFormat format = audioInputStream.getFormat();
 
-            // Tạo một DataLine.Info cho SourceDataLine
+
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 
-            // Lấy SourceDataLine từ DataLine.Info
+
             SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
 
-            // Mở và bắt đầu phát âm thanh
+
             line.open(format);
             line.start();
 
-            // Đọc và phát dữ liệu âm thanh
+
             byte[] buffer = new byte[4096];
             int bytesRead;
             while ((bytesRead = audioInputStream.read(buffer)) != -1) {
