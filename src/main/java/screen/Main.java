@@ -61,8 +61,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
->>>>>>> 785e4a83aae9a8db398766a0b931152411166be7
+
 public class Main implements Initializable {
+    private List<String> searchHistory = new ArrayList<>();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;

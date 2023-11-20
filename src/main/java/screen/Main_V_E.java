@@ -91,7 +91,7 @@ public class Main_V_E implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(ioDictionary.read());
+            wordList = FXCollections.observableList(ioDictionary.read("src/main/java/data/V_E.txt"));
             removeDuplicateWords();
             allWords.setItems(wordList);
 
@@ -459,6 +459,7 @@ public class Main_V_E implements Initializable {
     private void addWordToDictionary(String word, String meaning) {
         Word newWord = new Word(word, meaning);
         wordList.add(newWord);
+
     }
 
     /**

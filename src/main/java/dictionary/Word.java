@@ -43,5 +43,7 @@ public class Word {
     public int hashCode() {
         return hashCode(this.word_target);
     }
-
+    public String toString(){
+        return word_target;
+    }
 }
