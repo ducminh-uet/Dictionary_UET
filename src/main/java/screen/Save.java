@@ -1,6 +1,7 @@
 package screen;
 
 import dictionary.Word;
+import dictionary.tool.Sound;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,7 +50,7 @@ public class Save implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button logout;
+    private Button logout, volumeButton;
 
 
     @FXML
@@ -100,6 +101,13 @@ public class Save implements Initializable {
                 System.out.println("NULL?");
             }
 
+        });
+
+        volumeButton.setOnAction(e -> {
+            String selectedWord = current.getText();
+            if (selectedWord != null) {
+                Sound.Speech(selectedWord);
+            }
         });
     }
 

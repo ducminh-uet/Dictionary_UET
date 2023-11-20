@@ -1,39 +1,28 @@
 package screen;
 
 import dictionary.tool.Sound;
+import dictionary.tool.TranslateAPI;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import dictionary.tool.TranslateAPI;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class Translate implements Initializable {
     private Thread translationThread = null; // Khởi tạo một Thread
@@ -56,8 +45,18 @@ public class Translate implements Initializable {
             });
             translationThread.start();
         });
+
+//        src.setOnAction(e -> {
+//            System.out.println("haha");
+//            try {
+//                Sound.SpeechAPI(translate.getText());
+//            } catch (Exception ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
         // Ấn vào loa thì đọc cái mình muốn dịch.
         word.setOnMouseClicked(event -> {
+            System.out.println("haha");
             try {
                 Sound.SpeechAPI(translate.getText());
             } catch (Exception e) {
@@ -66,6 +65,7 @@ public class Translate implements Initializable {
         });
         // Ấn vào loa thì đọc cái đã dịch xong - giọng tiếng Việt ko có nữ.
         detail.setOnMouseClicked(event -> {
+            System.out.println("haha");
             try {
                 Sound.SpeechVietNam(translateDetail.getText());
             } catch (Exception e) {
@@ -142,7 +142,7 @@ public class Translate implements Initializable {
     }
 
     @FXML
-    private Button logout;
+    private Button logout, src, des;
 
     @FXML
     private TextArea translate, translateDetail;
