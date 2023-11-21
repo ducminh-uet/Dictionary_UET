@@ -1,6 +1,9 @@
 package screen;
 
 import dictionary.Word;
+import dictionary.tool.Sound;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +16,8 @@ import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -49,7 +54,7 @@ public class Save implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button logout;
+    private Button logout, volumeButton;
 
 
     @FXML
@@ -58,11 +63,12 @@ public class Save implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<Word> saveWordList = FXCollections.observableArrayList(InterfaceManager.getInstance().getSelected());
+        allWords.setItems(saveWordList);
+
         boolean x = InterfaceManager.getInstance().isState();
         if (x) {
-            allWords.getItems().add(InterfaceManager.getInstance().getSelected());
-        } else {
-            allWords.getItems().remove(InterfaceManager.getInstance().getSelected());
+            allWords.setItems(saveWordList);
         }
 
         WebEngine webEngine = currentDetail.getEngine();
@@ -100,6 +106,12 @@ public class Save implements Initializable {
                 System.out.println("NULL?");
             }
 
+        });
+        volumeButton.setOnAction(e -> {
+            String selectedWord = current.getText();
+            if (selectedWord != null) {
+                Sound.Speech(selectedWord);
+            }
         });
     }
 

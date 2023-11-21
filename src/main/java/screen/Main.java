@@ -111,6 +111,7 @@ public class Main implements Initializable {
 
             DataManager.getInstance().setWordList(FXCollections.observableList(SQL.getAllWords()));
             wordList = (ObservableList<Word>) DataManager.getInstance().getWordList();
+            Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
             allWords.setItems(wordList);
             ArrayList<Word> copyList = new ArrayList<>(wordList);
             displayNewWord(copyList);
@@ -151,7 +152,6 @@ public class Main implements Initializable {
                             imageView1.setFitWidth(23);
                             imageView1.setFitHeight(25);
                             InterfaceManager.getInstance().setState(true);
-                            InterfaceManager.getInstance().setSelected(selectedWord);
                             savestate.put(selectedWord, b);
                         } else {
                             star.setGraphic(imageView2);
@@ -160,7 +160,6 @@ public class Main implements Initializable {
                             imageView2.setFitWidth(23);
                             imageView2.setFitHeight(25);
                             InterfaceManager.getInstance().setState(false);
-                            InterfaceManager.getInstance().setSelected(selectedWord);
                             savestate.put(selectedWord, b);
                         }
                     current.setText(selectedWord.getWord_target());
@@ -185,7 +184,7 @@ public class Main implements Initializable {
                         imageView1.setFitWidth(23);
                         imageView1.setFitHeight(25);
                         InterfaceManager.getInstance().setState(true);
-                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        InterfaceManager.getInstance().addSavedWord(selectedWord);
                         savestate.put(selectedWord, b);
                     } else {
                         star.setGraphic(imageView2);
@@ -194,7 +193,7 @@ public class Main implements Initializable {
                         imageView2.setFitWidth(23);
                         imageView2.setFitHeight(25);
                         InterfaceManager.getInstance().setState(false);
-                        InterfaceManager.getInstance().setSelected(selectedWord);
+                        InterfaceManager.getInstance().removeSavedWord(selectedWord);
                         savestate.put(selectedWord, b);
                     }
                 }
@@ -514,6 +513,7 @@ public class Main implements Initializable {
         Word newWord = new Word(word, meaning);
         wordList.add(newWord);
         SQL.addWordToDataBase(word, meaning);
+        Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
         DataManager.getInstance().setWordList(wordList);
     }
 
@@ -567,6 +567,7 @@ public class Main implements Initializable {
             DataManager.getInstance().getWordList().get(index).setWord_explain(newMeaning);
 
             SQL.replaceWord(existingWord, newMeaning);
+            Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -703,6 +704,7 @@ public class Main implements Initializable {
                 if (word != null) {
                     // Nếu có, tiến hành xóa từ
                     deleteWord(word);
+
                 } else {
                     // Nếu không, hiển thị thông báo
                     showAlert(Alert.AlertType.WARNING, "Từ không có", "Từ này không có trong từ điển, không thể xóa.");
@@ -725,6 +727,7 @@ public class Main implements Initializable {
         wordList.remove(word);
         SQL.deleteWord(word.getWord_target());
         DataManager.getInstance().setWordList(wordList);
+        Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");
@@ -747,6 +750,7 @@ public class Main implements Initializable {
                     + newWord.getWord_explain();
             // Hiển thị từ mới trong currentDetail
             currentDetail.getEngine().loadContent(displayContent);
+            current.setText(newWord.getWord_target());
         }
     }
 }
