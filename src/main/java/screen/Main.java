@@ -1,20 +1,6 @@
 package screen;
 
 import data.DataManager;
-import javafx.animation.FadeTransition;
-import javafx.event.EventType;
-import dictionary.tool.SQL;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import dictionary.Dictionary;
-import dictionary.DictionaryManagement;
 import dictionary.Word;
 import dictionary.tool.SQL;
 import dictionary.tool.Sound;
@@ -51,24 +37,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import dictionary.tool.Sound;
-import java.net.URISyntaxException;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
-
 
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
-
-    //private boolean starview = false;
 
     private Map<Word, Boolean> savestate = new HashMap<>();;
 

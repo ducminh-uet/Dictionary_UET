@@ -46,14 +46,6 @@ public class Translate implements Initializable {
             translationThread.start();
         });
 
-//        src.setOnAction(e -> {
-//            System.out.println("haha");
-//            try {
-//                Sound.SpeechAPI(translate.getText());
-//            } catch (Exception ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
         // Ấn vào loa thì đọc cái mình muốn dịch.
         word.setOnMouseClicked(event -> {
             System.out.println("haha");

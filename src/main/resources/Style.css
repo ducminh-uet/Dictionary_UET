@@ -1,4 +1,4 @@
-.border{
+.border {
     -fx-text-fill: #9f45b0;
     -fx-border-color: black;
     -fx-font-size: 14px;
@@ -17,7 +17,6 @@
 }
 .allWords {
     -fx-text-fill: black;
-
     -fx-font-size: 14px;
 }
 
