@@ -721,6 +721,7 @@ public class Main implements Initializable {
                     + newWord.getWord_explain();
             // Hiển thị từ mới trong currentDetail
             currentDetail.getEngine().loadContent(displayContent);
+            current.setText(newWord.getWord_target());
         }
     }
 }

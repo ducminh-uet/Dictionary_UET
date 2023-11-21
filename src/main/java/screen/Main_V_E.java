@@ -1,12 +1,8 @@
 package screen;
 
-import dictionary.tool.IOdictionary;
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
-
 import dictionary.DictionaryManagement;
 import dictionary.Word;
-import dictionary.tool.SQL;
+import dictionary.tool.IOdictionary;
 import dictionary.tool.Sound;
 import dictionary.tool.TranslateAPI;
 import javafx.animation.FadeTransition;
@@ -34,10 +30,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -84,7 +76,7 @@ public class Main_V_E implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            screen.setStyle("-fx-background-color: #FFE4B5;");
+            screen.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #add8e6, #e6e6fa);");
             String initWord = "Hello";
             String wordResult = TranslateAPI.translate("en", "vi", initWord);
 
