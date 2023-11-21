@@ -12,7 +12,7 @@ public class SQL {
         List<Word> words = new ArrayList<>();
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/test";
+            String url = "jdbc:mysql://localhost:3306/newschema";
             String username = "root";
             String password = "";
 
@@ -52,7 +52,7 @@ public class SQL {
         PreparedStatement statement = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/test";
+            String url = "jdbc:mysql://localhost:3306/newschema";
             String username = "root";
             String password = "";
 
