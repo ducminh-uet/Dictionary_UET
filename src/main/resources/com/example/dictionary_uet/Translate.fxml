@@ -34,30 +34,26 @@
                 <TextArea fx:id="translateDetail" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Nội dung sau khi dịch" />
             </children>
         </VBox>
-        <ImageView fx:id="word" fitHeight="39.0" fitWidth="37.0" layoutX="163.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/image/volume.png" />
-            </image>
-        </ImageView>
-        <Button layoutX="136.0" layoutY="3.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="37.0" style=" -fx-background-color: transparent;">
+        <Button fx:id="src" layoutX="178.0" layoutY="5.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="51.0" style=" -fx-background-color: transparent;">
             <cursor>
                 <Cursor fx:constant="HAND" />
-            </cursor>
-            <graphic>
-            </graphic></Button>
-        <Label layoutX="63.0" layoutY="8.0" prefHeight="35.0" prefWidth="106.0" style="-fx-font-size: 15px" styleClass="translate" stylesheets="@/Style.css" text="Văn bản gốc" />
-        <Label layoutX="63.0" layoutY="201.0" prefHeight="35.0" prefWidth="74.0" styleClass="translate" stylesheets="@/Style.css" text="Bản dịch" />
-        <Button layoutX="105.0" layoutY="198.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" style=" -fx-background-color: transparent;">
+            </cursor></Button>
+        <Label layoutX="63.0" layoutY="8.0" prefHeight="35.0" prefWidth="85.0" style="-fx-font-size: 15px" styleClass="translate" stylesheets="@/Style.css" text="Văn bản gốc" />
+        <Label layoutX="63.0" layoutY="201.0" prefHeight="35.0" prefWidth="75.0" styleClass="translate" stylesheets="@/Style.css" text="Bản dịch" />
+        <Button layoutX="141.0" layoutY="196.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="41.0" style=" -fx-background-color: transparent;">
             <cursor>
                 <Cursor fx:constant="HAND" />
-            </cursor>
-            <graphic>
-            </graphic></Button>
-        <ImageView fx:id="detail" fitHeight="33.0" fitWidth="47.0" layoutX="133.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/image/volume.png" />
-            </image>
-        </ImageView>
+            </cursor></Button>
         <Label id="notificationLabel" fx:id="notificationLabel" layoutX="172.0" layoutY="200.0" styleClass="Label" stylesheets="@/Style.css" text="Bạn đang ở chế độ dịch văn bản" />
+        <ImageView fx:id="detail" fitHeight="33.0" fitWidth="47.0" layoutX="128.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/image/volume.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="word" fitHeight="39.0" fitWidth="37.0" layoutX="146.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/image/volume.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

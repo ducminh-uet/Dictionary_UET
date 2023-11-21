@@ -91,7 +91,7 @@ public class Main_V_E implements Initializable {
             String a = "<html><body><h1>Hello</h1></body></html>";
             WebEngine webEngine = currentDetail.getEngine();
 
-            wordList = FXCollections.observableList(ioDictionary.read("src/main/java/data/V_E.txt"));
+            wordList = FXCollections.observableList(ioDictionary.read("V_E.txt"));
             removeDuplicateWords();
             allWords.setItems(wordList);
 
@@ -459,7 +459,7 @@ public class Main_V_E implements Initializable {
     private void addWordToDictionary(String word, String meaning) {
         Word newWord = new Word(word, meaning);
         wordList.add(newWord);
-
+        ioDictionary.write(newWord,"V_E.txt");
     }
 
     /**
@@ -669,6 +669,7 @@ public class Main_V_E implements Initializable {
 
         // Cập nhật danh sách hiển thị
         allWords.setItems(FXCollections.observableList(wordList));
+        ioDictionary.delete(word, "V_E.txt");
 
         // Hiển thị thông báo thành công
         showAlert(Alert.AlertType.INFORMATION, "Xóa từ", "Từ đã được xóa thành công!");

@@ -1,4 +1,5 @@
 package dictionary.tool;
+
 import dictionary.Word;
 import javafx.scene.chart.ScatterChart;
 
@@ -9,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IOdictionary {
-    public void write( Word newWord, String path) {
+    public void write(Word newWord, String path) {
         try {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -60,5 +61,25 @@ public class IOdictionary {
         }
 
         return result;
+    }
+
+    public void delete(Word word, String path) {
+        try {
+            // Đọc nội dung cũ của file
+            ArrayList<Word> words = read(path);
+
+            // Ghi nội dung mới vào file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+                for (Word w : words) {
+                    if (!w.getWord_target().equalsIgnoreCase(word.getWord_target())) {
+                        // Nếu không phải là từ cần xóa, ghi lại vào file
+                        writer.write("<i>" + w.getWord_target() + "</i> <html>" + w.getWord_explain() + "</html>\n");
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
