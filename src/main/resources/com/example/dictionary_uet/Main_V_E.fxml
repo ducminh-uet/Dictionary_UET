@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main_V_E">
+<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #add8e6, #e6e6fa);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Main_V_E">
     <children>
         <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0">
             <children>
@@ -52,12 +52,12 @@
                                             </graphic>
                                         </Button>
                                     </children>
-                                    
+
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">
                                     <children>
                                         <WebView id="currentDetail" fx:id="currentDetail" layoutX="3.0" layoutY="3.0" prefHeight="260.0" prefWidth="416.0" />
-                              <Label id="notificationLabel" fx:id="notificationLabel" layoutX="42.0" layoutY="35.0" styleClass="Label" stylesheets="@/Style.css" text="Bạn đang ở chế độ dịch Vietnamese - English" visible="false" />
+                                        <Label id="notificationLabel" fx:id="notificationLabel" layoutX="42.0" layoutY="35.0" styleClass="Label" stylesheets="@/Style.css" text="Bạn đang ở chế độ dịch Vietnamese - English" visible="false" />
                                     </children>
                                 </AnchorPane>
                             </children>
