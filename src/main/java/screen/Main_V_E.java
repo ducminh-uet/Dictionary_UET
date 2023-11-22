@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 
 public class Main_V_E implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
-    DictionaryManagement dictionaryManagement = new DictionaryManagement();
+    private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
@@ -84,7 +84,9 @@ public class Main_V_E implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            screen.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #add8e6, #e6e6fa);");
+
+            screen.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #F8FFAB, #DAE554);");
+
             String initWord = "Hello";
             String wordResult = TranslateAPI.translate("en", "vi", initWord);
 
@@ -273,14 +275,14 @@ public class Main_V_E implements Initializable {
 
             gameItem.setOnAction(e -> {
                 handleButtonClick();
-                System.out.println("Vao game");
+            //    System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
 
             savedWords.setOnAction(e -> {
                 handleButtonClick();
                 switchToSave();
-                System.out.println("Truy cap danh sach tu vung da luu");
+            //    System.out.println("Truy cap danh sach tu vung da luu");
                 show("/com/example/dictionary_uet/Save.fxml");
                 // Trong sự kiện của nút chuyển sang Giao diện 3
 
@@ -294,7 +296,7 @@ public class Main_V_E implements Initializable {
 
             star.setOnAction(e -> {
                 handleButtonClick();
-                System.out.println("Lưu từ yêu thích");
+            //    System.out.println("Lưu từ yêu thích");
                 starview = !starview;
                 if (starview) {
                     star.setGraphic(imageView1);
@@ -350,7 +352,7 @@ public class Main_V_E implements Initializable {
             handleButtonClick();
             // toggle_image.setImage(new Image("/image/toggle.png"));
             show("/com/example/dictionary_uet/Main.fxml");
-            System.out.println("Chuyen ve E - V\nNut mau den");
+        //    System.out.println("Chuyen ve E - V\nNut mau den");
 
         }
 

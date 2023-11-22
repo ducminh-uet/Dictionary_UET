@@ -54,7 +54,7 @@ public class Save implements Initializable {
     private TextField searchField, current;
 
     @FXML
-    private Button logout, volumeButton;
+    private Button logout, volumeButton, out;
 
 
     @FXML
@@ -112,6 +112,12 @@ public class Save implements Initializable {
             if (selectedWord != null) {
                 Sound.Speech(selectedWord);
             }
+        });
+        out.setOnAction(e ->{
+            Word removeWord = allWords.getSelectionModel().getSelectedItem();
+            InterfaceManager.getInstance().removeSavedWord(removeWord);
+            saveWordList.remove(removeWord);
+            allWords.setItems(saveWordList);
         });
     }
 

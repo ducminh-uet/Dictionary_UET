@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import game.question.Question;
@@ -42,6 +44,13 @@ public class GameController {
     Label correctAnswerLabel;
     @FXML
     Button returnToMenuButton;
+    @FXML
+    private Button toggleMusicButton;
+    @FXML
+    private ImageView speakerImageView;
+
+    private boolean isMusicPlaying = true;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -55,7 +64,8 @@ public class GameController {
     private boolean answerSelected = false;
 
     private String playerName;
-    private MediaPlayer correctAnswerPlayer,incorrectAnswerPlayer,backgroundPlayer; // MediaPlayer for correct answer sound
+    private MediaPlayer correctAnswerPlayer, incorrectAnswerPlayer, backgroundPlayer; // MediaPlayer for correct answer
+                                                                                      // sound
 
     public GameController() {
     }
@@ -94,6 +104,8 @@ public class GameController {
             nextQuestion(null);
         });
         backgroundPlayer.play();
+        speakerImageView.setImage(new Image(new File("src/main/resources/game/screen/imageForGame/volume.png").toURI().toString()));
+
     }
 
     @FXML
@@ -218,6 +230,7 @@ public class GameController {
     public void displayScoreScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ScoreScreen.fxml"));
+            backgroundPlayer.pause();
             Parent scoreScreenRoot = loader.load();
 
             ScoreScreenController scoreScreenController = loader.getController();
@@ -245,7 +258,7 @@ public class GameController {
     }
 
     private void displayCorrectAnswer(String correctAnswer) {
-        correctAnswerLabel.setText("Correct Answer: " + correctAnswer);
+        correctAnswerLabel.setText(correctAnswer);
         correctAnswerLabel.setVisible(true);
         correctAnswerTransition.playFromStart();
     }
@@ -281,9 +294,8 @@ public class GameController {
 
     public void initializeSound() {
 
-        Media backGround = new Media( new File ("src/main/resources/sound/background.mp3").toURI().toString());
+        Media backGround = new Media(new File("src/main/resources/sound/background.mp3").toURI().toString());
         backgroundPlayer = new MediaPlayer(backGround);
-
 
         Media correctAnswerSound = new Media(
                 new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
@@ -293,5 +305,18 @@ public class GameController {
         Media incorrectAnswerSound = new Media(
                 new File("src\\main\\resources\\game\\screen\\soundForGame\\error.mp3").toURI().toString());
         incorrectAnswerPlayer = new MediaPlayer(incorrectAnswerSound);
+    }
+    @FXML
+    private void toggleMusic() {
+        if (isMusicPlaying) {
+            backgroundPlayer.pause();
+            Image image1 = new Image(new File("src/main/resources/game/screen/imageForGame/silent.png").toURI().toString());
+            speakerImageView.setImage(image1);
+        } else {
+            backgroundPlayer.play();
+            Image image2 = new Image(new File("src/main/resources/game/screen/imageForGame/volume.png").toURI().toString());
+            speakerImageView.setImage(image2);
+        }
+        isMusicPlaying = !isMusicPlaying;
     }
 }

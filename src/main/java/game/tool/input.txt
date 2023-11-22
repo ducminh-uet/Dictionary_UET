@@ -150,7 +150,119 @@ Answer: Nitrous Oxide
 Answer: Ozone
 CorrectAnswer: Carbon Dioxide
 IsAttempt: true
-Title: Fear and Phobias
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "love"
+Answer: Tán tỉnh
+Answer: kết hôn
+Answer: bỏ chạy
+Answer: tình yêu
+CorrectAnswer: tình yêu
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "destroy"
+Answer: sự hủy diệt
+Answer: phá hủy
+Answer: tiêu diệt(kẻ địch/người)
+Answer: kiên trì
+CorrectAnswer: phá hủy
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "renovation"
+Answer: sự hiện đại
+Answer: sự bất tiện
+Answer: sự cải tiến
+Answer: sự sáng tạo
+CorrectAnswer: sự cải tiến
+IsAttempt: true
+Title: vocabulary question - fill word
+QuestionText:  ____a year, Tarrin Industrial Supply audits the accounts of all of its factories.
+Answer: Once
+Answer: This time of
+Answer: Immediately
+Answer: directly
+CorrectAnswer: Once
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: To remain on schedule, editors must submit all _____ to the book to the authors by Friday.
+Answer: ideas
+Answer: essays
+Answer: revisions
+Answer: suggestions
+CorrectAnswer: revisions
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I don't know how to ____ her!   B: So, You like her?
+Answer: hang
+Answer: pull
+Answer: break up
+Answer: flirt
+CorrectAnswer: flirt
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I have no idea how to ____ this new software! B: Have you tried reading the user manual?
+Answer: navigate
+Answer: install
+Answer: comprehend
+Answer: troubleshoot
+CorrectAnswer: navigate
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I have no idea how to ____ a tie. B: Let me show you; it's easy!
+Answer: wear
+Answer: tie
+Answer: untie
+Answer: style
+CorrectAnswer: tie
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What does the term "eclectic" most likely mean?
+Answer: đơn giản
+Answer: phức tạp
+Answer: sáng tạo
+Answer: đa dạng, lựa chọn từ nhiều nguồn
+CorrectAnswer: đa dạng, lựa chọn từ nhiều nguồn
+IsAttempt: true
+Title: vocabulary question
+QuestionText: Select the appropriate meaning for the word "ephemeral."
+Answer: lâu dài
+Answer: ngắn ngủi, thoáng qua
+Answer: không biến đổi
+Answer: phổ biến
+CorrectAnswer: ngắn ngủi, thoáng qua
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of the meanings of the word "redundant"?
+Answer: cần thiết
+Answer: thừa, dư thừa
+Answer: hiếm gặp
+Answer: chính xác
+CorrectAnswer: thừa, dư thừa
+IsAttempt: true
+Title: vocabulary question
+QuestionText: The teacher instructed students to provide detailed ____________ supporting their arguments in the persuasive essay.
+Answer: examples
+Answer: evidence
+Answer: illustrations
+Answer: anecdotes
+CorrectAnswer: evidence
+IsAttempt: true
+Title: vocabulary question
+QuestionText: The magazine editor requested that writers submit their final ____________ for the article by the upcoming deadline.
+Answer: drafts
+Answer: outlines
+Answer: edits
+Answer: proofs
+CorrectAnswer: drafts
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of the meanings of the word "altruistic"?
+Answer: ích kỷ
+Answer: tận tụy, vị tha
+Answer: không chắc chắn
+Answer: nổi bật
+CorrectAnswer: tận tụy, vị tha
+IsAttempt: true
+Title: vocabulary question
 QuestionText: What is the term for the fear of spiders?
 Answer: Acrophobia
 Answer: Arachnophobia

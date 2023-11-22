@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #add8e6, #e6e6fa);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Save">
+
+<AnchorPane fx:id="screen" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ABE1FF, #6BCAFF);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screen.Save">
     <children>
         <AnchorPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="328.0" prefWidth="600.0">
             <children>
@@ -46,6 +47,15 @@
                                             </cursor>
                                         </Button>
                                         <TextField id="current" fx:id="current" editable="false" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
+                                        <Button id="out" fx:id="out" layoutX="309.0" layoutY="2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="56.0" style="-fx-background-color: transparent;" >
+                                            <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@/image/out.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="268.0" prefWidth="426.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);">

@@ -1,8 +1,10 @@
 # Introduction
-This is a small project about my OOP course. This application provides basic functions such as word lookup, text translation, and Vietnamese - English dictionary support.
+This is a small project about my OOP course-build a Dictionary with Java. This application provides basic functions such as word lookup, text translation, and Vietnamese - English dictionary support.
 
 # Demo
-
+-  ![Image demo](src/main/resources/image/demoImage.png)
+-  [video Demo](https://drive.google.com/drive/folders/1aTXWFjdPPjFUU9qv9Yzr8-2RLz5FdHpc?usp=sharing)
+-  [video on youtube](https://www.youtube.com/watch?v=2gNYJOdHiYE)
 # Getting Started
 **Note**: Make sure you have completed [JAVA basic Tutorial](https://www.w3schools.com/java/) and [Object Oriented Programming](https://www.w3schools.com/java/java_oop.asp) or you are in the process of learning Java
 
@@ -47,6 +49,13 @@ You can install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and
 
 - Game quizz
   - Click to menu button and choose Game.
+  - Click to checkbox to choose correct answer for question.
+  - Click to submit to confirm your answer and see the correct answer.
+    
+     - For each correct answer, you get 10 points.
+     - And for each wrong answer, you don't lose points, isn't that great?
+  - Click to mute-unmte(volume) to turn on/off background music.
+  - Click to left-arrow button to return menu and main.
 
 
 
@@ -60,7 +69,7 @@ You can install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and
 - V_E file data for V-E dictionary.
 
 # UML class
-
+![UML diagram](src/main/resources/image/UML.png)
 # Developer
 - Nguyen [ducminh-uet](https://github.com/ducminh-uet) Viet Duc:
 
@@ -80,6 +89,7 @@ You can install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and
 - Le [hoanglmv](https://github.com/hoanglmv/Dictionary/commits?author=hoanglmv) Mai Viet Hoang:
   - Develop version cmd
   - Desgin and develop Game application
+  - UI dev
   
 # Contributing 
 - Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
