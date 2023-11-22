@@ -198,3 +198,227 @@ Answer: break up
 Answer: flirt
 CorrectAnswer: flirt
 IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I have no idea how to ____ this new software! B: Have you tried reading the user manual?
+Answer: navigate
+Answer: install
+Answer: comprehend
+Answer: troubleshoot
+CorrectAnswer: navigate
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I have no idea how to ____ a tie. B: Let me show you; it's easy!
+Answer: wear
+Answer: tie
+Answer: untie
+Answer: style
+CorrectAnswer: tie
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What does the term "eclectic" most likely mean?
+Answer: đơn giản
+Answer: phức tạp
+Answer: sáng tạo
+Answer: đa dạng, lựa chọn từ nhiều nguồn
+CorrectAnswer: đa dạng, lựa chọn từ nhiều nguồn
+IsAttempt: true
+Title: vocabulary question
+QuestionText: Select the appropriate meaning for the word "ephemeral."
+Answer: lâu dài
+Answer: ngắn ngủi, thoáng qua
+Answer: không biến đổi
+Answer: phổ biến
+CorrectAnswer: ngắn ngủi, thoáng qua
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of the meanings of the word "redundant"?
+Answer: cần thiết
+Answer: thừa, dư thừa
+Answer: hiếm gặp
+Answer: chính xác
+CorrectAnswer: thừa, dư thừa
+IsAttempt: true
+Title: vocabulary question
+QuestionText: The teacher instructed students to provide detailed ____________ supporting their arguments in the persuasive essay.
+Answer: examples
+Answer: evidence
+Answer: illustrations
+Answer: anecdotes
+CorrectAnswer: evidence
+IsAttempt: true
+Title: vocabulary question
+QuestionText: The magazine editor requested that writers submit their final ____________ for the article by the upcoming deadline.
+Answer: drafts
+Answer: outlines
+Answer: edits
+Answer: proofs
+CorrectAnswer: drafts
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of the meanings of the word "altruistic"?
+Answer: ích kỷ
+Answer: tận tụy, vị tha
+Answer: không chắc chắn
+Answer: nổi bật
+CorrectAnswer: tận tụy, vị tha
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is the term for the fear of spiders?
+Answer: Acrophobia
+Answer: Arachnophobia
+Answer: Claustrophobia
+Answer: Hydrophobia
+CorrectAnswer: Arachnophobia
+IsAttempt: true
+Title: Celestial Bodies
+QuestionText: Which word refers to the study of celestial bodies and the universe as a whole?
+Answer: Geology
+Answer: Astronomy
+Answer: Botany
+Answer: Sociology
+CorrectAnswer: Astronomy
+IsAttempt: true
+Title: Day and Night
+QuestionText: What is the opposite of nocturnal, describing animals that are active during the day?
+Answer: Diurnal
+Answer: Crepuscular
+Answer: Matutinal
+Answer: Vespertine
+CorrectAnswer: Diurnal
+IsAttempt: true
+Title: Changes of State
+QuestionText: What do we call the process of a liquid turning into vapor at a temperature below its boiling point?
+Answer: Melting
+Answer: Freezing
+Answer: Evaporation
+Answer: Condensation
+CorrectAnswer: Evaporation
+IsAttempt: true
+Title: Language Skills
+QuestionText: Which word means the ability to speak two languages fluently?
+Answer: Bilingual
+Answer: Monolingual
+Answer: Multilingual
+Answer: Linguistic
+CorrectAnswer: Bilingual
+IsAttempt: true
+Title: Weather Wonders
+QuestionText: What is the term for the study of the Earth's atmosphere and weather conditions?
+Answer: Geology
+Answer: Meteorology
+Answer: Oceanography
+Answer: Ecology
+CorrectAnswer: Meteorology
+IsAttempt: true
+Title: Ocean Depths
+QuestionText: What is the name for a long, deep trench in the ocean floor?
+Answer: Canyon
+Answer: Abyss
+Answer: Plateau
+Answer: Ravine
+CorrectAnswer: Abyss
+IsAttempt: true
+Title: Water Woes
+QuestionText: Which term refers to the excessive growth of algae in bodies of water due to an abundance of nutrients?
+Answer: Erosion
+Answer: Algal Bloom
+Answer: Fertilization
+Answer: Photosynthesis
+CorrectAnswer: Algal Bloom
+IsAttempt: true
+Title: Plant Power
+QuestionText: What is the word for the process by which plants make their own food using sunlight?
+Answer: Respiration
+Answer: Photosynthesis
+Answer: Transpiration
+Answer: Germination
+CorrectAnswer: Photosynthesis
+IsAttempt: true
+Title: Cellular Studies
+QuestionText: What is the term for the study of the structure and function of cells?
+Answer: Cytology
+Answer: Mycology
+Answer: Zoology
+Answer: Botany
+CorrectAnswer: Cytology
+IsAttempt: true
+Title: Life Processes
+QuestionText: Which word describes the process of converting food into energy within living organisms?
+Answer: Digestion
+Answer: Circulation
+Answer: Respiration
+Answer: Assimilation
+CorrectAnswer: Respiration
+IsAttempt: true
+Title: Geological Processes
+QuestionText: What is the term for the process by which rocks are broken down into smaller particles by natural forces?
+Answer: Erosion
+Answer: Sedimentation
+Answer: Weathering
+Answer: Compaction
+CorrectAnswer: Weathering
+IsAttempt: true
+Title: Space Exploration
+QuestionText: What is the term for the sudden and intense brightening of a star, often preceding its explosion?
+Answer: Supernova
+Answer: Nebula
+Answer: Black Hole
+Answer: Quasar
+CorrectAnswer: Supernova
+IsAttempt: true
+Title: Ecology
+QuestionText: What is the term for the relationship between two different species living in close association where one benefits, and the other is unaffected?
+Answer: Commensalism
+Answer: Mutualism
+Answer: Parasitism
+Answer: Symbiosis
+CorrectAnswer: Commensalism
+IsAttempt: true
+Title: Genetics
+QuestionText: What is the term for the complete set of genes or genetic material present in a cell or organism?
+Answer: Chromosome
+Answer: DNA
+Answer: Allele
+Answer: Genome
+CorrectAnswer: Genome
+IsAttempt: true
+Title: Medical Terminology
+QuestionText: What is the term for a substance that induces vomiting?
+Answer: Analgesic
+Answer: Emollient
+Answer: Emetic
+Answer: Antipyretic
+CorrectAnswer: Emetic
+IsAttempt: true
+Title: Technology
+QuestionText: What is the term for a program or set of instructions that performs a specific task on a computer?
+Answer: Algorithm
+Answer: Software
+Answer: Hardware
+Answer: Firmware
+CorrectAnswer: Software
+IsAttempt: true
+Title: Literature
+QuestionText: What is the term for a brief and witty statement or remark often expressing a clever idea?
+Answer: Prologue
+Answer: Epilogue
+Answer: Quotation
+Answer: Epigram
+CorrectAnswer: Epigram
+IsAttempt: true
+Title: Music
+QuestionText: What is the term for a gradual increase in loudness in music?
+Answer: Crescendo
+Answer: Decrescendo
+Answer: Fortissimo
+Answer: Pianissimo
+CorrectAnswer: Crescendo
+IsAttempt: true
+Title: Economic Concepts
+QuestionText: What is the term for the total value of all goods and services produced by a country in a specific time period?
+Answer: Gross Domestic Product (GDP)
+Answer: Consumer Price Index (CPI)
+Answer: Inflation Rate
+Answer: Unemployment Rate
+CorrectAnswer: Gross Domestic Product (GDP)
+IsAttempt: true
