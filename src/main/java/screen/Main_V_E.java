@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 
 public class Main_V_E implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
-    DictionaryManagement dictionaryManagement = new DictionaryManagement();
+    private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private ObservableList<Word> wordList;
     private String existingWord;
@@ -86,7 +86,7 @@ public class Main_V_E implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            screen.setStyle("-fx-background-color: #FFE4B5;");
+            screen.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #F8FFAB, #DAE554);");
             String initWord = "Hello";
             String wordResult = TranslateAPI.translate("en", "vi", initWord);
 

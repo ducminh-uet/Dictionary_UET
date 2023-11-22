@@ -65,6 +65,7 @@ import javafx.util.Duration;
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
     private ExecutorService executor = Executors.newFixedThreadPool(1);
+    private DictionaryManagement dictionaryManagement = new DictionaryManagement();
     private ObservableList<Word> wordList;
     private String existingWord;
 
