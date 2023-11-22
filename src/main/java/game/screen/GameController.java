@@ -55,8 +55,8 @@ public class GameController {
     private boolean answerSelected = false;
 
     private String playerName;
-    private MediaPlayer correctAnswerPlayer; // MediaPlayer for correct answer sound
-    private MediaPlayer incorrectAnswerPlayer, backgroundPlayer;
+    private MediaPlayer correctAnswerPlayer, incorrectAnswerPlayer, backgroundPlayer; // MediaPlayer for correct answer
+                                                                                      // sound
 
     public GameController() {
     }
@@ -281,9 +281,10 @@ public class GameController {
     }
 
     public void initializeSound() {
-        Media backGround = new Media(
-                new File("src\\main\\resources\\sound\\background.mp3").toURI().toString());
+
+        Media backGround = new Media(new File("src/main/resources/sound/background.mp3").toURI().toString());
         backgroundPlayer = new MediaPlayer(backGround);
+
         Media correctAnswerSound = new Media(
                 new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
         correctAnswerPlayer = new MediaPlayer(correctAnswerSound);
