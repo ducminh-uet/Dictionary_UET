@@ -56,7 +56,7 @@ public class GameController {
 
     private String playerName;
     private MediaPlayer correctAnswerPlayer; // MediaPlayer for correct answer sound
-    private MediaPlayer incorrectAnswerPlayer;
+    private MediaPlayer incorrectAnswerPlayer, backgroundPlayer;
 
     public GameController() {
     }
@@ -94,6 +94,7 @@ public class GameController {
             // Move to the next question.
             nextQuestion(null);
         });
+        backgroundPlayer.play();
     }
 
     @FXML
@@ -280,11 +281,9 @@ public class GameController {
     }
 
     public void initializeSound() {
-        // Initialize MediaPlayer for clock ticking sound
-        // Media clockTickSound = new
-        // Media(getClass().getResource("src\\main\\resources\\game\\screen\\soundForGame\\tickingbuzzer.mp3").toString());
-        // clockTickPlayer = new MediaPlayer(clockTickSound);
-        // Initialize MediaPlayer for correct answer sound
+        Media backGround = new Media(
+                new File("src\\main\\resources\\sound\\background.mp3").toURI().toString());
+        backgroundPlayer = new MediaPlayer(backGround);
         Media correctAnswerSound = new Media(
                 new File("src\\main\\resources\\game\\screen\\soundForGame\\correct.mp3").toURI().toString());
         correctAnswerPlayer = new MediaPlayer(correctAnswerSound);

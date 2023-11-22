@@ -150,3 +150,51 @@ Answer: Nitrous Oxide
 Answer: Ozone
 CorrectAnswer: Carbon Dioxide
 IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "love"
+Answer: Tán tỉnh
+Answer: kết hôn
+Answer: bỏ chạy
+Answer: tình yêu
+CorrectAnswer: tình yêu
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "destroy"
+Answer: sự hủy diệt
+Answer: phá hủy
+Answer: tiêu diệt(kẻ địch/người)
+Answer: kiên trì
+CorrectAnswer: phá hủy
+IsAttempt: true
+Title: vocabulary question
+QuestionText: What is one of meaning of the word "renovation"
+Answer: sự hiện đại
+Answer: sự bất tiện
+Answer: sự cải tiến
+Answer: sự sáng tạo
+CorrectAnswer: sự cải tiến
+IsAttempt: true
+Title: vocabulary question - fill word
+QuestionText:  ____a year, Tarrin Industrial Supply audits the accounts of all of its factories.
+Answer: Once
+Answer: This time of
+Answer: Immediately
+Answer: directly
+CorrectAnswer: Once
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: To remain on schedule, editors must submit all _____ to the book to the authors by Friday.
+Answer: ideas
+Answer: essays
+Answer: revisions
+Answer: suggestions
+CorrectAnswer: revisions
+IsAttempt: true
+Title: vocabulary question - fill words
+QuestionText: A: I don't know how to ____ her!   B: So, You like her?
+Answer: hang
+Answer: pull
+Answer: break up
+Answer: flirt
+CorrectAnswer: flirt
+IsAttempt: true
