@@ -15,6 +15,7 @@ public class main extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("MenuController.css").toExternalForm());
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
