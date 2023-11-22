@@ -1,5 +1,5 @@
 # Introduction
-This is a small project about my OOP course. This application provides basic functions such as word lookup, text translation, and Vietnamese - English dictionary support.
+This is a small project about my OOP course-build a Dictionary with Java. This application provides basic functions such as word lookup, text translation, and Vietnamese - English dictionary support.
 
 # Demo
 -  ![Image demo](src/main/resources/image/demoImage.png)
