@@ -2,7 +2,9 @@
 This is a small project about my OOP course. This application provides basic functions such as word lookup, text translation, and Vietnamese - English dictionary support.
 
 # Demo
-
+-  ![Image demo](src/main/resources/image/demoImage.png)
+-  [video Demo](https://drive.google.com/drive/folders/1aTXWFjdPPjFUU9qv9Yzr8-2RLz5FdHpc?usp=sharing)
+-  [video on youtube](https://www.youtube.com/watch?v=2gNYJOdHiYE)
 # Getting Started
 **Note**: Make sure you have completed [JAVA basic Tutorial](https://www.w3schools.com/java/) and [Object Oriented Programming](https://www.w3schools.com/java/java_oop.asp) or you are in the process of learning Java
 

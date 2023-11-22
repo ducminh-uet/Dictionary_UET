@@ -64,7 +64,8 @@ public class GameController {
     private boolean answerSelected = false;
 
     private String playerName;
-    private MediaPlayer correctAnswerPlayer,incorrectAnswerPlayer,backgroundPlayer; // MediaPlayer for correct answer sound
+    private MediaPlayer correctAnswerPlayer, incorrectAnswerPlayer, backgroundPlayer; // MediaPlayer for correct answer
+                                                                                      // sound
 
     public GameController() {
     }
@@ -229,6 +230,7 @@ public class GameController {
     public void displayScoreScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ScoreScreen.fxml"));
+            backgroundPlayer.pause();
             Parent scoreScreenRoot = loader.load();
 
             ScoreScreenController scoreScreenController = loader.getController();
@@ -292,7 +294,7 @@ public class GameController {
 
     public void initializeSound() {
 
-        Media backGround = new Media( new File ("src/main/resources/sound/background.mp3").toURI().toString());
+        Media backGround = new Media(new File("src/main/resources/sound/background.mp3").toURI().toString());
         backgroundPlayer = new MediaPlayer(backGround);
 
         Media correctAnswerSound = new Media(

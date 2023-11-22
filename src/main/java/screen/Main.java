@@ -144,7 +144,7 @@ public class Main implements Initializable {
                 if (selectedWord != null) {
                     Boolean b = savestate.get(selectedWord);
                     if(b == null) b = false;
-                    System.out.println(b);
+                //    System.out.println(b);
                         if(b) {
                             star.setGraphic(imageView1);
                             imageView1.setLayoutX(0);
@@ -170,12 +170,12 @@ public class Main implements Initializable {
 
             star.setOnAction(e -> {
                 handleButtonClick();
-                System.out.println("Lưu từ yêu thích");
+            //    System.out.println("Lưu từ yêu thích");
                 Word selectedWord = allWords.getSelectionModel().getSelectedItem();
                 if (selectedWord != null) {
                     Boolean b = savestate.get(selectedWord);
                     if(b == null) b = false;
-                    System.out.println(b);
+            //        System.out.println(b);
                     b = !b;
                     if (b) {
                         star.setGraphic(imageView1);
@@ -341,14 +341,14 @@ public class Main implements Initializable {
 
             translateItem.setOnAction(e -> {
                 handleButtonClick();
-                System.out.println("Hello");
+            //    System.out.println("Hello");
                 show("/com/example/dictionary_uet/Translate.fxml");
 
             });
 
             gameItem.setOnAction(e -> {
                 handleButtonClick();
-                System.out.println("Vao game");
+            //    System.out.println("Vao game");
                 show("/game/screen/MenuController.fxml/");
             });
 
@@ -356,7 +356,7 @@ public class Main implements Initializable {
             savedWords.setOnAction(e -> {
                 handleButtonClick();
                 switchToSave();
-                System.out.println("Truy cap danh sach tu vung da luu");
+            //    System.out.println("Truy cap danh sach tu vung da luu");
                 show("/com/example/dictionary_uet/Save.fxml");
             });
 
@@ -393,7 +393,7 @@ public class Main implements Initializable {
 
     public void switchToSave() {
         InterfaceManager.getInstance().setPreviousInterface("E-V");
-        System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
+    //    System.out.println("haha" + InterfaceManager.getInstance().getPreviousInterface());
     }
 
     @FXML
@@ -401,7 +401,7 @@ public class Main implements Initializable {
         if (dark.isSelected()) {
             handleButtonClick();
             show("/com/example/dictionary_uet/Main_V_E.fxml");
-            System.out.println("Chuyen ve V - E\nNut mau trang");
+        //    System.out.println("Chuyen ve V - E\nNut mau trang");
         }
 
     }
