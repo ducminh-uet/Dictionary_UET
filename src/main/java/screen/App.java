@@ -13,6 +13,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/dictionary_uet/Main.fxml"));
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.setTitle("E-V Dictionary");
         scene.getStylesheets().add(getClass().getResource("/Style.css").toExternalForm());
         primaryStage.show();

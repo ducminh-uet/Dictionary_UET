@@ -30,6 +30,14 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -85,7 +93,10 @@ public class Main_V_E implements Initializable {
 
             wordList = FXCollections.observableList(ioDictionary.read("V_E.txt"));
             removeDuplicateWords();
+            Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
             allWords.setItems(wordList);
+            ArrayList<Word> copyList = new ArrayList<>(wordList);
+            displayNewWord(copyList);
 
             allWords.setCellFactory(param -> new ListCell<Word>() {
                 @Override
@@ -414,6 +425,8 @@ public class Main_V_E implements Initializable {
                 } else {
                     // Thêm từ mới vào danh sách
                     addWordToDictionary(newWord, newMeaning);
+                    Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
+                    allWords.setItems(wordList);
                     // Hiển thị thông báo thành công
                     showAlert(Alert.AlertType.INFORMATION, "Thêm từ", "Từ đã được thêm thành công!");
                 }
@@ -502,6 +515,7 @@ public class Main_V_E implements Initializable {
 
             // Thay thế từ cũ bằng từ mới
             wordList.get(index).setWord_explain(newMeaning);
+            Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
 
             // Cập nhật danh sách hiển thị
             allWords.setItems(FXCollections.observableList(wordList));
@@ -660,7 +674,8 @@ public class Main_V_E implements Initializable {
         wordList.remove(word);
 
         // Cập nhật danh sách hiển thị
-        allWords.setItems(FXCollections.observableList(wordList));
+        Collections.sort(wordList, Comparator.comparing(Word::getWord_target));
+        allWords.setItems(wordList);
         ioDictionary.delete(word, "V_E.txt");
 
         // Hiển thị thông báo thành công
@@ -680,5 +695,25 @@ public class Main_V_E implements Initializable {
         }
         // Cập nhật danh sách hiển thị
         allWords.setItems(FXCollections.observableList(wordList));
+    }
+    private void displayNewWord(ArrayList<Word> words) {
+        // Tạo seed dựa trên ngày hiện tại (được lấy theo múi giờ GMT+7)
+        long seed = LocalDate.now(ZoneId.of("GMT+7")).toEpochDay();
+
+        // Lấy danh sách từ từ CSDL hoặc từ nơi khác
+
+        // Trộn danh sách từ dựa trên seed
+        Collections.shuffle(words, new Random(seed));
+
+        // Lấy từ đầu tiên từ danh sách (đã được trộn)
+        if (!words.isEmpty()) {
+            Word newWord = words.get(0);
+
+            String displayContent = "\n\n\n\n\n\nTừ mới hôm nay là: " + newWord.getWord_target() + "\n\n"
+                    + newWord.getWord_explain();
+            // Hiển thị từ mới trong currentDetail
+            currentDetail.getEngine().loadContent(displayContent);
+            current.setText(newWord.getWord_target());
+        }
     }
 }

@@ -280,7 +280,7 @@ public class GameController {
     }
 
     public void initializeSound() {
-        // Initialize MediaPlayer for clock ticking sound
+
         Media backGround = new Media( new File ("src/main/resources/sound/background.mp3").toURI().toString());
         backgroundPlayer = new MediaPlayer(backGround);
 
