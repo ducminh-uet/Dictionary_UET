@@ -360,7 +360,6 @@ public class Main_V_E implements Initializable {
         AudioClip audioClip = new AudioClip(audioFile);
         // Play the audio
         audioClip.play();
-
     }
 
     private void setNode(Node node) {
@@ -434,6 +433,7 @@ public class Main_V_E implements Initializable {
 
     @FXML
     private ImageView toggle_image;
+
     @FXML
     private Label notificationLabel;
 
@@ -678,7 +678,6 @@ public class Main_V_E implements Initializable {
                 iterator.remove();
             }
         }
-
         // Cập nhật danh sách hiển thị
         allWords.setItems(FXCollections.observableList(wordList));
     }

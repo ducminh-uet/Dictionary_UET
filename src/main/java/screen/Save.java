@@ -33,8 +33,6 @@ public class Save implements Initializable {
         this.previousInterface = previousInterface;
     }
 
-
-
     @FXML
     private Label notificationLabel;
     @FXML
