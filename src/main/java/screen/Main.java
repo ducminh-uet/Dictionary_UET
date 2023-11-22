@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 
 public class Main implements Initializable {
     private List<String> searchHistory = new ArrayList<>();
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
+    private ExecutorService executor = Executors.newFixedThreadPool(1); // 1 looongf duy nhất
     private ObservableList<Word> wordList;
     private String existingWord;
 
@@ -340,13 +340,14 @@ public class Main implements Initializable {
             notificationLabel.setVisible(true);
 
             FadeTransition fadeInTransition = new FadeTransition(Duration.millis(500), notificationLabel);
-            fadeInTransition.setFromValue(0);
-            fadeInTransition.setToValue(1);
+            //thay đổi độ trong suốt trong 500ms
+            fadeInTransition.setFromValue(0);//trong suốt đầu là 0
+            fadeInTransition.setToValue(1);// trong suốt cuối là 1
 
             Timeline timeline = new Timeline(
 
                     new KeyFrame(Duration.seconds(1), event -> hideLabel())
-            ); //Delay 2s
+            ); //Delay 1s gọi hideLabel()
 
             timeline.setDelay(Duration.millis(100)); // Delay 0.1 second before starting the timeline
 
@@ -383,10 +384,11 @@ public class Main implements Initializable {
     private void hideLabel() {
         notificationLabel.setVisible(false);
         FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(500), notificationLabel);
-        fadeOutTransition.setFromValue(1);
-        fadeOutTransition.setToValue(0);
+        //thay đổi độ trong suốt trong 500ms
+        fadeOutTransition.setFromValue(1);// trong suốt đầu là 0
+        fadeOutTransition.setToValue(0);// trong suốt sau là 1
         fadeOutTransition.setOnFinished(event -> notificationLabel.setVisible(false));
-        fadeOutTransition.play();
+        fadeOutTransition.play();// bắt đầu
     }
 
     public void handleButtonClick() {
