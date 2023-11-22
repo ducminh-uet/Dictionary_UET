@@ -100,5 +100,11 @@ You can install _Javafx_ it at [Gluon](https://gluonhq.com/products/javafx/) and
 
 - **Or you can  see the [Troubleshooting](https://docs.oracle.com/javafx/2/deployment/troubleshooting.htm) page.**
 
+# Learn more
+To learn more about Java and Javafx, take a look at the following resources:
+-  [Java Tutorial](https://www.w3schools.com/java/) - From **basic to advanced** java
+- [Set up with Java](https://www.geeksforgeeks.org/setting-environment-java/) - how set up **Java environment** on your devices.
+-  [Javafx Tutorial](https://www.javatpoint.com/javafx-tutorial) - a **guided tour** of the Javafx basics. 
+
 # Project status
 The project is completed.
